@@ -27,12 +27,4 @@ ssm课程的项目
 |user66|杨向东|
 |user77|杨渝挺|
 
-**质量监控数据库表**
 
-|前端名称|业务逻辑|数据库表|依赖|
-|------|------|------|------|
-|不及格品管理  	|不及格品申请表 |unqualify_apply 		|产品表|
-|工序计计量质检	|工序计计量质检	|process_measure_check	|工序表|
-|工序计量质检	|工序计量质检	|process_count_check	|工序表|
-|成品计数质检	|成品计数质检	|final_count_check		|订单表|
-|成品计量质检	|成品计量质检	|final_measuret_check	|订单表|
