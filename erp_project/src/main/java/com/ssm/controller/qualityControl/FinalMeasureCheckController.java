@@ -1,22 +1,36 @@
 package com.ssm.controller.qualityControl;
 
-
+import com.ssm.service.qualityControl.impl.FinalMeasureCheckServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/measure")
 public class FinalMeasureCheckController {
 
+    @Autowired
+    FinalMeasureCheckServiceImpl finalMeasureCheckService;
     /**
      * 成品计量质检的刷新及list页面
      * @return
      */
     @RequestMapping("list")
-    public String list(){
+    @ResponseBody
+    public List list(Integer page,Integer rows){
         //todo
-        return "p_measure_check_list";
+        int offset = (page - 1) * rows;
+        List finalMeasureCheck = finalMeasureCheckService.findByPage(rows,offset);
+        return finalMeasureCheck;
     }
+
+    /**
+     * 来自home.jsp的list
+     * @return
+     */
     @RequestMapping("find")
     public String find(){
         return "forward:/measure/list";
@@ -29,7 +43,7 @@ public class FinalMeasureCheckController {
     @RequestMapping("add")
     public String add(){
         //todo
-        return "p_measure_check_add";
+        return "measurement_add";
     }
 
     /**
@@ -38,7 +52,7 @@ public class FinalMeasureCheckController {
     @RequestMapping("edit")
     public String edit(){
         //todo
-        return "p_measure_check_edit";
+        return "measurement_edit";
     }
 
     /**
