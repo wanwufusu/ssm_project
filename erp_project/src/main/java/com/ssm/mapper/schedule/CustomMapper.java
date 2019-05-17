@@ -1,7 +1,8 @@
-package com.ssm.mapper;
+package com.ssm.mapper.schedule;
 
-import com.ssm.bean.Custom;
-import com.ssm.bean.CustomExample;
+import com.ssm.bean.schedule.Custom;
+import com.ssm.bean.schedule.CustomExample;
+import com.ssm.bean.schedule.PageDetail;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -20,6 +21,10 @@ public interface CustomMapper {
     List<Custom> selectByExample(CustomExample example);
 
     Custom selectByPrimaryKey(String customId);
+
+    List<Custom> selectByPageInformation(@Param("pageDetail")PageDetail pageDetail);
+
+    int selectAllRecords();
 
     int updateByExampleSelective(@Param("record") Custom record, @Param("example") CustomExample example);
 

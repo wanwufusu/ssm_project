@@ -1,4 +1,4 @@
-package com.ssm.controller;
+package com.ssm.controller.schedule;
 
 import com.ssm.bean.User;
 import com.ssm.service.test.TestService;
