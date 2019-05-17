@@ -15,7 +15,7 @@ ssm课程的项目
 
 182.61.60.156:3306/ssm_project   
 密码：Abc123456+    
-**配置url要加一句allowPublicKeyRetrieval=true   
+**配置url要加一句allowPublicKeyRetrieval=true**   
 
 |账号|使用人|
 |------|------|
@@ -27,7 +27,7 @@ ssm课程的项目
 |user66|杨向东|
 |user77|杨渝挺|
 
-**质量监控数据库表
+**质量监控数据库表**
 
 |前端名称|业务逻辑|数据库表|依赖|
 |------|------|------|------|
