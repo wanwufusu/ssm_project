@@ -7,8 +7,8 @@
     <groupId>com.ssm.erp</groupId>
     <artifactId>erp_project</artifactId>
     <version>1.0-SNAPSHOT</version>
-
     <packaging>war</packaging>
+
 
     <dependencies>
         <!--逆向工程包-->

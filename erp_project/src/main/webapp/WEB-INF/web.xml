@@ -6,7 +6,12 @@
 		id="WebApp_ID" version="2.5">
 		
   <display-name>production_ssm</display-name>
-  
+
+<!--  &lt;!&ndash; Spring容器监听器 &ndash;&gt;
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:application.xml</param-value>
+  </context-param>-->
   <!-- 前端控制器 -->
   
   
