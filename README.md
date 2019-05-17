@@ -11,7 +11,7 @@ ssm课程的项目
 设备监控 ： 杨骁  
 
 
-# 数据库
+
 182.61.60.156:3306/ssm_project
 
 ###url要加一句allowPublicKeyRetrieval=true
@@ -29,11 +29,10 @@ user77      杨渝挺
 Abc123456+
 
 
-
-#质量监控
-前端名称			业务逻辑			数据库表		
-不及格品管理  		不及格品申请表  	unqualify_apply 		——依赖产品表
-工序计计量质检		工序计计量质检		process_measure_check	——依赖工序表
-工序计量质检		工序计量质检		process_count_check		——依赖工序表
-成品计数质检		成品计数质检		final_count_check		——未知依赖
-成品计量质检		成品计量质检		final_measuret_check	——未知依赖
+# 质量监控
+前端名称			业务逻辑			数据库表<br>
+不及格品管理  		不及格品申请表  	unqualify_apply 		——依赖产品表<br>
+工序计计量质检		工序计计量质检		process_measure_check	——依赖工序表<br>
+工序计量质检		工序计量质检		process_count_check		——依赖工序表<br>
+成品计数质检		成品计数质检		final_count_check		——未知依赖<br>
+成品计量质检		成品计量质检		final_measuret_check	——未知依赖<br>
