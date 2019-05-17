@@ -12,6 +12,7 @@ ssm课程的项目
 
 
 # 数据库设置
+>
 182.61.60.156:3306/ssm_project   
 密码：Abc123456+    
 url要加一句allowPublicKeyRetrieval=true   
@@ -27,8 +28,10 @@ url要加一句allowPublicKeyRetrieval=true
 |user77|杨渝挺|
 
 ## 数据库表
+>>
 
-### 质量监控                      
+### 质量监控 
+>>>
 |前端名称|业务逻辑|数据库表|依赖|
 |------|------|------|------|
 |不及格品管理  	|不及格品申请表 |unqualify_apply 		|产品表|
