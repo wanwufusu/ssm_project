@@ -1,0 +1,6 @@
+.idea
+*.class
+*.iml
+erp_project/target
+erp_project/src/test
+
