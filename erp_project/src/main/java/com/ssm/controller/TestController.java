@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @create 2019/5/17
  * @since 1.0.0
  */
+/*
 @Controller
 public class TestController {
 
@@ -28,3 +29,4 @@ public class TestController {
         return "test";
     }
 }
+*/
