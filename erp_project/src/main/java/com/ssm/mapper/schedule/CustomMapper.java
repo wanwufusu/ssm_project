@@ -24,7 +24,15 @@ public interface CustomMapper {
 
     List<Custom> selectByPageInformation(@Param("pageDetail")PageDetail pageDetail);
 
+    List<Custom> selectByPageAndCustomId(@Param("pageDetail")PageDetail pageDetail, @Param("customId")String customId);
+
+    List<Custom> selectByPageAndCustomName(@Param("pageDetail")PageDetail pageDetail, @Param("customName")String customName);
+
     int selectAllRecords();
+
+    int selectAllRecordsByCustomId(@Param("customId")String customId);
+
+    int selectAllRecordsByCustomName(@Param("customName")String customName);
 
     int updateByExampleSelective(@Param("record") Custom record, @Param("example") CustomExample example);
 
