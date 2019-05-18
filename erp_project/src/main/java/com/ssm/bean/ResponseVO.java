@@ -1,4 +1,4 @@
-package com.ssm.bean.schedule;
+package com.ssm.bean;
 
 
 import java.util.List;
@@ -12,9 +12,9 @@ import java.util.List;
  * @since 1.0.0
  */
 
-public class CustomVO {
+public class ResponseVO<T> {
     private int total;
-    private List<Custom> rows;
+    private List<T> rows;
 
     public int getTotal() {
         return total;
@@ -24,11 +24,11 @@ public class CustomVO {
         this.total = total;
     }
 
-    public List<Custom> getRows() {
+    public List<T> getRows() {
         return rows;
     }
 
-    public void setRows(List<Custom> rows) {
+    public void setRows(List<T> rows) {
         this.rows = rows;
     }
 }
