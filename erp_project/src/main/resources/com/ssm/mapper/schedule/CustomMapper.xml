@@ -85,10 +85,48 @@
             limit #{pageDetail.rows} offset #{pageDetail.offset}
         </if>
     </select>
+    <select id="selectByPageAndCustomId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from custom
+        <where>
+            custom_id like #{customId}
+        </where>
+        <if test="#{pageDetail} != null">
+            limit #{pageDetail.rows} offset #{pageDetail.offset}
+        </if>
+    </select>
+    <select id="selectByPageAndCustomName" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from custom
+        <where>
+            custom_name like #{customName}
+        </where>
+        <if test="#{pageDetail} != null">
+            limit #{pageDetail.rows} offset #{pageDetail.offset}
+        </if>
+    </select>
     <select id="selectAllRecords" resultType="_int">
         select
         count(*)
         from custom
+    </select>
+    <select id="selectAllRecordsByCustomId" resultType="_int">
+        select
+        count(*)
+        from custom
+        <where>
+            custom_id like #{customId}
+        </where>
+    </select>
+    <select id="selectAllRecordsByCustomName" resultType="_int">
+        select
+        count(*)
+        from custom
+        <where>
+            custom_name like #{customName}
+        </where>
     </select>
     <select id="selectByExample" parameterType="com.ssm.bean.schedule.CustomExample" resultMap="BaseResultMap">
         select

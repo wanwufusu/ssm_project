@@ -2,6 +2,7 @@ package com.ssm.controller.qualityControl;
 
 import com.ssm.bean.qualityControl.FMCVo;
 import com.ssm.service.qualityControl.impl.FinalMeasureCheckServiceImpl;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,8 @@ public class FinalMeasureCheckController {
 
     @Autowired
     FinalMeasureCheckServiceImpl finalMeasureCheckService;
+    Logger logger = Logger.getLogger(this.getClass());
+
     /**
      * 成品计量质检的刷新及list页面
      * @return
@@ -24,10 +27,12 @@ public class FinalMeasureCheckController {
     public FMCVo list(Integer page, Integer rows){
         //todo
         int offset = (page - 1) * rows;
+
         List finalMeasureCheck = finalMeasureCheckService.findByPage(rows,offset);
+        int allCount = finalMeasureCheckService.findAllCount();
         FMCVo fmcVo = new FMCVo();
         fmcVo.setRows(finalMeasureCheck);
-       // fmcVo.setTotal();
+        fmcVo.setTotal(allCount);
         return fmcVo;
     }
 
@@ -39,7 +44,7 @@ public class FinalMeasureCheckController {
      */
     @RequestMapping("find")
     public String find(){
-        return "forward:/measure/list";
+        return "measurement_list";
     }
 
         //后面的玩意有判断功能,需要修改
