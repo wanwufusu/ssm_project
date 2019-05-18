@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ssm.mapper.DeviceMaintainMapper">
-  <resultMap id="BaseResultMap" type="com.ssm.bean.DeviceMaintain">
+<mapper namespace="com.ssm.mapper.device.DeviceMaintainMapper">
+  <resultMap id="BaseResultMap" type="com.ssm.bean.device.DeviceMaintain">
     <id column="device_maintain_id" jdbcType="VARCHAR" property="deviceMaintainId" />
     <result column="device_fault_id" jdbcType="VARCHAR" property="deviceFaultId" />
     <result column="device_maintain_emp_id" jdbcType="VARCHAR" property="deviceMaintainEmpId" />
@@ -72,7 +72,7 @@
     device_maintain_id, device_fault_id, device_maintain_emp_id, device_maintain_date, 
     device_maintain_result, device_maintain_cost, note
   </sql>
-  <select id="selectByExample" parameterType="com.ssm.bean.DeviceMaintainExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.ssm.bean.device.DeviceMaintainExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -96,13 +96,13 @@
     delete from device_maintain
     where device_maintain_id = #{deviceMaintainId,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.ssm.bean.DeviceMaintainExample">
+  <delete id="deleteByExample" parameterType="com.ssm.bean.device.DeviceMaintainExample">
     delete from device_maintain
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.ssm.bean.DeviceMaintain">
+  <insert id="insert" parameterType="com.ssm.bean.device.DeviceMaintain">
     insert into device_maintain (device_maintain_id, device_fault_id, 
       device_maintain_emp_id, device_maintain_date, 
       device_maintain_result, device_maintain_cost, 
@@ -112,7 +112,7 @@
       #{deviceMaintainResult,jdbcType=VARCHAR}, #{deviceMaintainCost,jdbcType=DECIMAL}, 
       #{note,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.ssm.bean.DeviceMaintain">
+  <insert id="insertSelective" parameterType="com.ssm.bean.device.DeviceMaintain">
     insert into device_maintain
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="deviceMaintainId != null">
@@ -161,7 +161,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.ssm.bean.DeviceMaintainExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.ssm.bean.device.DeviceMaintainExample" resultType="java.lang.Long">
     select count(*) from device_maintain
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -209,7 +209,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.bean.DeviceMaintain">
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.bean.device.DeviceMaintain">
     update device_maintain
     <set>
       <if test="deviceFaultId != null">
@@ -233,7 +233,7 @@
     </set>
     where device_maintain_id = #{deviceMaintainId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ssm.bean.DeviceMaintain">
+  <update id="updateByPrimaryKey" parameterType="com.ssm.bean.device.DeviceMaintain">
     update device_maintain
     set device_fault_id = #{deviceFaultId,jdbcType=VARCHAR},
       device_maintain_emp_id = #{deviceMaintainEmpId,jdbcType=VARCHAR},

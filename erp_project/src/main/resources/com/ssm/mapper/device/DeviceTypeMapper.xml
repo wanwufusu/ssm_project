@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ssm.mapper.DeviceTypeMapper">
-  <resultMap id="BaseResultMap" type="com.ssm.bean.DeviceType">
+<mapper namespace="com.ssm.mapper.device.DeviceTypeMapper">
+  <resultMap id="BaseResultMap" type="com.ssm.bean.device.DeviceType">
     <id column="device_type_id" jdbcType="VARCHAR" property="deviceTypeId" />
     <result column="device_type_name" jdbcType="VARCHAR" property="deviceTypeName" />
     <result column="device_type_model" jdbcType="VARCHAR" property="deviceTypeModel" />
@@ -73,7 +73,7 @@
     device_type_id, device_type_name, device_type_model, device_type_spec, device_type_supplier, 
     device_type_producer, device_type_quantity, device_type_warranty
   </sql>
-  <select id="selectByExample" parameterType="com.ssm.bean.DeviceTypeExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.ssm.bean.device.DeviceTypeExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -97,13 +97,13 @@
     delete from device_type
     where device_type_id = #{deviceTypeId,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.ssm.bean.DeviceTypeExample">
+  <delete id="deleteByExample" parameterType="com.ssm.bean.device.DeviceTypeExample">
     delete from device_type
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.ssm.bean.DeviceType">
+  <insert id="insert" parameterType="com.ssm.bean.device.DeviceType">
     insert into device_type (device_type_id, device_type_name, device_type_model, 
       device_type_spec, device_type_supplier, device_type_producer, 
       device_type_quantity, device_type_warranty
@@ -113,7 +113,7 @@
       #{deviceTypeQuantity,jdbcType=INTEGER}, #{deviceTypeWarranty,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.ssm.bean.DeviceType">
+  <insert id="insertSelective" parameterType="com.ssm.bean.device.DeviceType">
     insert into device_type
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="deviceTypeId != null">
@@ -168,7 +168,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.ssm.bean.DeviceTypeExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.ssm.bean.device.DeviceTypeExample" resultType="java.lang.Long">
     select count(*) from device_type
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -220,7 +220,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.bean.DeviceType">
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.bean.device.DeviceType">
     update device_type
     <set>
       <if test="deviceTypeName != null">
@@ -247,7 +247,7 @@
     </set>
     where device_type_id = #{deviceTypeId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ssm.bean.DeviceType">
+  <update id="updateByPrimaryKey" parameterType="com.ssm.bean.device.DeviceType">
     update device_type
     set device_type_name = #{deviceTypeName,jdbcType=VARCHAR},
       device_type_model = #{deviceTypeModel,jdbcType=VARCHAR},
