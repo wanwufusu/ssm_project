@@ -27,11 +27,12 @@ public class FinalMeasureCheckController {
     public FMCVo list(Integer page, Integer rows){
         //todo
         int offset = (page - 1) * rows;
-        logger.info(offset);
+
         List finalMeasureCheck = finalMeasureCheckService.findByPage(rows,offset);
+        int allCount = finalMeasureCheckService.findAllCount();
         FMCVo fmcVo = new FMCVo();
         fmcVo.setRows(finalMeasureCheck);
-       // fmcVo.setTotal();
+        fmcVo.setTotal(allCount);
         return fmcVo;
     }
 

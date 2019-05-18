@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface FinalMeasuretCheckMapper {
     List<FinalMeasuretCheck> findByPage(@Param("rows") int rows,@Param("offset") int offset);
+    int findAllCount();
 }

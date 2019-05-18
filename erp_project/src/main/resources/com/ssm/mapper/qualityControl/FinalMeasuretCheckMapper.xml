@@ -20,4 +20,8 @@
         <result property="note" column="note"/>
     </resultMap>
 
+    <select id="findAllCount" resultType="_int">
+        select count(f_measure_check_id) from final_measuret_check
+    </select>
+
 </mapper>

@@ -19,4 +19,9 @@ public class FinalMeasureCheckServiceImpl implements FinalMeasureCheckService {
         List<FinalMeasuretCheck> item = finalMeasuretCheckMapper.findByPage(rows, offset);
         return item;
     }
+
+    @Override
+    public int findAllCount() {
+        return finalMeasuretCheckMapper.findAllCount();
+    }
 }
