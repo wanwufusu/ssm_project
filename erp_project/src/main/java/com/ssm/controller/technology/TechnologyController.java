@@ -2,7 +2,7 @@ package com.ssm.controller.technology;
 
 
 import com.ssm.bean.ResponseMessage;
-import com.ssm.bean.technology.ResponseVo;
+import com.ssm.bean.ResponseVO;
 import com.ssm.bean.technology.Technology;
 import com.ssm.service.technology.TechnologyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,19 +26,20 @@ public class TechnologyController {
     }
     @RequestMapping("list")
     @ResponseBody
-    public ResponseVo list(Integer page, Integer rows){
+    public ResponseVO list(Integer page, Integer rows){
         int offset = (page - 1) * rows;
         List<Technology> technologies = technologyService.findTechnology(rows,offset);
-        ResponseVo responseVo = new ResponseVo();
-        responseVo.setRows(technologies);
-        responseVo.setTotal(technologies == null?0:technologies.size());
-        return responseVo;
+        ResponseVO ResponseVO = new ResponseVO();
+        ResponseVO.setRows(technologies);
+        ResponseVO.setTotal(technologies == null?0:technologies.size());
+        return ResponseVO;
     }
     @RequestMapping("add")
     public String add(){
         return "technology_add";
     }
     @RequestMapping("add_judge")
+    @ResponseBody
     public Technology addJudge(){
         Technology object = new Technology();
         return object;
@@ -101,23 +102,23 @@ public class TechnologyController {
     }
     @RequestMapping("search_technology_by_technologyId")
     @ResponseBody
-    public ResponseVo searchByTechnologyId(String searchValue,Integer page,Integer rows){
+    public ResponseVO searchByTechnologyId(String searchValue,Integer page,Integer rows){
         int offset = (page - 1) * rows;
         List<Technology> technologies = technologyService.findTechnologyById(searchValue,rows,offset);
-        ResponseVo<Technology> responseVo = new ResponseVo<>();
-        responseVo.setRows(technologies);
-        responseVo.setTotal(technologies == null?0:technologies.size());
-        return responseVo;
+        ResponseVO<Technology> ResponseVO = new ResponseVO<>();
+        ResponseVO.setRows(technologies);
+        ResponseVO.setTotal(technologies == null?0:technologies.size());
+        return ResponseVO;
     }
     @RequestMapping("search_technology_by_technologyName")
     @ResponseBody
-    public ResponseVo searchByTechnologyName(String searchValue,Integer page,Integer rows){
+    public ResponseVO searchByTechnologyName(String searchValue,Integer page,Integer rows){
         int offset = (page - 1) * rows;
         List<Technology> technologies = technologyService.findTechnologyByName(searchValue,rows,offset);
-        ResponseVo<Technology> responseVo = new ResponseVo<>();
-        responseVo.setRows(technologies);
-        responseVo.setTotal(technologies == null?0:technologies.size());
-        return responseVo;
+        ResponseVO<Technology> ResponseVO = new ResponseVO<>();
+        ResponseVO.setRows(technologies);
+        ResponseVO.setTotal(technologies == null?0:technologies.size());
+        return ResponseVO;
     }
 
 }

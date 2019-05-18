@@ -1,6 +1,6 @@
 package com.ssm.service.technology;
 
-import com.ssm.bean.technology.PageHelper;
+
 import com.ssm.bean.technology.Technology;
 import com.ssm.bean.technology.TechnologyExample;
 import com.ssm.mapper.technology.TechnologyMapper;
@@ -40,28 +40,24 @@ public class TechnologyServiceImpl implements TechnologyService {
 
     @Override
     public List<Technology> findTechnologyById(String id,int rows,int offset) {
-        TechnologyExample technologyExample = new TechnologyExample();
-        TechnologyExample.Criteria criteria = technologyExample.createCriteria();
-        criteria.andTechnologyIdEqualTo(id).andDoubleCapacityBetween(offset,offset + rows);
-        List<Technology> technologies = technologyMapper.selectByExample(technologyExample);
+        List<Technology> technologies = technologyMapper.findById(id,rows,offset);
         return technologies;
     }
 
     @Override
     public List<Technology> findTechnologyByName(String name,int rows,int offset) {
-        TechnologyExample technologyExample = new TechnologyExample();
-        TechnologyExample.Criteria criteria = technologyExample.createCriteria();
-        criteria.andTechnologyNameEqualTo(name).andDoubleCapacityBetween(offset,offset + rows);
-        List<Technology> technologies = technologyMapper.selectByExample(technologyExample);
+        List<Technology> technologies = technologyMapper.findByName(name,rows,offset);
         return technologies;
     }
 
     @Override
     public List<Technology> findTechnology(int rows,int offset) {
-        TechnologyExample technologyExample = new TechnologyExample();
-        TechnologyExample.Criteria criteria = technologyExample.createCriteria();
-        criteria.andTechnologyIdBetween(String.valueOf(offset),String.valueOf(offset + rows));
-        List<Technology> technologies = technologyMapper.selectByExample(technologyExample);
+       // TechnologyExample technologyExample = new TechnologyExample();
+        //TechnologyExample.Criteria criteria = technologyExample.createCriteria();
+
+        //criteria.andTechnologyIdBetween(String.valueOf(offset),String.valueOf(offset + rows));
+
+        List<Technology> technologies = technologyMapper.findByPage(rows,offset);
         return technologies;
     }
 }
