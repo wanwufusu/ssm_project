@@ -27,6 +27,17 @@ public class FinalMeasureCheckController {
         return finalMeasureCheck;
     }
 
+ /*
+        {"total":6,"rows":[
+            {"fMeasureCheckId":"11069","orderId":"000009","checkItem":"??","cdate":1431518400000,"measureData":"36m","empId":"001","result":"?","note":"?????????","empName":"??"},
+            {"fMeasureCheckId":"18969","orderId":"000013","checkItem":"文具","cdate":1431475200000,"measureData":"36m","empId":"001","result":"优","note":"?????????1","empName":"??"},
+            {"fMeasureCheckId":"234","orderId":"00000111","checkItem":null,"cdate":1554523200000,"measureData":null,"empId":"6936","result":null,"note":"234","empName":"qwe"},
+            {"fMeasureCheckId":"43253456","orderId":"00000111","checkItem":null,"cdate":1554523200000,"measureData":null,"empId":"6936","result":null,"note":null,"empName":"qwe"},
+            {"fMeasureCheckId":"dsfds","orderId":"00000111","checkItem":"sdf","cdate":1554436800000,"measureData":"sd","empId":"002","result":"sdf","note":"sdf","empName":"??"},
+            {"fMeasureCheckId":"ssss","orderId":"00000111","checkItem":null,"cdate":1554436800000,"measureData":null,"empId":"1","result":null,"note":null,"empName":"1"}
+        ]}
+*/
+
     /**
      * 来自home.jsp的list
      * @return
