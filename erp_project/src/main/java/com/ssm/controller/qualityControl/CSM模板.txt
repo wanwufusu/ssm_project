@@ -2,24 +2,24 @@
 Controller
 —————————————————————————————————————————————————————————————————————————————————————————————————
 @Controller
-@RequestMapping("unqualify")
-public class UnqualifyController {
+@RequestMapping("p_count_check")
+public class ProcessCountCheckController{
 
     @Autowired
-    UnqualifyService unqualifyService;
+    ProcessCountCheckService processCountCheckService;
 
     @RequestMapping("find")
     public String find(){
-        return "unqualify_list";
+        return "p_count_check_list";
     }
 
     @RequestMapping("list")
     @ResponseBody
-    public ResponseVO<UnqualifyApply> list(Integer page,Integer rows){
+    public ResponseVO<ProcessCountCheck> list(Integer page,Integer rows){
         int offset = (page -1) * rows;
-        int allCount = unqualifyService.findAllCount();
-        List<UnqualifyApply> list = unqualifyService.findByPage(rows, offset);
-        ResponseVO<UnqualifyApply> vo = new ResponseVO<UnqualifyApply>();
+        int allCount = processCountCheckService.findAllCount();
+        List<ProcessCountCheck> list = processCountCheckService.findByPage(rows, offset);
+        ResponseVO<ProcessCountCheck> vo = new ResponseVO<ProcessCountCheck>();
         vo.setTotal(allCount);
         vo.setRows(list);
         return vo;
@@ -28,33 +28,33 @@ public class UnqualifyController {
 —————————————————————————————————————————————————————————————————————————————————————————————————
 Service
 —————————————————————————————————————————————————————————————————————————————————————————————————
-public interface UnqualifyService {
-    List<UnqualifyApply> findByPage(int rows,int offset);
+public interface ProcessCountCheckService {
+    List<ProcessCountCheck> findByPage(int rows,int offset);
     int findAllCount();
 }
 —————————————————————————————————————————————————————————————————————————————————————————————————
 @Service
-public class UnqualifyServiceImpl implements UnqualifyService {
+public class ProcessCountCheckServiceImpl implements ProcessCountCheckService {
     @Autowired
-    UnqualifyMapper unqualifyMapper;
+    ProcessCountCheckMapper processCountCheckMapper;
 
     @Override
-    public List<UnqualifyApply> findByPage(int rows, int offset) {
-        List<UnqualifyApply> byPage = unqualifyMapper.findByPage(rows, offset);
+    public List<ProcessCountCheck> findByPage(int rows, int offset) {
+        List<ProcessCountCheck> byPage = processCountCheckMapper.findByPage(rows, offset);
         return byPage;
     }
 
     @Override
     public int findAllCount() {
-        int allCount = unqualifyMapper.findAllCount();
+        int allCount = processCountCheckMapper.findAllCount();
         return allCount;
     }
 }
 —————————————————————————————————————————————————————————————————————————————————————————————————
 Mapper
 —————————————————————————————————————————————————————————————————————————————————————————————————
-public interface UnqualifyMapper {
-    List<UnqualifyApply> findByPage(@Param("rows") int rows,@Param("offset") int offset);
+public interface ProcessCountCheckMapper {
+    List<ProcessCountCheck> findByPage(@Param("rows") int rows,@Param("offset") int offset);
     int findAllCount();
 
 }
