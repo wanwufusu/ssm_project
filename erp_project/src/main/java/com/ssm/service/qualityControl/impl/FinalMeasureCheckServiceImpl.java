@@ -1,7 +1,7 @@
 package com.ssm.service.qualityControl.impl;
 
 import com.ssm.bean.qualityControl.FinalMeasuretCheck;
-import com.ssm.mapper.FinalMeasuretCheckMapper;
+import com.ssm.mapper.qualityControl.FinalMeasuretCheckMapper;
 import com.ssm.service.qualityControl.FinalMeasureCheckService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

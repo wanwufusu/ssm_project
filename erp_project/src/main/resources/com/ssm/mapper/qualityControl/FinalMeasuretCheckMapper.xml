@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.ssm.mapper.FinalMeasuretCheckMapper">
+<mapper namespace="com.ssm.mapper.qualityControl.FinalMeasuretCheckMapper">
     <select id="findByPage" resultMap="BaseResultMap">
         select f_measure_check_id,order_id,check_item,cdate,measure_data,emp_name,result,note
         from final_measuret_check f,employee e
