@@ -1,4 +1,4 @@
-package com.ssm.bean;
+package com.ssm.bean.schedule;
 
 public class Custom {
     private String customId;

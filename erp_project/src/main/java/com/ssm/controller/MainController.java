@@ -19,4 +19,5 @@ public class MainController {
     public String ERPHomePage(Model model){
         return "home";
     }
+
 }
