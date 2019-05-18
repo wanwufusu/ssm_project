@@ -11,7 +11,8 @@ public class DeviceController {
     @Autowired
     DeviceService deviceService;
 
-    @RequestMapping("deviceType")
-    @ResponseBody
+    /*@RequestMapping("deviceType")
+    @ResponseBody*/
+
 
 }
