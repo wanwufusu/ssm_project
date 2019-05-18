@@ -4,7 +4,7 @@
 <script type="text/javascript" charset="utf-8" src="js/kindeditor-4.1.10/kindeditor-all-min.js"></script>
 <script type="text/javascript" charset="utf-8" src="js/kindeditor-4.1.10/lang/zh_CN.js"></script>
 <table class="easyui-datagrid" id="materialReceiveList" title="物料收入列表" data-options="singleSelect:false,
-		collapsible:true,pagination:true,rownumbers:true,url:'materialReceive/list',method:'get',pageSize:10,
+		collapsible:true,pagination:true,rownumbers:true,url:'${pageContext.request.contextPath}/material/receiveList',method:'get',pageSize:10,
 		fitColumns:true,toolbar:toolbar_materialReceive">
     <thead>
          <tr>
@@ -147,8 +147,8 @@ function doSearch_materialReceive(value,name){ //用户输入用户名,点击搜
 	        columns : [ [ 	       
 				{field : 'ck', checkbox:true },
 				{field : 'receiveId', width : 100, title : '物料收入编号', align:'center'},
-				{field : 'material', width : 100, align : 'center', title : '物料', formatter:formatMaterial},
-				{field : 'ammount', width : 100, align : 'center', title : '收入数量'},
+				{field : 'materialId', width : 100, align : 'center', title : '物料', formatter:formatMaterial},
+				{field : 'amount', width : 100, align : 'center', title : '收入数量'},
 				{field : 'receiveDate', width : 130, title : '收入日期', align:'center',formatter:TAOTAO.formatDateTime},
 				{field : 'sender', width : 100, title : '发送者', align:'center'},
 				{field : 'receiver', width : 100, title : '接收者', align:'center'},
@@ -163,8 +163,8 @@ function doSearch_materialReceive(value,name){ //用户输入用户名,点击搜
 	        columns : [ [ 
 				{field : 'ck', checkbox:true },
 				{field : 'receiveId', width : 100, title : '物料收入编号', align:'center'},
-				{field : 'material', width : 100, align : 'center', title : '物料', formatter:formatMaterial},
-				{field : 'ammount', width : 100, align : 'center', title : '收入数量'},
+				{field : 'materialId', width : 100, align : 'center', title : '物料', formatter:formatMaterial},
+				{field : 'amount', width : 100, align : 'center', title : '收入数量'},
 				{field : 'receiveDate', width : 130, title : '收入日期', align:'center',formatter:TAOTAO.formatDateTime},
 				{field : 'sender', width : 100, title : '发送者', align:'center'},
 				{field : 'receiver', width : 100, title : '接收者', align:'center'},

@@ -1,8 +1,7 @@
-package com.ssm.bean;
+package com.ssm.bean.material;
 
 import org.springframework.stereotype.Component;
 
-@Component
 public class Material {
     private String materialId;
     private String materialType;

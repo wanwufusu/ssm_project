@@ -95,8 +95,8 @@ function doSearch_material(value,name){ //用户输入用户名,点击搜素,触
 			fitColumns:true,//允许表格自动缩放,以适应父容器
 	        columns : [ [ 	       
 				{field : 'ck', checkbox:true },
-				{field : 'material_id', width : 100, title : '物料编号', align:'center'},
-				{field : 'material_type', width : 100, align : 'center', title : '物料类型'},
+				{field : 'materialId', width : 100, title : '物料编号', align:'center'},
+				{field : 'materialType', width : 100, align : 'center', title : '物料类型'},
 				{field : 'status', width : 100, align : 'center', title : '物料状态'},
 				{field : 'remaining', width : 100, title : '剩余数量', align:'center'},
 				{field : 'note', width : 100, title : '备注', align:'center',formatter:formatMaterialNote}
@@ -109,8 +109,8 @@ function doSearch_material(value,name){ //用户输入用户名,点击搜素,触
 			loadMsg:'数据加载中......',  fitColumns:true,//允许表格自动缩放,以适应父容器
 	        columns : [ [ 
 				{field : 'ck', checkbox:true },
-				{field : 'material_id', width : 100, title : '物料编号', align:'center'},
-				{field : 'material_type', width : 100, align : 'center', title : '物料类型'},
+				{field : 'materialId', width : 100, title : '物料编号', align:'center'},
+				{field : 'materialType', width : 100, align : 'center', title : '物料类型'},
 				{field : 'status', width : 100, align : 'center', title : '物料状态'},
 				{field : 'remaining', width : 100, title : '剩余数量', align:'center'},
 				{field : 'note', width : 100, title : '备注', align:'center',formatter:formatMaterialNote}
