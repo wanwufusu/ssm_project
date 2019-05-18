@@ -9,4 +9,17 @@ import java.util.List;
 public interface FinalMeasuretCheckMapper {
     List<FinalMeasuretCheck> findByPage(@Param("rows") int rows,@Param("offset") int offset);
     int findAllCount();
+
+//    int deleteByPrimaryKey(String fMeasureCheckId);
+//
+//    int insert(FinalMeasuretCheck record);
+//
+//    int insertSelective(FinalMeasuretCheck record);
+//
+//    FinalMeasuretCheck selectByPrimaryKey(String fMeasureCheckId);
+//
+//    int updateByPrimaryKeySelective(FinalMeasuretCheck record);
+//
+//    int updateByPrimaryKey(FinalMeasuretCheck record);
+
 }
