@@ -1,8 +1,10 @@
 package com.ssm.mapper.device;
 
-import com.ssm.bean.DeviceFault;
-import com.ssm.bean.DeviceFaultExample;
+
 import java.util.List;
+
+import com.ssm.bean.device.DeviceFault;
+import com.ssm.bean.device.DeviceFaultExample;
 import org.apache.ibatis.annotations.Param;
 
 public interface DeviceFaultMapper {

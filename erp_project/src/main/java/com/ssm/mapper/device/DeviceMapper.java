@@ -1,8 +1,10 @@
 package com.ssm.mapper.device;
 
-import com.ssm.bean.Device;
-import com.ssm.bean.DeviceExample;
+
 import java.util.List;
+
+import com.ssm.bean.device.Device;
+import com.ssm.bean.device.DeviceExample;
 import org.apache.ibatis.annotations.Param;
 
 public interface DeviceMapper {

@@ -1,8 +1,10 @@
 package com.ssm.mapper.device;
 
-import com.ssm.bean.DeviceMaintain;
-import com.ssm.bean.DeviceMaintainExample;
+
 import java.util.List;
+
+import com.ssm.bean.device.DeviceMaintain;
+import com.ssm.bean.device.DeviceMaintainExample;
 import org.apache.ibatis.annotations.Param;
 
 public interface DeviceMaintainMapper {

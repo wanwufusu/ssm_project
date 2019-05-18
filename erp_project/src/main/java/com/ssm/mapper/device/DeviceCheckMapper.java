@@ -1,8 +1,10 @@
 package com.ssm.mapper.device;
 
-import com.ssm.bean.DeviceCheck;
-import com.ssm.bean.DeviceCheckExample;
+
 import java.util.List;
+
+import com.ssm.bean.device.DeviceCheck;
+import com.ssm.bean.device.DeviceCheckExample;
 import org.apache.ibatis.annotations.Param;
 
 public interface DeviceCheckMapper {
