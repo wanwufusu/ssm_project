@@ -36,4 +36,14 @@ public class MaterialConsumeServiceImpl implements MaterialConsumeService {
     public List findWorkList() {
         return materialConsumeMapper.findWorkList();
     }
+
+    @Override
+    public int updateMaterialConsumeById(MaterialConsume materialConsume) {
+        return materialConsumeMapper.updateMaterialConsumeById(materialConsume);
+    }
+
+    @Override
+    public int deleteBatch(String[] ids) {
+        return materialConsumeMapper.deleteBatch(ids);
+    }
 }

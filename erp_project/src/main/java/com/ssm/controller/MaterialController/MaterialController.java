@@ -76,5 +76,50 @@ public class MaterialController {
         return list;
     }
 
+    //编辑页面
+    @RequestMapping("/edit_judge")
+    @ResponseBody
+    public String judge(){
+        return "";
+    }
+    @RequestMapping("/edit")
+    public String edit(){
+        return "material_edit";
+    }
+    @RequestMapping("/update_all")
+    @ResponseBody
+    public ResponseMessage update(Material material){
+        ResponseMessage responseMessage = new ResponseMessage();
+        int result = materialService.updateMaterialById(material);
+        if(result > 0){
+            responseMessage.setStatus(200);
+            responseMessage.setMsg("修改成功");
+        }else {
+            responseMessage.setStatus(404);
+            responseMessage.setMsg("修改失败");
+        }
+        return responseMessage;
+    }
+    @RequestMapping("/delete_judge")
+    @ResponseBody
+    public String delete_judge(){
+        return "";
+    }
+    @RequestMapping("/delete_batch")
+    @ResponseBody
+    public ResponseMessage delete_batch(String[] ids){
+        ResponseMessage responseMessage = new ResponseMessage();
+        int count = materialService.deleteBatch(ids);
+        if(count > 0){
+            responseMessage.setStatus(200);
+            responseMessage.setMsg("删除成功");
+        }else{
+            responseMessage.setStatus(404);
+            responseMessage.setMsg("删除失败");
+        }
+        return responseMessage;
+    }
+
+
 
 }

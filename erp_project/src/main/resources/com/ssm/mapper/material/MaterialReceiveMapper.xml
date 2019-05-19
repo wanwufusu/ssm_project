@@ -33,6 +33,16 @@
   <insert id="insertMaterialReceive">
     insert into material_receive (receive_id,material_id,amount,receive_date,sender,receiver,note) values (#{receiveId},#{materialId},#{amount},#{receiveDate},#{sender},#{receiver},#{note})
   </insert>
-
+  <update id="updateMaterialReceiveById">
+    update material_receive set material_id = #{materialId},amount = #{amount},receive_date = #{receiveDate},
+                 sender = #{sender} ,receiver = #{receiver},note = #{note}
+                 where receive_id = #{receiveId}
+  </update>
+  <delete id="deleteBatch">
+    delete from material_receive where receive_id
+    in <foreach collection="ids" item="id" open="(" close=")" separator=",">
+    #{id}
+  </foreach>
+  </delete>
 
 </mapper>

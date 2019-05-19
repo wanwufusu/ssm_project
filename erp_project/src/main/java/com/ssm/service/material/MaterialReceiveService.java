@@ -12,4 +12,7 @@ public interface MaterialReceiveService {
 
     int findReceiveCount();
 
+    int updateMaterialReceiveById(MaterialReceive materialReceive);
+
+    int deleteBatch(String[] ids);
 }

@@ -20,4 +20,8 @@ public interface MaterialConsumeMapper {
     int insertMaterialConsume(MaterialConsume materialConsume);
 
     List findWorkList();
+
+    int updateMaterialConsumeById(MaterialConsume materialConsume);
+
+    int deleteBatch(@Param("ids") String[] ids);
 }
