@@ -85,4 +85,19 @@ public class ProductServiceImpl implements ProductService {
         return productMapper.selectAllRecordsByCondition(condition);
     }
 
+    @Override
+    public Product queryProductByProductId(String productId) {
+        return productMapper.selectByPrimaryKey(productId);
+    }
+
+    @Override
+    public List<Product> queryProducts() {
+        return productMapper.selectAllProducts();
+    }
+
+    @Override
+    public int deleteProducts(String[] ids) {
+        return productMapper.deleteProductsByPrimaryKey(ids);
+    }
+
 }

@@ -70,7 +70,7 @@
 			return ;
 		}
 		
-		$.post("work/insert",$("#workAddForm").serialize(), function(data){
+		$.post("Work/insert",$("#workAddForm").serialize(), function(data){
 			if(data.status == 200){
 				$.messager.alert('提示','新增作业成功!');
 				clearWorkAddForm();

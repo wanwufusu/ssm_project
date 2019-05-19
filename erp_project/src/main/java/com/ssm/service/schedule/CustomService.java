@@ -12,8 +12,12 @@ public interface CustomService {
     int queryAllRecordByCustomId(String searchValue);
     int queryAllRecordBycustomName(String searchValue);
     int insertCustom(Custom custom);
-    int deleteCustom(String customId);
+    int deleteCustom(String[] customId);
     int updateByCustomId(Custom custom);
     List<Custom> queryPageCustomByCustomId(PageDetail pageDetail, String searchValue);
     List<Custom> queryPageCustomBycustomName(PageDetail pageDetail, String searchValue);
+
+    Custom queryCustomByCustomId(String customId);
+
+    List<Custom> queryCustoms();
 }

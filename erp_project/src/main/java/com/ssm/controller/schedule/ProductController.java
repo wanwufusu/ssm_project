@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -87,13 +88,13 @@ public class ProductController {
         return new Product();
     }
     @RequestMapping("add")
-    public String customAdd(){
+    public String productAdd(){
         return "product_add";
     }
 
     @RequestMapping("insert")
     @ResponseBody
-    public ResponseMessage customInsert(Product product){
+    public ResponseMessage productInsert(Product product){
         int i = productService.insertProduct(product);
         if (i > 0) {
             return new ResponseMessage(200, "OK", null);
@@ -110,8 +111,8 @@ public class ProductController {
 
     @RequestMapping("delete_batch")
     @ResponseBody
-    public ResponseMessage deleteCustom(int ids){
-        int i = productService.deleteProduct(Integer.toString(ids));
+    public ResponseMessage deleteProducts(String[] ids){
+        int i = productService.deleteProducts(ids);
         if (i > 0) {
             return new ResponseMessage(200, "OK", null);
         } else {
@@ -143,5 +144,17 @@ public class ProductController {
         } else {
             return new ResponseMessage(404, "fail", "update fail");
         }
+    }
+
+    @RequestMapping("get/{productId}")
+    @ResponseBody
+    public Product queryProductById(@PathVariable("productId") String productId){
+        return productService.queryProductByProductId(productId);
+    }
+
+    @RequestMapping("get_data")
+    @ResponseBody
+    public List<Product> queryAllProducts(){
+        return productService.queryProducts();
     }
 }

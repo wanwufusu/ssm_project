@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.mapper.material.MaterialConsumeMapper">
+
+
+
+
+  <!--物料消费表查询结果map-->
+  <resultMap id="MaterialConsumeMap" type="com.ssm.bean.material.MaterialConsume">
+    <id column="consume_id" property="consumeId"/>
+    <result column="consume_amount" property="consumeAmount"/>
+    <result column="consume_date" property="consumeDate"/>
+    <result column="sender" property="sender"/>
+    <result column="receiver" property="receiver"/>
+    <result column="note" property="note"/>
+    <association column="work_id" property="work" select="com.ssm.mapper.material.MaterialConsumeMapper.selectWorkById"/>
+    <association column="material_id" property="material" select="com.ssm.mapper.material.MaterialMapper.selectMaterialById"/>
+  </resultMap>
+
+  <resultMap id="WorkMap" type="com.ssm.bean.material.Work">
+    <id column="work_id" property="workId"/>
+    <result column="process_number" property="processNumber"/>
+    <result column="product_id" property="productId"/>
+    <result column="process_id" property="processId"/>
+    <result column="device_id" property="deviceId"/>
+    <result column="rating" property="rating"/>
+  </resultMap>
+
+  <!--物料消耗表查询内容-->
+  <sql id="Base_Consume_List">
+    consume_id , work_id ,material_id,consume_amount ,consume_date, sender , receiver , note
+  </sql>
+  <!--分页查询物料消耗-->
+  <select id="selectListByPage" resultMap="MaterialConsumeMap">
+    select <include refid="Base_Consume_List"/> from material_consume limit #{offset},#{rows}
+  </select>
+  <!--查询物料消耗表数量-->
+  <select id="queryCount" resultType="_int">
+    select COUNT(*) from material_consume
+  </select>
+
+  <!--根据workId查询work-->
+  <select id="selectWorkById" resultMap="WorkMap">
+    select work_id,process_number,product_id,process_id,device_id,rating from work where work_id = #{work_id}
+  </select>
+  <select id="selectMaterialConsumeById" resultMap="MaterialConsumeMap">
+    select <include refid="Base_Consume_List"/> from material_consume where consume_id = #{consumeId}
+  </select>
+  <insert id="insertMaterialConsume" >
+    insert into material_consume(<include refid="Base_Consume_List"/> ) values
+             (#{consumeId},#{workId},#{materialId},#{consumeAmount},#{consumeDate},#{sender},#{receiver},#{note})
+  </insert>
+ <select id="findWorkList" resultMap="WorkMap">
+   select work_id,process_number,product_id,process_id,device_id,rating from work
+ </select>
+
+
+
+</mapper>

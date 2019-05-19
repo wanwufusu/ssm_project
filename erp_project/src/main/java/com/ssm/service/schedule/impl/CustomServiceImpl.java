@@ -57,8 +57,8 @@ public class CustomServiceImpl implements CustomService {
     }
 
     @Override
-    public int deleteCustom(String customId) {
-        return customMapper.deleteByPrimaryKey(customId);
+    public int deleteCustom(String[] customId) {
+        return customMapper.deleteCustomsByPrimaryKey(customId);
     }
 
     @Override
@@ -74,6 +74,16 @@ public class CustomServiceImpl implements CustomService {
     @Override
     public List<Custom> queryPageCustomBycustomName(PageDetail pageDetail, String searchValue) {
         return customMapper.selectByPageAndCustomName(pageDetail, "%" + searchValue + "%");
+    }
+
+    @Override
+    public Custom queryCustomByCustomId(String customId) {
+        return customMapper.selectByPrimaryKey(customId);
+    }
+
+    @Override
+    public List<Custom> queryCustoms() {
+        return customMapper.selectCustoms();
     }
 
 
