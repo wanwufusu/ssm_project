@@ -28,7 +28,7 @@ public class ProcessCountCheckController{
         int offset = (page -1) * rows;
         int allCount = processCountCheckService.findAllCount();
         List<ProcessCountCheck> list = processCountCheckService.findByPage(rows, offset);
-        ResponseVO<ProcessCountCheck> vo = new ResponseVO<ProcessCountCheck>();
+        ResponseVO<ProcessCountCheck> vo = new ResponseVO<>();
         vo.setTotal(allCount);
         vo.setRows(list);
         return vo;
