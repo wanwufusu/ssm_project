@@ -1,6 +1,7 @@
 package com.ssm.controller.qualityControl;
 
-import com.ssm.bean.qualityControl.FMCVo;
+import com.ssm.bean.ResponseVO;
+import com.ssm.bean.qualityControl.FinalMeasuretCheck;
 import com.ssm.service.qualityControl.FinalMeasureCheckService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,16 +25,16 @@ public class FinalMeasureCheckController {
      */
     @RequestMapping("list")
     @ResponseBody
-    public FMCVo list(Integer page, Integer rows){
+    public ResponseVO<FinalMeasuretCheck> list(Integer page, Integer rows){
         //todo
         int offset = (page - 1) * rows;
 
         List finalMeasureCheck = finalMeasureCheckService.findByPage(rows,offset);
         int allCount = finalMeasureCheckService.findAllCount();
-        FMCVo fmcVo = new FMCVo();
-        fmcVo.setRows(finalMeasureCheck);
-        fmcVo.setTotal(allCount);
-        return fmcVo;
+        ResponseVO<FinalMeasuretCheck> vo = new ResponseVO<>();
+        vo.setRows(finalMeasureCheck);
+        vo.setTotal(allCount);
+        return vo;
     }
 
 
