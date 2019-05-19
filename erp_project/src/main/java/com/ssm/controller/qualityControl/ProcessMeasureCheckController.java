@@ -16,7 +16,7 @@ import java.util.List;
 public class ProcessMeasureCheckController{
 
     @Autowired
-    ProcessMeasureCheckService processMeasureCheckService;
+    ProcessMeasureCheckService service;
 
     @RequestMapping("find")
     public String find(){
@@ -27,8 +27,8 @@ public class ProcessMeasureCheckController{
     @ResponseBody
     public ResponseVO<ProcessMeasureCheck> list(Integer page,Integer rows){
         int offset = (page -1) * rows;
-        int allCount = processMeasureCheckService.findAllCount();
-        List<ProcessMeasureCheck> list = processMeasureCheckService.findByPage(rows, offset);
+        int allCount = service.findAllCount();
+        List<ProcessMeasureCheck> list = service.findByPage(rows, offset);
         ResponseVO<ProcessMeasureCheck> vo = new ResponseVO<ProcessMeasureCheck>();
         vo.setTotal(allCount);
         vo.setRows(list);
@@ -37,14 +37,14 @@ public class ProcessMeasureCheckController{
     @RequestMapping("update_note")
     @ResponseBody
     public ResponseMessage update_note(String pMeasureCheckId, String note) {
-        int i = processMeasureCheckService.updateNote(pMeasureCheckId, note);
+        int i = service.updateNote(pMeasureCheckId, note);
         return ResponseMessage.getMessage(i);
     }
 
     @RequestMapping("delete_batch")
     @ResponseBody
     public ResponseMessage delete_batch(String[] ids){
-        int i = processMeasureCheckService.deleteByIds(ids);
+        int i = service.deleteByIds(ids);
         return ResponseMessage.getMessage(i);
     }
 }

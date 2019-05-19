@@ -17,7 +17,7 @@ import java.util.List;
 public class FinalCountCheckController {
 
     @Autowired
-    FinalCountCheckService finalCountCheckService;
+    FinalCountCheckService service;
     /**
      * 成品计数质检的list及刷新
      * @return
@@ -26,8 +26,8 @@ public class FinalCountCheckController {
     @ResponseBody
     public ResponseVO<FinalCountCheck> list(Integer page,Integer rows){
         int offset= (page - 1) * rows;
-        List<FinalCountCheck> byPage = finalCountCheckService.findByPage(rows, offset);
-        int allCount = finalCountCheckService.findAllCount();
+        List<FinalCountCheck> byPage = service.findByPage(rows, offset);
+        int allCount = service.findAllCount();
         ResponseVO<FinalCountCheck> responseVO = new ResponseVO<>();
         responseVO.setRows(byPage);
         responseVO.setTotal(allCount);
@@ -41,14 +41,14 @@ public class FinalCountCheckController {
     @RequestMapping("update_note")
     @ResponseBody
     public ResponseMessage update_note(String fCountCheckId, String note) {
-        int i = finalCountCheckService.updateNote(fCountCheckId, note);
+        int i = service.updateNote(fCountCheckId, note);
         return ResponseMessage.getMessage(i);
     }
 
     @RequestMapping("delete_batch")
     @ResponseBody
     public ResponseMessage delete_batch(String[] ids){
-        int i = finalCountCheckService.deleteByIds(ids);
+        int i = service.deleteByIds(ids);
         return ResponseMessage.getMessage(i);
     }
 

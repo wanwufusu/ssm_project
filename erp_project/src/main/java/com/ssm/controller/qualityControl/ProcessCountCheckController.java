@@ -16,7 +16,7 @@ import java.util.List;
 public class ProcessCountCheckController{
 
     @Autowired
-    ProcessCountCheckService processCountCheckService;
+    ProcessCountCheckService service;
 
     @RequestMapping("find")
     public String find(){
@@ -27,8 +27,8 @@ public class ProcessCountCheckController{
     @ResponseBody
     public ResponseVO<ProcessCountCheck> list(Integer page, Integer rows){
         int offset = (page -1) * rows;
-        int allCount = processCountCheckService.findAllCount();
-        List<ProcessCountCheck> list = processCountCheckService.findByPage(rows, offset);
+        int allCount = service.findAllCount();
+        List<ProcessCountCheck> list = service.findByPage(rows, offset);
         ResponseVO<ProcessCountCheck> vo = new ResponseVO<>();
         vo.setTotal(allCount);
         vo.setRows(list);
@@ -38,14 +38,7 @@ public class ProcessCountCheckController{
     @RequestMapping("update_note")
     @ResponseBody
     public ResponseMessage update_note(String pCountCheckId, String note) {
-        int i = processCountCheckService.updateNote(pCountCheckId, note);
-        return ResponseMessage.getMessage(i);
-    }
-
-    @RequestMapping("delete_batch")
-    @ResponseBody
-    public ResponseMessage delete_batch(String[] ids){
-        int i = processCountCheckService.deleteByIds(ids);
+        int i = service.updateNote(pCountCheckId, note);
         return ResponseMessage.getMessage(i);
     }
 }

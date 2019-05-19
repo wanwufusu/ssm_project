@@ -17,7 +17,7 @@ import java.util.List;
 public class FinalMeasureCheckController {
 
     @Autowired
-    FinalMeasureCheckService finalMeasureCheckService;
+    FinalMeasureCheckService service;
     Logger logger = Logger.getLogger(this.getClass());
 
     /**
@@ -30,8 +30,8 @@ public class FinalMeasureCheckController {
         //todo
         int offset = (page - 1) * rows;
 
-        List finalMeasureCheck = finalMeasureCheckService.findByPage(rows,offset);
-        int allCount = finalMeasureCheckService.findAllCount();
+        List finalMeasureCheck = service.findByPage(rows,offset);
+        int allCount = service.findAllCount();
         ResponseVO<FinalMeasuretCheck> vo = new ResponseVO<>();
         vo.setRows(finalMeasureCheck);
         vo.setTotal(allCount);
@@ -50,14 +50,14 @@ public class FinalMeasureCheckController {
     @RequestMapping("update_note")
     @ResponseBody
     public ResponseMessage update_note(String fMeasureCheckId, String note){
-        int i = finalMeasureCheckService.updateNote(fMeasureCheckId, note);
+        int i = service.updateNote(fMeasureCheckId, note);
         return ResponseMessage.getMessage(i);
     }
 
     @RequestMapping("delete_batch")
     @ResponseBody
     public ResponseMessage delete_batch(String[] ids){
-        int i = finalMeasureCheckService.deleteByIds(ids);
+        int i = service.deleteByIds(ids);
         return ResponseMessage.getMessage(i);
     }
 
