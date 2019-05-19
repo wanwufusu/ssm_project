@@ -39,6 +39,12 @@ public class ProcessMeasureCheckController{
     public ResponseMessage update_note(String pMeasureCheckId, String note) {
         int i = processMeasureCheckService.updateNote(pMeasureCheckId, note);
         return ResponseMessage.getMessage(i);
+    }
 
+    @RequestMapping("delete_batch")
+    @ResponseBody
+    public ResponseMessage delete_batch(String[] ids){
+        int i = processMeasureCheckService.deleteByIds(ids);
+        return ResponseMessage.getMessage(i);
     }
 }

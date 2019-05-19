@@ -42,4 +42,11 @@ public class UnqualifyController {
         int i = unqualifyService.updateNote(unqualifyApplyId, note);
         return ResponseMessage.getMessage(i);
     }
+
+    @RequestMapping("delete_batch")
+    @ResponseBody
+    public ResponseMessage delete_batch(String[] ids){
+        int i = unqualifyService.deleteByIds(ids);
+        return ResponseMessage.getMessage(i);
+    }
 }

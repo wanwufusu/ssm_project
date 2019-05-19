@@ -29,4 +29,9 @@ public class ProcessCountCheckServiceImpl implements ProcessCountCheckService {
         int i = processCountCheckMapper.updateNote(id, note);
         return i;
     }
+
+    @Override
+    public int deleteByIds(String[] ids) {
+        return processCountCheckMapper.deleteByIds(ids);
+    }
 }

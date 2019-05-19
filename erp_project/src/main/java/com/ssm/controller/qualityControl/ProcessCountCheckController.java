@@ -41,4 +41,11 @@ public class ProcessCountCheckController{
         int i = processCountCheckService.updateNote(pCountCheckId, note);
         return ResponseMessage.getMessage(i);
     }
+
+    @RequestMapping("delete_batch")
+    @ResponseBody
+    public ResponseMessage delete_batch(String[] ids){
+        int i = processCountCheckService.deleteByIds(ids);
+        return ResponseMessage.getMessage(i);
+    }
 }

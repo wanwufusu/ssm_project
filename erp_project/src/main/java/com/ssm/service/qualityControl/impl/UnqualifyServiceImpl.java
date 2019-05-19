@@ -30,4 +30,9 @@ public class UnqualifyServiceImpl implements UnqualifyService {
         int i = unqualifyMapper.updateNote(id, note);
         return i;
     }
+
+    @Override
+    public int deleteByIds(String[] ids) {
+        return unqualifyMapper.deleteByIds(ids);
+    }
 }

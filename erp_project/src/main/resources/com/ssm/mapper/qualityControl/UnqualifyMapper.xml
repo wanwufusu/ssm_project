@@ -32,4 +32,12 @@
         update unqualify_apply set note=#{note} where unqualify_apply_id=#{id}
     </update>
 
+    <delete id="deleteByIds">
+        delete from unqualify_apply
+        where unqualify_apply_id in
+        <foreach collection="ids" item="id" separator="," close=")" open="(">
+            #{id}
+        </foreach>
+    </delete>
+
 </mapper>

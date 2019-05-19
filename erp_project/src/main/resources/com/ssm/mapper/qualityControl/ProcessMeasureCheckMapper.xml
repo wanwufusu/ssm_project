@@ -27,4 +27,12 @@
     <update id="updateNote">
         update process_measure_check set note=#{note} where p_measure_check_id=#{id}
     </update>
+
+    <delete id="deleteByIds">
+        delete from process_measure_check
+        where p_measure_check_id in
+        <foreach collection="ids" item="id" separator="," close=")" open="(">
+            #{id}
+        </foreach>
+    </delete>
 </mapper>

@@ -29,4 +29,9 @@ public class FinalCountCheckServiceImpl implements FinalCountCheckService {
         int i = finalCountCheckMapper.updateNote(id, note);
         return i;
     }
+
+    @Override
+    public int deleteByIds(String[] ids) {
+        return finalCountCheckMapper.deleteByIds(ids);
+    }
 }

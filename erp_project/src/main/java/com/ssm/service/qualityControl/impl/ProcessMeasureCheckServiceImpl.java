@@ -29,4 +29,9 @@ public class ProcessMeasureCheckServiceImpl implements ProcessMeasureCheckServic
         int i = processMeasureCheckMapper.updateNote(id, note);
         return i;
     }
+
+    @Override
+    public int deleteByIds(String[] ids) {
+        return processMeasureCheckMapper.deleteByIds(ids);
+    }
 }

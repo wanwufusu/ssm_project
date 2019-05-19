@@ -27,8 +27,17 @@
     <select id="findAllCount" resultType="_int">
         select count(p_count_check_id) from process_count_check
     </select>
+
     <update id="updateNote">
         update process_count_check set note=#{note} where p_count_check_id=#{id}
     </update>
+
+    <delete id="deleteByIds">
+        delete from process_count_check
+        where p_count_check_id in
+        <foreach collection="ids" item="id" separator="," close=")" open="(">
+            #{id}
+        </foreach>
+    </delete>
 
 </mapper>

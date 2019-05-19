@@ -54,39 +54,19 @@ public class FinalMeasureCheckController {
         return ResponseMessage.getMessage(i);
     }
 
-
-
-
-
-
-
-    /**
-     * 成品计量质检的添加按钮功能
-     */
-    @RequestMapping("add")
-    public String add(){
-        //todo
-        return "measurement_add";
-    }
-
-    /**
-     * 成品计量质检的编辑按钮功能
-     */
-    @RequestMapping("edit")
-    public String edit(){
-        //todo
-        return "measurement_edit";
-    }
-
-    /**
-     * 成品计量质检的删除选定功能
-     * 返回list页面
-     */
     @RequestMapping("delete_batch")
-    public String delete_batch(){
-        //todo
-        return "/measure/list";
+    @ResponseBody
+    public ResponseMessage delete_batch(String[] ids){
+        int i = finalMeasureCheckService.deleteByIds(ids);
+        return ResponseMessage.getMessage(i);
     }
+
+
+
+
+
+
+
 
 
 }
