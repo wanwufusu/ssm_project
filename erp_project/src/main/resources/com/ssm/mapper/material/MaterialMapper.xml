@@ -18,28 +18,26 @@
   <select id="findList" resultMap="MaterialMap">
     select <include refid="Base_Column_List"/> from material limit #{offset},#{rows}
   </select>
-
-  <!--物料收入表查询结果map-->
-  <resultMap id="MaterialReceiveMap" type="com.ssm.bean.material.MaterialReceive">
-    <id column="receive_id" property="receiveId"/>
-    <result column="material_id" property="materialId"/>
-    <result column="amount" property="amount"/>
-    <result column="receive_date" property="receiveDate"/>
-    <result column="sender" property="sender"/>
-    <result column="receiver" property="receiver"/>
-    <result column="note" property="note"/>
-  </resultMap>
-
-
-
-
-  <!--物料收入表查询内容-->
-  <sql id="Base_Receive_List">
-    receive_id , material_id , amount , receive_date , sender , receiver , note
-  </sql>
-  <select id="materialReceiveList" resultMap="MaterialReceiveMap">
-    select <include refid="Base_Receive_List"/> from material_receive limit #{offset},#{rows}
+  <!--查询物料表总COUNT数-->
+  <select id="findCount" resultType="_int">
+    select COUNT(*) from material
   </select>
+ <!-- 根据ID查找物料-->
+  <select id="selectMaterialById" resultMap="MaterialMap">
+    select <include refid="Base_Column_List"/> from material where material_id = #{material_id}
+  </select>
+  <!--插入-->
+  <insert id="insertMaterial">
+    insert into material(<include refid="Base_Column_List"/>) values (#{materialId},#{materialType},#{status},#{remaining},#{note})
+  </insert>
+  <!--查找所有的物料list-->
+  <select id="findAllMaterialList" resultMap="MaterialMap">
+    select <include refid="Base_Column_List"/> from material
+  </select>
+
+
+
+
 
 
 </mapper>

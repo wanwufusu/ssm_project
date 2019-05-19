@@ -2,17 +2,17 @@ package com.ssm.bean.material;
 
 import java.util.Date;
 
-public class MaterialReceive {
-    private String receiveId;
-    private Material material;
+public class MaterialConsume {
+    private String consumeId;
+    private String workId;
     private String materialId;
-    private int amount;
-    private String receiveDate;
+    private int consumeAmount;
+    private String consumeDate;
     private String sender;
     private String receiver;
     private String note;
 
-    public MaterialReceive() {
+    public MaterialConsume() {
     }
 
     public String getMaterialId() {
@@ -23,36 +23,39 @@ public class MaterialReceive {
         this.materialId = materialId;
     }
 
-    public String getReceiveId() {
-        return receiveId;
+    public String getConsumeId() {
+        return consumeId;
     }
 
-    public void setReceiveId(String receiveId) {
-        this.receiveId = receiveId;
+    public void setConsumeId(String consumeId) {
+        this.consumeId = consumeId;
     }
 
-    public Material getMaterial() {
-        return material;
+    public String getWorkId() {
+        return workId;
     }
 
-    public void setMaterial(Material material) {
-        this.material = material;
+    public void setWorkId(String workId) {
+        this.workId = workId;
     }
 
-    public int getAmount() {
-        return amount;
+
+
+
+    public int getConsumeAmount() {
+        return consumeAmount;
     }
 
-    public void setAmount(int amount) {
-        this.amount = amount;
+    public void setConsumeAmount(int consumeAmount) {
+        this.consumeAmount = consumeAmount;
     }
 
-    public String getReceiveDate() {
-        return receiveDate;
+    public String getConsumeDate() {
+        return consumeDate;
     }
 
-    public void setReceiveDate(String  receiveDate) {
-        this.receiveDate = receiveDate;
+    public void setConsumeDate(String consumeDate) {
+        this.consumeDate = consumeDate;
     }
 
     public String getSender() {

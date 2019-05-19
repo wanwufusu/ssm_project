@@ -120,7 +120,7 @@
 				<li><span>物料监控 </span>
 					<ul>
 						<li id=41 data-options="attributes:{'url':'material/find'}">物料信息</li>
-						<li id=42 data-options="attributes:{'url':'material/receive'}">物料收入</li>
+						<li id=42 data-options="attributes:{'url':'materialReceive/receive'}">物料收入</li>
 				    	<li id=43 data-options="attributes:{'url':'materialConsume/find'}">物料消耗</li>	 					
 					</ul>
 				</li>

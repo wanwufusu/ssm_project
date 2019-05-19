@@ -1,5 +1,6 @@
 package com.ssm.controller.MaterialController;
 
+import com.ssm.bean.ResponseMessage;
 import com.ssm.bean.material.Material;
 import com.ssm.bean.material.MaterialReceive;
 import com.ssm.bean.material.MaterialVO;
@@ -14,7 +15,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/material")
 
-public class materialController {
+public class MaterialController {
 
  @Autowired
     MaterialService materialService;
@@ -31,25 +32,55 @@ public class materialController {
     public MaterialVO<Material> findMaterialList(int page, int rows){
         int offset = (page - 1) * rows;
         List materialList = materialService.findList(rows,offset);
+        int count = materialService.findCount();
         MaterialVO<Material> materialVO = new MaterialVO<>();
         materialVO.setRows(materialList);
-        materialVO.setTotal(materialList.size());
+        materialVO.setTotal(count);
         return materialVO;
     }
+
+
     //动态跳转receive页面
-    @RequestMapping("/receive")
-    public String findMaterialReceive(){
-        return "materialReceive_list";
-    }
-    //查询receiveList页面
-    @RequestMapping("/receiveList")
+
+
+
+    @RequestMapping("/add_judge")
     @ResponseBody
-    public MaterialVO<MaterialReceive> findReceive(int page, int rows){
-        MaterialVO<MaterialReceive> receiveMaterialVO = new MaterialVO<>();
-        int offset = (page - 1) * rows;
-        List materialReceiveList =  materialService.materialReceiveList(rows,offset);
-        receiveMaterialVO.setRows(materialReceiveList);
-        receiveMaterialVO.setTotal(materialReceiveList.size());
-        return receiveMaterialVO;
+    public String addJudge(){
+        return "";
     }
+
+    @RequestMapping("/add")
+    public String add(){
+        return "material_add";
+    }
+    @RequestMapping("/insert")
+    @ResponseBody
+    public ResponseMessage insert(Material material){
+        ResponseMessage responseMessage = new ResponseMessage();
+        Material material1 = materialService.selectMaterialById(material.getMaterialId());
+        if(material1 != null){
+            responseMessage.setStatus(404);
+            responseMessage.setMsg("物料编号重复");
+            return responseMessage;
+        }else {
+            if (materialService.insertMaterial(material) > 0) {
+                responseMessage.setStatus(200);
+                responseMessage.setMsg("插入成功");
+            } else {
+                responseMessage.setStatus(404);
+                responseMessage.setMsg("插入失败");
+            }
+            return responseMessage;
+        }
+    }
+    @RequestMapping("/get_data")
+    @ResponseBody
+    public List<Material> get(){
+        List list = materialService.findAllMaterialList();
+        return list;
+    }
+
+
+
 }

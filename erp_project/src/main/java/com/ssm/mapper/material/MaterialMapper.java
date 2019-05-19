@@ -12,5 +12,13 @@ public interface MaterialMapper {
     public List<Material> findList(@Param("rows")int rows, @Param("offset") int offset);
 
 
-    public List<MaterialReceive> materialReceiveList(@Param("rows") int rows, @Param("offset") int offset);
+
+
+    public int findCount();
+
+    int insertMaterial(Material material);
+
+    Material selectMaterialById(@Param("material_id") String materialId);
+
+    List findAllMaterialList();
 }
