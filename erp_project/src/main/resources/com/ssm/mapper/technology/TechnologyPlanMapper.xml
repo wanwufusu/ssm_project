@@ -258,4 +258,24 @@
       technology_plan_end = #{technologyPlanEnd,jdbcType=TIMESTAMP}
     where technology_plan_id = #{technologyPlanId,jdbcType=VARCHAR}
   </update>
+  <select id="findByPage" resultMap="BaseResultMap">
+        select technology_plan_id, technology_id, batch_amount, start_plan, end_plan, commit_plan,
+    technology_plan_start, technology_plan_end
+        from technology_plan
+        limit #{offset} , #{rows}
+    </select>
+  <select id="findById" resultMap="BaseResultMap">
+        select technology_plan_id, technology_id, batch_amount, start_plan, end_plan, commit_plan,
+    technology_plan_start, technology_plan_end
+        from technology_plan
+        where technology_plan_id = #{id}
+        limit #{offset} , #{rows}
+    </select>
+  <select id="findByName" resultMap="BaseResultMap">
+        select technology_plan_id, technology_id, batch_amount, start_plan, end_plan, commit_plan,
+    technology_plan_start, technology_plan_end
+        from technology_plan
+        where technology_plan_name = #{name}
+        limit #{offset} , #{rows}
+    </select>
 </mapper>

@@ -28,4 +28,7 @@ public interface TechnologyPlanMapper {
     int updateByPrimaryKeySelective(TechnologyPlan record);
 
     int updateByPrimaryKey(TechnologyPlan record);
+    List<TechnologyPlan> findByPage(@Param("rows") int rows,@Param("offset") int offset);
+    List<TechnologyPlan> findById(@Param("id") String id,@Param("rows") int rows,@Param("offset") int offset);
+    List<TechnologyPlan> findByName(@Param("name") String name,@Param("rows") int rows,@Param("offset") int offset);
 }

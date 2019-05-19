@@ -52,12 +52,13 @@ public class TechnologyServiceImpl implements TechnologyService {
 
     @Override
     public List<Technology> findTechnology(int rows,int offset) {
-       // TechnologyExample technologyExample = new TechnologyExample();
-        //TechnologyExample.Criteria criteria = technologyExample.createCriteria();
-
-        //criteria.andTechnologyIdBetween(String.valueOf(offset),String.valueOf(offset + rows));
-
         List<Technology> technologies = technologyMapper.findByPage(rows,offset);
         return technologies;
+    }
+
+    @Override
+    public List findTechnologyId() {
+        List data = technologyMapper.findTechnologyId();
+        return data;
     }
 }

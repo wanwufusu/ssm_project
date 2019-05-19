@@ -9,15 +9,15 @@ public class TechnologyPlan {
 
     private Integer batchAmount;
 
-    private Date startPlan;
+    private String startPlan;
 
-    private Date endPlan;
+    private String endPlan;
 
-    private Date commitPlan;
+    private String commitPlan;
 
-    private Date technologyPlanStart;
+    private String technologyPlanStart;
 
-    private Date technologyPlanEnd;
+    private String technologyPlanEnd;
 
     public String getTechnologyPlanId() {
         return technologyPlanId;
@@ -43,43 +43,43 @@ public class TechnologyPlan {
         this.batchAmount = batchAmount;
     }
 
-    public Date getStartPlan() {
+    public String getStartPlan() {
         return startPlan;
     }
 
-    public void setStartPlan(Date startPlan) {
+    public void setStartPlan(String startPlan) {
         this.startPlan = startPlan;
     }
 
-    public Date getEndPlan() {
+    public String getEndPlan() {
         return endPlan;
     }
 
-    public void setEndPlan(Date endPlan) {
+    public void setEndPlan(String endPlan) {
         this.endPlan = endPlan;
     }
 
-    public Date getCommitPlan() {
+    public String getCommitPlan() {
         return commitPlan;
     }
 
-    public void setCommitPlan(Date commitPlan) {
+    public void setCommitPlan(String commitPlan) {
         this.commitPlan = commitPlan;
     }
 
-    public Date getTechnologyPlanStart() {
+    public String getTechnologyPlanStart() {
         return technologyPlanStart;
     }
 
-    public void setTechnologyPlanStart(Date technologyPlanStart) {
+    public void setTechnologyPlanStart(String technologyPlanStart) {
         this.technologyPlanStart = technologyPlanStart;
     }
 
-    public Date getTechnologyPlanEnd() {
+    public String getTechnologyPlanEnd() {
         return technologyPlanEnd;
     }
 
-    public void setTechnologyPlanEnd(Date technologyPlanEnd) {
+    public void setTechnologyPlanEnd(String technologyPlanEnd) {
         this.technologyPlanEnd = technologyPlanEnd;
     }
 }

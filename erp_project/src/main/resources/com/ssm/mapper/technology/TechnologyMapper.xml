@@ -293,4 +293,9 @@
         where technology_name = #{name}
         limit #{offset} , #{rows}
     </select>
+  <select id="findTechnologyId" resultMap="BaseResultMap">
+    select technology_id, technology_name, price, vital_process_period, standard_capacity, overtime_standard_capacity,
+    overtime_overfulfil_capacity, double_capacity, overfulfil_capacity
+    from technology
+  </select>
 </mapper>
