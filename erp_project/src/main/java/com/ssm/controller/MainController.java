@@ -71,11 +71,11 @@ public class MainController {
     public ResponseEntity<byte[]> export(String fileName, HttpServletRequest request) throws IOException {
 
         String name = fileName.substring(fileName.lastIndexOf("/") + 1);
-        //System.out.println(name);
         HttpHeaders headers = new HttpHeaders();
         String realPath = request.getSession().getServletContext().getRealPath("/WEB-INF/file/");
+
         File file = new File(realPath + name);
-        System.out.println(file.getAbsolutePath());
+
         headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
         headers.setContentDispositionFormData("attachment", name);
 

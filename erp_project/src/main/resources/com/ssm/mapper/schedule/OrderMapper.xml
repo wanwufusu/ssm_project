@@ -31,9 +31,11 @@
     <result column="file" jdbcType="VARCHAR" property="file" />
     <result column="status" jdbcType="INTEGER" property="status" />
     <association property="custom" javaType="custom">
+      <result column="custom_id" property="customId"/>
       <result column="custom_name" property="customName"/>
     </association>
     <association property="product" javaType="product">
+      <result column="product_id" property="productId"/>
       <result column="product_name" property="productName"/>
     </association>
   </resultMap>
