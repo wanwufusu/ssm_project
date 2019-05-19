@@ -33,7 +33,7 @@ public class OrderController {
     Logger logger = Logger.getLogger(this.getClass());
 
     @RequestMapping("find")
-    public String customList(Model model){
+    public String orderList(Model model){
         return "order_list";
     }
 

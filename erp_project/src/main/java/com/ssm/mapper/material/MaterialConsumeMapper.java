@@ -1,7 +1,8 @@
 package com.ssm.mapper.material;
 
 import com.ssm.bean.material.MaterialConsume;
-import com.ssm.bean.material.Work;
+
+import com.ssm.bean.schedule.Work;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 

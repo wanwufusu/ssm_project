@@ -64,13 +64,13 @@ public class ResponseMessage {
     public static ResponseMessage getMessage(int i){
         ResponseMessage message = new ResponseMessage();
         if (i >= 1) {
-            message.setMsg("ok");
+            message.setMsg("OK");
             message.setData(null);
             message.setStatus(200);
         } else {
-            message.setMsg("not ok");
+            message.setMsg("FAIL");
             message.setData(null);
-            message.setStatus(400);
+            message.setStatus(404);
         }
         return message;
     }

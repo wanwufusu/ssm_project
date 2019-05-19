@@ -17,7 +17,7 @@
     <association column="material_id" property="material" select="com.ssm.mapper.material.MaterialMapper.selectMaterialById"/>
   </resultMap>
 
-  <resultMap id="WorkMap" type="com.ssm.bean.material.Work">
+  <resultMap id="WorkMap" type="com.ssm.bean.schedule.Work">
     <id column="work_id" property="workId"/>
     <result column="process_number" property="processNumber"/>
     <result column="product_id" property="productId"/>

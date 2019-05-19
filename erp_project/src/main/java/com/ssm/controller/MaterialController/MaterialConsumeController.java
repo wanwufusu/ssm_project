@@ -4,7 +4,8 @@ import com.ssm.bean.ResponseMessage;
 import com.ssm.bean.material.Material;
 import com.ssm.bean.material.MaterialConsume;
 import com.ssm.bean.material.MaterialVO;
-import com.ssm.bean.material.Work;
+
+import com.ssm.bean.schedule.Work;
 import com.ssm.service.material.MaterialConsumeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -65,10 +66,10 @@ public class MaterialConsumeController {
             return responseMessage;
         }
     }
-    @RequestMapping("work/get_data")
+/*    @RequestMapping("work/get_data")
     @ResponseBody
     public List<Work> workList(){
         List list = materialConsumeService.findWorkList();
         return list;
-    }
+    }*/
 }
