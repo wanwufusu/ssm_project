@@ -41,19 +41,8 @@ public class FinalCountCheckController {
     @RequestMapping("update_note")
     @ResponseBody
     public ResponseMessage update_note(String fCountCheckId, String note) {
-        ResponseMessage message = new ResponseMessage();
         int i = finalCountCheckService.updateNote(fCountCheckId, note);
-        if (i == 1) {
-            message.setMsg("ok");
-            message.setData(null);
-            message.setStatus(200);
-            return message;
-        } else {
-            message.setMsg("not ok");
-            message.setData(null);
-            message.setStatus(400);
-            return message;
-        }
+        return ResponseMessage.getMessage(i);
     }
 
 
