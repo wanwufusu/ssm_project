@@ -3,7 +3,7 @@
 
 <mapper namespace="com.ssm.mapper.qualityControl.ProcessMeasureCheckMapper">
     <select id="findByPage" resultMap="BaseMap">
-        select p_measure_check_id,process_id,check_item,cdate,measure_data,emp_name,result,p.note
+        select p_measure_check_id,process_id,check_item,cdate,measure_data,p.emp_id,emp_name,result,p.note
         from process_measure_check p,employee e
         where p.emp_id=e.emp_id
         limit #{offset},#{rows}
@@ -15,6 +15,7 @@
         <result property="checkItem" column="check_item" />
         <result property="cdate" column="cdate" />
         <result property="measureData" column="measure_data" />
+        <result property="empId" column="emp_id" />
         <result property="empName" column="emp_name" />
         <result property="result" column="result" />
         <result property="note" column="note" />

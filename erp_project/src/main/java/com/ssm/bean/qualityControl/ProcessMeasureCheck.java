@@ -13,6 +13,16 @@ public class ProcessMeasureCheck {
 
     private String measureData;
 
+    public String getEmpId() {
+        return empId;
+    }
+
+    public void setEmpId(String empId) {
+        this.empId = empId;
+    }
+
+    private String empId;
+
     private String empName;
 
     private String result;

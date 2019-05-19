@@ -22,9 +22,19 @@ public class ProcessCountCheck {
 
     private String measureData;
 
+    private String empId;
+
     private String empName;
 
     private String result;
+
+    public String getEmpId() {
+        return empId;
+    }
+
+    public void setEmpId(String empId) {
+        this.empId = empId;
+    }
 
     private String note;
 
