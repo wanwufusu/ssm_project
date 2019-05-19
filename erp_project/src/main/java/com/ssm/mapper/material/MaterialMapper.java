@@ -28,4 +28,8 @@ public interface MaterialMapper {
     List findAllMaterialList();
 
     int updateMaterialById(Material material);
+
+    List<Material> searchMaterial(@Param("offset") int offset, @Param("rows") int rows, @Param("searchValue") String searchValue);
+
+    int searchMaterialCount(@Param("searchValue") String searchValue);
 }

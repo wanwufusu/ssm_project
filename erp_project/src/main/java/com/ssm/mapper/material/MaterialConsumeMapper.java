@@ -24,4 +24,8 @@ public interface MaterialConsumeMapper {
     int updateMaterialConsumeById(MaterialConsume materialConsume);
 
     int deleteBatch(@Param("ids") String[] ids);
+
+    List<MaterialConsume> searchMaterialConsume(@Param("offset") int offset,@Param("rows") int rows, @Param("searchValue") String searchValue);
+
+    int searchMaterialConsumeCount(@Param("searchValue") String searchValue);
 }

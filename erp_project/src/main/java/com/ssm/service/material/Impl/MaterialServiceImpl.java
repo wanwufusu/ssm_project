@@ -55,4 +55,14 @@ public class MaterialServiceImpl implements MaterialService {
         return materialMapper.deleteBatch(ids);
 
     }
+
+    @Override
+    public List<Material> searchMaterial(int offset, int rows, String searchValue) {
+        return materialMapper.searchMaterial(offset,rows,searchValue);
+    }
+
+    @Override
+    public int searchMaterialCount(String searchValue) {
+        return materialMapper.searchMaterialCount(searchValue);
+    }
 }

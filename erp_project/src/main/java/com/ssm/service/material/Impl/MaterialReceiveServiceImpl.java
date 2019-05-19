@@ -35,6 +35,16 @@ public class MaterialReceiveServiceImpl implements MaterialReceiveService {
     }
 
     @Override
+    public List<MaterialReceive> searchMaterialReceive(int offset, int rows, String searchValue) {
+        return materialReceiveMapper.searchMaterialReceive(offset,rows,searchValue);
+    }
+
+    @Override
+    public int searchMaterialReceiveCount(String searchValue) {
+        return materialReceiveMapper.searchMaterialReceiveCount(searchValue);
+    }
+
+    @Override
     public MaterialReceive selectMaterialReceiveById(String receiveId) {
         return materialReceiveMapper.selectMaterialReceiveById(receiveId);
     }

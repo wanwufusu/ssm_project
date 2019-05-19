@@ -1,11 +1,13 @@
 package com.ssm.controller.MaterialController;
 
 import com.ssm.bean.ResponseMessage;
+import com.ssm.bean.ResponseVO;
 import com.ssm.bean.material.Material;
 import com.ssm.bean.material.MaterialVO;
 import com.ssm.service.material.MaterialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -38,17 +40,18 @@ public class MaterialController {
     }
 
 
-
+    //权限
     @RequestMapping("/add_judge")
     @ResponseBody
     public String addJudge(){
         return "";
     }
-
+    //跳转增加的页面
     @RequestMapping("/add")
     public String add(){
         return "material_add";
     }
+    //插入操作
     @RequestMapping("/insert")
     @ResponseBody
     public ResponseMessage insert(Material material){
@@ -69,6 +72,7 @@ public class MaterialController {
             return responseMessage;
         }
     }
+    //查询material list
     @RequestMapping("/get_data")
     @ResponseBody
     public List<Material> get(){
@@ -100,6 +104,8 @@ public class MaterialController {
         }
         return responseMessage;
     }
+
+    //删除操作
     @RequestMapping("/delete_judge")
     @ResponseBody
     public String delete_judge(){
@@ -118,6 +124,24 @@ public class MaterialController {
             responseMessage.setMsg("删除失败");
         }
         return responseMessage;
+    }
+    //模糊查询
+    @RequestMapping("/search_material_by_materialId")
+    @ResponseBody
+    public ResponseVO<Material> search(int page, int rows, String searchValue){
+        ResponseVO<Material> responseVO = new ResponseVO<>();
+        int offset = (page - 1) * rows;
+        List<Material> list = materialService.searchMaterial(offset,rows,searchValue);
+        int count = materialService.searchMaterialCount(searchValue);
+        responseVO.setRows(list);
+        responseVO.setTotal(count);
+        return responseVO;
+    }
+    //根据Id 查询material rest风格？
+    @RequestMapping("get/{materialId}")
+    @ResponseBody
+    public Material selectMaterialById(@PathVariable("materialId") String materialId){
+        return materialService.selectMaterialById(materialId);
     }
 
 

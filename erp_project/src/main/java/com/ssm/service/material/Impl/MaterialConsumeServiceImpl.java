@@ -46,4 +46,14 @@ public class MaterialConsumeServiceImpl implements MaterialConsumeService {
     public int deleteBatch(String[] ids) {
         return materialConsumeMapper.deleteBatch(ids);
     }
+
+    @Override
+    public List<MaterialConsume> searchMaterialConsume(int offset, int rows, String searchValue) {
+        return materialConsumeMapper.searchMaterialConsume(offset,rows,searchValue);
+    }
+
+    @Override
+    public int searchMaterialConsumeCount(String searchValue) {
+        return materialConsumeMapper.searchMaterialConsumeCount(searchValue);
+    }
 }

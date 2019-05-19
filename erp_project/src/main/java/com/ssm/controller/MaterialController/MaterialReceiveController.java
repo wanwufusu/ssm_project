@@ -1,6 +1,7 @@
 package com.ssm.controller.MaterialController;
 
 import com.ssm.bean.ResponseMessage;
+import com.ssm.bean.ResponseVO;
 import com.ssm.bean.material.MaterialReceive;
 import com.ssm.bean.material.MaterialVO;
 import com.ssm.service.material.MaterialReceiveService;
@@ -34,6 +35,8 @@ public class MaterialReceiveController {
         receiveMaterialVO.setTotal(count);
         return receiveMaterialVO;
     }
+
+    //插入操作
     @RequestMapping("materialReceive/add_judge")
     @ResponseBody
     public String judge(){
@@ -65,7 +68,7 @@ public class MaterialReceiveController {
             return responseMessage;
         }
     }
-    //编辑页面
+    //编辑操作
     @RequestMapping("materialReceive/edit_judge")
     @ResponseBody
     public String editJudge(){
@@ -91,6 +94,8 @@ public class MaterialReceiveController {
         }
         return responseMessage;
     }
+
+    //删除操作
     @RequestMapping("materialReceive/delete_judge")
     @ResponseBody
     public String delete(){
@@ -110,5 +115,19 @@ public class MaterialReceiveController {
         }
         return responseMessage;
     }
+
+    //模糊查询
+    @RequestMapping("materialReceive/search_materialReceive_by_receiveId")
+    @ResponseBody
+    public ResponseVO<MaterialReceive> search(int page, int rows, String searchValue){
+        ResponseVO<MaterialReceive> responseVO = new ResponseVO<>();
+        int offset = (page - 1) * rows;
+        List<MaterialReceive> list = materialReceiveService.searchMaterialReceive(offset,rows,searchValue);
+        int count = materialReceiveService.searchMaterialReceiveCount(searchValue);
+        responseVO.setRows(list);
+        responseVO.setTotal(count);
+        return responseVO;
+    }
+
 
 }

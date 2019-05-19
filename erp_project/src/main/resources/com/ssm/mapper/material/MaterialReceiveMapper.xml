@@ -44,5 +44,14 @@
     #{id}
   </foreach>
   </delete>
+ <!--模糊查询-->
+  <select id="searchMaterialConsume" resultMap="MaterialReceiveMap">
+    select <include refid="Base_Receive_List"/> from material_receive where receive_id like '%${searchValue}%'
+    limit #{offset},#{rows}
+  </select>
+  <!--模糊查询数量-->
+  <select id="searchMaterialReceiveCount" resultType="_int">
+    select count(*) from material_receive where receive_id like '%${searchValue}%'
+  </select>
 
 </mapper>

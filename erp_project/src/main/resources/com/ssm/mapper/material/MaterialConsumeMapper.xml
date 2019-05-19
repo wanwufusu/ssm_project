@@ -65,6 +65,15 @@
     #{id}
   </foreach>
   </delete>
+  <!--模糊查询-->
+  <select id="searchMaterialConsume" resultMap="MaterialConsumeMap">
+    select <include refid="Base_Consume_List"/> from material_consume where consume_id like '%${searchValue}%'
+                                                limit #{offset},#{rows}
+  </select>
+  <!--模糊查询数量-->
+  <select id="searchMaterialConsumeCount" resultType="_int">
+    select count(*) from material_consume where consume_id like '%${searchValue}%'
+  </select>
 
 
 

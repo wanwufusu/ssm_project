@@ -19,4 +19,8 @@ public interface MaterialConsumeService {
     int updateMaterialConsumeById(MaterialConsume materialConsume);
 
     int deleteBatch(String[] ids);
+
+    List<MaterialConsume> searchMaterialConsume(int offset, int rows, String searchValue);
+
+    int searchMaterialConsumeCount(String searchValue);
 }
