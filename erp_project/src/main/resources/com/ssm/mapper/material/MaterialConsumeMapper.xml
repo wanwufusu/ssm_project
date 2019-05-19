@@ -53,6 +53,18 @@
  <select id="findWorkList" resultMap="WorkMap">
    select work_id,process_number,product_id,process_id,device_id,rating from work
  </select>
+  <update id="updateMaterialConsumeById">
+    update material_consume set work_id = #{workId},material_id = #{materialId},consume_amount = #{consumeAmount},consume_date = #{consumeDate},
+                                          sender = #{sender},receiver = #{receiver},note = #{note}
+                                          where consume_id =#{consumeId}
+  </update>
+
+  <delete id="deleteBatch">
+    delete from material_consume where consume_id
+    in <foreach collection="ids" item="id" open="(" close=")" separator=",">
+    #{id}
+  </foreach>
+  </delete>
 
 
 

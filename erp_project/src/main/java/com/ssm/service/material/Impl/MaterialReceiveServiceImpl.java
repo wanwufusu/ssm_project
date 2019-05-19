@@ -23,6 +23,17 @@ public class MaterialReceiveServiceImpl implements MaterialReceiveService {
     public int findReceiveCount() {
         return materialReceiveMapper.findReceiveCount();
     }
+
+    @Override
+    public int updateMaterialReceiveById(MaterialReceive materialReceive) {
+        return materialReceiveMapper.updateMaterialReceiveById(materialReceive);
+    }
+
+    @Override
+    public int deleteBatch(String[] ids) {
+        return materialReceiveMapper.deleteBatch(ids);
+    }
+
     @Override
     public MaterialReceive selectMaterialReceiveById(String receiveId) {
         return materialReceiveMapper.selectMaterialReceiveById(receiveId);

@@ -34,8 +34,17 @@
   <select id="findAllMaterialList" resultMap="MaterialMap">
     select <include refid="Base_Column_List"/> from material
   </select>
+  <update id="updateMaterialById">
+    update material set material_type = #{materialType},status = #{status},remaining = #{remaining},note = #{note}
+      where material_id =#{materialId}
+  </update>
 
-
+<delete id="deleteBatch">
+  delete from material where material_id
+  in <foreach collection="ids" item="id" open="(" close=")" separator=",">
+    #{id}
+  </foreach>
+</delete>
 
 
 

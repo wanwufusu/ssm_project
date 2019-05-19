@@ -14,4 +14,8 @@ public interface MaterialReceiveMapper {
     public List<MaterialReceive> materialReceiveList(@Param("rows") int rows, @Param("offset") int offset);
 
     public int findReceiveCount();
+
+    int updateMaterialReceiveById(MaterialReceive materialReceive);
+
+    int deleteBatch(@Param("ids") String[] ids);
 }
