@@ -26,6 +26,11 @@
       limit #{pageDetail.rows} offset #{pageDetail.offset}
     </if>
   </select>
+  <select id="selectAllProducts" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from product
+  </select>
   <select id="selectByPageAndProductCondition" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List"/>

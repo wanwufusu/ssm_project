@@ -20,6 +20,11 @@ public interface ProductService {
     int queryAllRecordByProductName(Map <String, String> productId);
     List<Product> queryPageCustomByProductType(PageDetail pageDetail, Map<String, String> condition);
     int queryAllRecordByProductType(Map <String, String> productId);
+
+
+    Product queryProductByProductId(String productId);
+
+    List<Product> queryProducts();
 /*    List<Product> queryPageCustomByCustomId(PageDetail pageDetail, String searchValue);
     List<Product> queryPageCustomBycustomName(PageDetail pageDetail, String searchValue);*/
 }
