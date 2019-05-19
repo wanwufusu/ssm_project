@@ -12,7 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 〈一句话功能简述〉<br>
@@ -48,6 +50,39 @@ public class OrderController {
         return responseVO;
     }
 
+    @RequestMapping("search_order_by_orderId")
+    @ResponseBody
+    public ResponseVO ordersQueryById(Model model, PageDetail pageDetail, String searchValue){
+        Map<String, String> condition =  new HashMap<String, String>(){{put("orderId", searchValue);}};
+        pageDetail.setOffset((pageDetail.getPage()-1)*pageDetail.getRows());
+        List<Order> orders = orderService.queryPageOrderByOrderId(pageDetail, condition);
+        ResponseVO<Order> responseVO = new ResponseVO<>();
+        responseVO.setRows(orders);
+        responseVO.setTotal(orderService.queryAllRecordByOrderId(condition));
+        return responseVO;
+    }
+    @RequestMapping("search_order_by_orderCustom")
+    @ResponseBody
+    public ResponseVO ordersQueryByCustomName(Model model, PageDetail pageDetail, String searchValue){
+        Map<String, String> condition =  new HashMap<String, String>(){{put("customName", searchValue);}};
+        pageDetail.setOffset((pageDetail.getPage()-1)*pageDetail.getRows());
+        List<Order> orders = orderService.queryPageOrderByCustomName(pageDetail, condition);
+        ResponseVO<Order> responseVO = new ResponseVO<>();
+        responseVO.setRows(orders);
+        responseVO.setTotal(orderService.queryAllRecordByCustomName(condition));
+        return responseVO;
+    }
+    @RequestMapping("search_order_by_orderProduct")
+    @ResponseBody
+    public ResponseVO ordersQueryByProductName(Model model, PageDetail pageDetail, String searchValue){
+        Map<String, String> condition =  new HashMap<String, String>(){{put("productName", searchValue);}};
+        pageDetail.setOffset((pageDetail.getPage()-1)*pageDetail.getRows());
+        List<Order> orders = orderService.queryPageOrderByProductName(pageDetail, condition);
+        ResponseVO<Order> responseVO = new ResponseVO<>();
+        responseVO.setRows(orders);
+        responseVO.setTotal(orderService.queryAllRecordByProductName(condition));
+        return responseVO;
+    }
     @RequestMapping("add_judge")
     @ResponseBody
     public Order addJudge(){

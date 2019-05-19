@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 〈一句话功能简述〉<br>
@@ -51,5 +52,38 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> queryOrders() {
         return orderMapper.selectAllOrders();
+    }
+
+    @Override
+    public List<Order> queryPageOrderByOrderId(PageDetail pageDetail, Map<String, String> condition) {
+        condition.put("orderId", "%" + condition.get("orderId") + "%");
+        return orderMapper.selectByPageAndOrderCondition(pageDetail,condition);
+    }
+
+    @Override
+    public int queryAllRecordByOrderId(Map<String, String> condition) {
+        return orderMapper.selectAllRecordsByCondition(condition);
+    }
+
+    @Override
+    public List<Order> queryPageOrderByCustomName(PageDetail pageDetail, Map<String, String> condition) {
+        condition.put("customName", "%" + condition.get("customName") + "%");
+        return orderMapper.selectByPageAndOrderCondition(pageDetail,condition);
+    }
+
+    @Override
+    public int queryAllRecordByCustomName(Map<String, String> condition) {
+        return orderMapper.selectAllRecordsByCondition(condition);
+    }
+
+    @Override
+    public List<Order> queryPageOrderByProductName(PageDetail pageDetail, Map<String, String> condition) {
+        condition.put("productName", "%" + condition.get("productName") + "%");
+        return orderMapper.selectByPageAndOrderCondition(pageDetail,condition);
+    }
+
+    @Override
+    public int queryAllRecordByProductName(Map<String, String> condition) {
+        return orderMapper.selectAllRecordsByCondition(condition);
     }
 }
