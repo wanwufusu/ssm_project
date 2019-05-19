@@ -235,7 +235,7 @@ function doSearch_task(value,name){ //用户输入用户名,点击搜素,触发�
 		var row = onTaskClickRow(index);
 		$("#taskWorkInfo").dialog({
     		onOpen :function(){
-    			$.get("work/get/"+row.workId,'',function(data){
+    			$.get("Work/get/"+row.workId,'',function(data){
   		    		data.processId = data.process.processId; 
   	        		data.productId = data.product.productId;
   	        		data.deviceId = data.device.deviceId;
@@ -247,7 +247,7 @@ function doSearch_task(value,name){ //用户输入用户名,点击搜素,触发�
 	};
 	
 	function submitTaskWorkEditForm(){
-		$.get("work/edit_judge",'',function(data){
+		$.get("Work/edit_judge",'',function(data){
     		if(data.msg != null){
     			$.messager.alert('提示', data.msg);
     		}else{
@@ -256,7 +256,7 @@ function doSearch_task(value,name){ //用户输入用户名,点击搜素,触发�
     				return ;
     			}
     			
-    			$.post("work/update_all",$("#taskWorkEditForm").serialize(), function(data){
+    			$.post("Work/update_all",$("#taskWorkEditForm").serialize(), function(data){
     				if(data.status == 200){
     					$.messager.alert('提示','修改作业成功!','info',function(){
     						$("#taskWorkInfo").dialog("close");

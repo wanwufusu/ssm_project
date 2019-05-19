@@ -2,7 +2,6 @@ package com.ssm.controller.MaterialController;
 
 import com.ssm.bean.ResponseMessage;
 import com.ssm.bean.material.Material;
-import com.ssm.bean.material.MaterialReceive;
 import com.ssm.bean.material.MaterialVO;
 import com.ssm.service.material.MaterialService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,7 @@ import java.util.List;
 @RequestMapping("/material")
 public class MaterialController {
 
- @Autowired
+    @Autowired
     MaterialService materialService;
 
     //动态跳转list页面
@@ -37,9 +36,6 @@ public class MaterialController {
         materialVO.setTotal(count);
         return materialVO;
     }
-
-
-    //动态跳转receive页面
 
 
 
@@ -79,7 +75,6 @@ public class MaterialController {
         List list = materialService.findAllMaterialList();
         return list;
     }
-
 
 
 }

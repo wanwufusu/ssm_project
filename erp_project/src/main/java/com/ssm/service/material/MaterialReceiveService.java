@@ -11,4 +11,5 @@ public interface MaterialReceiveService {
     List<MaterialReceive> materialReceiveList(int page, int offset);
 
     int findReceiveCount();
+
 }

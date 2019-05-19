@@ -22,31 +22,36 @@
         </tr>
     </thead>
 </table>
-
+<c:forEach items="${sessionScope.sysPermissionList}" var="per" >
+	<c:if test="${per=='MaterialConsume:add' }" >
+	</c:if>
+	<c:if test="${per=='MaterialConsume:edit' }" >
+	</c:if>
+	<c:if test="${per=='MaterialConsume:delete' }" >
+	</c:if>
+</c:forEach>
 <div  id="toolbar_materialConsume" style=" height: 22px; padding: 3px 11px; background: #fafafa;">  
 	
-	<c:forEach items="${sessionScope.sysPermissionList}" var="per" >
-		<c:if test="${per=='MaterialConsume:add' }" >
+
 		    <div style="float: left;">  
 		        <a href="#" class="easyui-linkbutton" plain="true" icon="icon-add" onclick="materialConsume_add()">
 					新增
 				</a>
 		    </div>  
-		</c:if>
-		<c:if test="${per=='MaterialConsume:edit' }" >
+
+
 		    <div style="float: left;">  
 		        <a href="#" class="easyui-linkbutton" plain="true" icon="icon-edit" onclick="materialConsume_edit()">
 					编辑
 				</a>
 		    </div>  
-		</c:if>
-		<c:if test="${per=='MaterialConsume:delete' }" >
+
+
 		    <div style="float: left;">  
 		        <a href="#" class="easyui-linkbutton" plain="true" icon="icon-cancel"
 				   onclick="materialConsume_delete()">删除</a>
 		    </div>  
-		</c:if>
-	</c:forEach>
+
 	
 	<div class="datagrid-btn-separator"></div>  
 	
@@ -193,7 +198,7 @@
 	        columns : [ [ 	      	        
 				{field : 'ck', checkbox:true },
 				{field : 'consumeId', width : 100, title : '物料消耗编号', align:'center'},
-				{field : 'work', width : 100, align : 'center', title : '所属作业', formatter:formatWork},
+				{field : 'Work', width : 100, align : 'center', title : '所属作业', formatter:formatWork},
 				{field : 'material', width : 100, align : 'center', title : '物料', formatter:formatMaterial},
 				{field : 'consumeAmount', width : 100, title : '消耗数量', align:'center'},
 				{field : 'consumeDate', width : 130, title : '消耗日期', align:'center',
@@ -211,7 +216,7 @@
 	        columns : [ [ 
 				{field : 'ck', checkbox:true },
 				{field : 'consumeId', width : 100, title : '物料消耗编号', align:'center'},
-				{field : 'work', width : 100, align : 'center', title : '所属作业', formatter:formatWork},
+				{field : 'Work', width : 100, align : 'center', title : '所属作业', formatter:formatWork},
 				{field : 'material', width : 100, align : 'center', title : '物料', formatter:formatMaterial},
 				{field : 'consumeAmount', width : 100, title : '消耗数量', align:'center'},
 				{field : 'consumeDate', width : 130, title : '消耗日期', align:'center',
@@ -265,7 +270,7 @@
 		var row = onMaterialConsumeClickRow(index);
 		$("#materialConsumeWorkInfo").dialog({
     		onOpen :function(){
-    			$.get("work/get/"+row.work.workId,'',function(data){
+    			$.get("Work/get/"+row.work.workId,'',function(data){
     				data.processId = data.process.processId; 
   	        		data.productId = data.product.productId;
   	        		data.deviceId = data.device.deviceId;
@@ -282,7 +287,7 @@
 	
 	//提交作业信息
 	function submitMaterialConsumeWorkForm(){
-		$.get("work/edit_judge",'',function(data){
+		$.get("Work/edit_judge",'',function(data){
     		if(data.msg != null){
     			$.messager.alert('提示', data.msg);
     		}else{
@@ -291,7 +296,7 @@
     				return ;
     			}
     			//同步文本框中的备注
-    			$.post("work/update_all",$("#materialConsumeWorkForm").serialize(), function(data){
+    			$.post("Work/update_all",$("#materialConsumeWorkForm").serialize(), function(data){
     				if(data.status == 200){
     					$.messager.alert('提示','修改成功!','info',function(){
     						$("#materialConsumeWorkInfo").dialog('close');
