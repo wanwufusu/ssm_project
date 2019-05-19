@@ -76,5 +76,10 @@ public class CustomServiceImpl implements CustomService {
         return customMapper.selectByPageAndCustomName(pageDetail, "%" + searchValue + "%");
     }
 
+    @Override
+    public Custom queryCustomByCustomId(String customId) {
+        return customMapper.selectByPrimaryKey(customId);
+    }
+
 
 }

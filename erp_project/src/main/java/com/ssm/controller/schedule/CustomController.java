@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -109,9 +110,9 @@ public class CustomController {
 
     @RequestMapping("delete_batch")
     @ResponseBody
-    public Map deleteCustom(int ids){
+    public Map deleteCustom(String ids){
         HashMap<String, Object> deleteCustomResult = new HashMap<>();
-        int i = customService.deleteCustom(Integer.toString(ids));
+        int i = customService.deleteCustom(ids);
         if (i > 0) {
             deleteCustomResult.put("status", 200);
             deleteCustomResult.put("msg", "OK");
@@ -148,5 +149,11 @@ public class CustomController {
         } else {
             return new ResponseMessage(404, "fail", "update fail");
         }
+    }
+
+    @RequestMapping("get/{customId}")
+    @ResponseBody
+    public Custom queryCustomById(@PathVariable("customId") String customId){
+        return customService.queryCustomByCustomId(customId);
     }
 }

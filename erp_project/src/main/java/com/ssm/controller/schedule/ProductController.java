@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -143,5 +144,17 @@ public class ProductController {
         } else {
             return new ResponseMessage(404, "fail", "update fail");
         }
+    }
+
+    @RequestMapping("get/{productId}")
+    @ResponseBody
+    public Product queryProductById(@PathVariable("productId") String productId){
+        return productService.queryProductByProductId(productId);
+    }
+
+    @RequestMapping("get_data")
+    @ResponseBody
+    public List<Product> queryAllProducts(){
+        return productService.queryProducts();
     }
 }

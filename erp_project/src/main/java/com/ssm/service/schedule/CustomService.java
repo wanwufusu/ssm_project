@@ -16,4 +16,6 @@ public interface CustomService {
     int updateByCustomId(Custom custom);
     List<Custom> queryPageCustomByCustomId(PageDetail pageDetail, String searchValue);
     List<Custom> queryPageCustomBycustomName(PageDetail pageDetail, String searchValue);
+
+    Custom queryCustomByCustomId(String customId);
 }
