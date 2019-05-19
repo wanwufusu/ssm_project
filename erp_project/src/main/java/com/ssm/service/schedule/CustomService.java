@@ -15,8 +15,5 @@ public interface CustomService {
     int deleteCustom(String customId);
     int updateByCustomId(Custom custom);
     List<Custom> queryPageCustomByCustomId(PageDetail pageDetail, String searchValue);
-
     List<Custom> queryPageCustomBycustomName(PageDetail pageDetail, String searchValue);
-
-
 }

@@ -26,21 +26,21 @@
 <div  id="toolbar_materialConsume" style=" height: 22px; padding: 3px 11px; background: #fafafa;">  
 	
 	<c:forEach items="${sessionScope.sysPermissionList}" var="per" >
-		<c:if test="${per=='materialConsume:add' }" >
+		<c:if test="${per=='MaterialConsume:add' }" >
 		    <div style="float: left;">  
 		        <a href="#" class="easyui-linkbutton" plain="true" icon="icon-add" onclick="materialConsume_add()">
 					新增
 				</a>
 		    </div>  
 		</c:if>
-		<c:if test="${per=='materialConsume:edit' }" >
+		<c:if test="${per=='MaterialConsume:edit' }" >
 		    <div style="float: left;">  
 		        <a href="#" class="easyui-linkbutton" plain="true" icon="icon-edit" onclick="materialConsume_edit()">
 					编辑
 				</a>
 		    </div>  
 		</c:if>
-		<c:if test="${per=='materialConsume:delete' }" >
+		<c:if test="${per=='MaterialConsume:delete' }" >
 		    <div style="float: left;">  
 		        <a href="#" class="easyui-linkbutton" plain="true" icon="icon-cancel"
 				   onclick="materialConsume_delete()">删除</a>
@@ -188,7 +188,7 @@
 	if(value == null || value == ''){
 		$("#materialConsumeList").datagrid({
 	        title:'物料消耗列表', singleSelect:false, collapsible:true, pagination:true, rownumbers:true, method:'get',
-			nowrap:true, toolbar:"toolbar_materialConsume", url:'materialConsume/list', method:'get',
+			nowrap:true, toolbar:"toolbar_materialConsume", url:'MaterialConsume/list', method:'get',
 			loadMsg:'数据加载中......',  fitColumns:true,//允许表格自动缩放,以适应父容器
 	        columns : [ [ 	      	        
 				{field : 'ck', checkbox:true },
@@ -206,7 +206,7 @@
 	}else{
 		$("#materialConsumeList").datagrid({  
 	        title:'物料消耗列表', singleSelect:false, collapsible:true, pagination:true, rownumbers:true, method:'get',
-			nowrap:true, toolbar:"toolbar_materialConsume", url:'materialConsume/search_materialConsume_by_'
+			nowrap:true, toolbar:"toolbar_materialConsume", url:'MaterialConsume/search_materialConsume_by_'
 			+name+'?searchValue='+value, loadMsg:'数据加载中......',  fitColumns:true,//允许表格自动缩放,以适应父容器
 	        columns : [ [ 
 				{field : 'ck', checkbox:true },
@@ -369,12 +369,12 @@
 	
 	//更新备注
 	function updateMaterialConsumeNote(){
-		$.get("materialConsume/edit_judge",'',function(data){
+		$.get("MaterialConsume/edit_judge",'',function(data){
     		if(data.msg != null){
     			$.messager.alert('提示', data.msg);
     		}else{
     			materialConsumeNoteEditor.sync();
-    			$.post("materialConsume/update_note",$("#materialConsumeNoteForm").serialize(), function(data){
+    			$.post("MaterialConsume/update_note",$("#materialConsumeNoteForm").serialize(), function(data){
     				if(data.status == 200){
     					$("#materialConsumeNoteDialog").dialog("close");
     					$("#materialConsumeList").datagrid("reload");
@@ -400,7 +400,7 @@
     }
 
     function materialConsume_add(){
-    	$.get("materialConsume/add_judge",'',function(data){
+    	$.get("MaterialConsume/add_judge",'',function(data){
         		if(data.msg != null){
         			$.messager.alert('提示', data.msg);
         		}else{
@@ -411,7 +411,7 @@
     }
     
     function materialConsume_edit(){
-    	$.get("materialConsume/edit_judge",'',function(data){
+    	$.get("MaterialConsume/edit_judge",'',function(data){
         		if(data.msg != null){
         			$.messager.alert('提示', data.msg);
         		}else{
@@ -447,7 +447,7 @@
     }
     
     function materialConsume_delete(){
-    	$.get("materialConsume/delete_judge",'',function(data){
+    	$.get("MaterialConsume/delete_judge",'',function(data){
         		if(data.msg != null){
         			$.messager.alert('提示', data.msg);
         		}else{
@@ -459,7 +459,7 @@
                 	$.messager.confirm('确认','确定删除ID为 '+ids+' 的记录吗？',function(r){
                 	    if (r){
                 	    	var params = {"ids":ids};
-                        	$.post("materialConsume/delete_batch",params, function(data){
+                        	$.post("MaterialConsume/delete_batch",params, function(data){
                     			if(data.status == 200){
                     				$.messager.alert('提示','删除成功!',undefined,function(){
                     					$("#materialConsumeList").datagrid("reload");

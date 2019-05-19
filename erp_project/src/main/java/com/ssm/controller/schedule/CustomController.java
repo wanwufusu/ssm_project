@@ -41,11 +41,11 @@ public class CustomController {
         pageDetail.setOffset((pageDetail.getPage()-1)*pageDetail.getRows());
         //List<Custom> customs = customService.queryPageCustom();
         List<Custom> customs = customService.queryPageCustom(pageDetail);
-        ResponseVO<Custom> responseVO = new ResponseVO<>();
+        ResponseVO<Custom> ResponseVO = new ResponseVO<>();
 
-        responseVO.setRows(customs);
-        responseVO.setTotal(customService.queryAllRecord());
-        return responseVO;
+        ResponseVO.setRows(customs);
+        ResponseVO.setTotal(customService.queryAllRecord());
+        return ResponseVO;
     }
     @RequestMapping("search_custom_by_customId")
     @ResponseBody
@@ -53,11 +53,11 @@ public class CustomController {
 
         pageDetail.setOffset((pageDetail.getPage()-1)*pageDetail.getRows());
         List<Custom> customs = customService.queryPageCustomByCustomId(pageDetail, searchValue);
-        ResponseVO<Custom> responseVO = new ResponseVO<>();
+        ResponseVO<Custom> ResponseVO = new ResponseVO<>();
 
-        responseVO.setRows(customs);
-        responseVO.setTotal(customService.queryAllRecordByCustomId(searchValue));
-        return responseVO;
+        ResponseVO.setRows(customs);
+        ResponseVO.setTotal(customService.queryAllRecordByCustomId(searchValue));
+        return ResponseVO;
     }
     @RequestMapping("search_custom_by_customName")
     @ResponseBody
@@ -65,11 +65,11 @@ public class CustomController {
 
         pageDetail.setOffset((pageDetail.getPage()-1)*pageDetail.getRows());
         List<Custom> customs = customService.queryPageCustomBycustomName(pageDetail, searchValue);
-        ResponseVO<Custom> responseVO = new ResponseVO<>();
+        ResponseVO<Custom> ResponseVO = new ResponseVO<>();
 
-        responseVO.setRows(customs);
-        responseVO.setTotal(customService.queryAllRecordBycustomName(searchValue));
-        return responseVO;
+        ResponseVO.setRows(customs);
+        ResponseVO.setTotal(customService.queryAllRecordBycustomName(searchValue));
+        return ResponseVO;
     }
 
     @RequestMapping("add_judge")

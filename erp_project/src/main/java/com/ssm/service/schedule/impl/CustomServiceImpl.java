@@ -1,8 +1,9 @@
-package com.ssm.service.schedule;
+package com.ssm.service.schedule.impl;
 
 import com.ssm.bean.schedule.Custom;
 import com.ssm.bean.schedule.PageDetail;
 import com.ssm.mapper.schedule.CustomMapper;
+import com.ssm.service.schedule.CustomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

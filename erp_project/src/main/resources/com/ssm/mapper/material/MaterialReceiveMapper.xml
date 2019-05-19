@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.mapper.material.MaterialReceiveMapper">
+
+
+
+
+  <!--物料收入表查询结果map-->
+  <resultMap id="MaterialReceiveMap" type="com.ssm.bean.material.MaterialReceive">
+    <id column="receive_id" property="receiveId"/>
+    <result column="material_id" property="materialId"/>
+    <result column="amount" property="amount"/>
+    <result column="receive_date" property="receiveDate"/>
+    <result column="sender" property="sender"/>
+    <result column="receiver" property="receiver"/>
+    <result column="note" property="note"/>
+    <association column="material_id" property="material" select="com.ssm.mapper.material.MaterialMapper.selectMaterialById"/>
+  </resultMap>
+
+  <!--物料收入表查询内容-->
+  <sql id="Base_Receive_List">
+    receive_id , material_id , amount , receive_date , sender , receiver , note
+  </sql>
+  <select id="materialReceiveList" resultMap="MaterialReceiveMap">
+    select <include refid="Base_Receive_List"/> from material_receive limit #{offset},#{rows}
+  </select>
+  <select id="findReceiveCount" resultType="_int">
+    select COUNT(*) from material_receive
+  </select>
+  <select id="selectMaterialReceiveById" resultMap="MaterialReceiveMap">
+    select <include refid="Base_Receive_List"/> from material_receive where receive_id = #{receiveId}
+  </select>
+  <insert id="insertMaterialReceive">
+    insert into material_receive (receive_id,material_id,amount,receive_date,sender,receiver,note) values (#{receiveId},#{materialId},#{amount},#{receiveDate},#{sender},#{receiver},#{note})
+  </insert>
+
+
+</mapper>
