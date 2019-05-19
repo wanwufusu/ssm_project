@@ -4,7 +4,7 @@
 <script type="text/javascript" charset="utf-8" src="js/kindeditor-4.1.10/kindeditor-all-min.js"></script>
 <script type="text/javascript" charset="utf-8" src="js/kindeditor-4.1.10/lang/zh_CN.js"></script>
 <table class="easyui-datagrid" id="materialReceiveList" title="物料收入列表" data-options="singleSelect:false,
-		collapsible:true,pagination:true,rownumbers:true,url:'materialReceive/list',method:'get',pageSize:10,
+		collapsible:true,pagination:true,rownumbers:true,url:'materialReceive/receiveList',method:'get',pageSize:10,
 		fitColumns:true,toolbar:toolbar_materialReceive">
     <thead>
          <tr>
@@ -17,57 +17,63 @@
 			</th>
             <th data-options="field:'sender',align:'center',width:100">发送者</th>
             <th data-options="field:'receiver',align:'center',width:100">接收者</th>
-            <th data-options="field:'note',width:100,align:'center', formatter:formatMaterialReceiveNote">备注</th>        
+            <th data-options="field:'note',width:100,align:'center', formatter:formatMaterialReceiveNote">备注</th>
         </tr>
     </thead>
 </table>
 
-<div  id="toolbar_materialReceive" style=" height: 22px; padding: 3px 11px; background: #fafafa;">  
-	
-	<c:forEach items="${sessionScope.sysPermissionList}" var="per" >
-		<c:if test="${per=='materialReceive:add' }" >
-		    <div style="float: left;">  
+<%--<c:forEach items="${sessionScope.sysPermissionList}" var="per" >
+    <c:if test="${per=='materialReceive:add' }" >
+    </c:if>
+    <c:if test="${per=='materialReceive:edit' }" >
+    </c:if>
+    <c:if test="${per=='materialReceive:delete' }" >
+    </c:if>
+</c:forEach>--%>
+        <div  id="toolbar_materialReceive" style=" height: 22px; padding: 3px 11px; background: #fafafa;">
+
+		    <div style="float: left;">
 		        <a href="#" class="easyui-linkbutton" plain="true" icon="icon-add" onclick="materialReceive_add()">
 					新增
 				</a>
-		    </div>  
-		</c:if>
-		<c:if test="${per=='materialReceive:edit' }" >
-		    <div style="float: left;">  
+		    </div>
+
+
+		    <div style="float: left;">
 		        <a href="#" class="easyui-linkbutton" plain="true" icon="icon-edit" onclick="materialReceive_edit()">
 					编辑
 				</a>
-		    </div>  
-		</c:if>
-		<c:if test="${per=='materialReceive:delete' }" >
-		    <div style="float: left;">  
+		    </div>
+
+
+
+		    <div style="float: left;">
 		        <a href="#" class="easyui-linkbutton" plain="true" icon="icon-cancel" onclick="materialReceive_delete()">
 					删除
 				</a>
-		    </div>  
-		</c:if>
-	</c:forEach>
-	
-	<div class="datagrid-btn-separator"></div>  
-	
-	<div style="float: left;">  
+		    </div>
+
+
+	<div class="datagrid-btn-separator"></div>
+
+	<div style="float: left;">
 		<a href="#" class="easyui-linkbutton" plain="true" icon="icon-reload" onclick="materialReceive_reload()">
 			刷新
 		</a>
-	</div>  
-	
+	</div>
+
     <div id="search_materialReceive" style="float: right;">
-        <input id="search_text_materialReceive" class="easyui-searchbox"  
-            data-options="searcher:doSearch_materialReceive,prompt:'请输入...',menu:'#menu_materialReceive'"  
+        <input id="search_text_materialReceive" class="easyui-searchbox"
+            data-options="searcher:doSearch_materialReceive,prompt:'请输入...',menu:'#menu_materialReceive'"
             style="width:250px;vertical-align: middle;">
         </input>
-        <div id="menu_materialReceive" style="width:120px"> 
-			<div data-options="name:'receiveId'">物料收入编号</div> 
-			<div data-options="name:'materialId'">物料编号</div>	
-		</div>     
-    </div>  
+        <div id="menu_materialReceive" style="width:120px">
+			<div data-options="name:'receiveId'">物料收入编号</div>
+			<div data-options="name:'materialId'">物料编号</div>
+		</div>
+    </div>
 
-</div>  
+</div>
 
 <div id="materialReceiveEditWindow" class="easyui-window" title="编辑物料收入" data-options="modal:true,closed:true,
 	resizable:true,iconCls:'icon-save',href:'materialReceive/edit'" style="width:65%;height:75%;padding:10px;">
@@ -147,8 +153,8 @@ function doSearch_materialReceive(value,name){ //用户输入用户名,点击搜
 	        columns : [ [ 	       
 				{field : 'ck', checkbox:true },
 				{field : 'receiveId', width : 100, title : '物料收入编号', align:'center'},
-				{field : 'material', width : 100, align : 'center', title : '物料', formatter:formatMaterial},
-				{field : 'ammount', width : 100, align : 'center', title : '收入数量'},
+				{field : 'materialId', width : 100, align : 'center', title : '物料', formatter:formatMaterial},
+				{field : 'amount', width : 100, align : 'center', title : '收入数量'},
 				{field : 'receiveDate', width : 130, title : '收入日期', align:'center',formatter:TAOTAO.formatDateTime},
 				{field : 'sender', width : 100, title : '发送者', align:'center'},
 				{field : 'receiver', width : 100, title : '接收者', align:'center'},
@@ -163,8 +169,8 @@ function doSearch_materialReceive(value,name){ //用户输入用户名,点击搜
 	        columns : [ [ 
 				{field : 'ck', checkbox:true },
 				{field : 'receiveId', width : 100, title : '物料收入编号', align:'center'},
-				{field : 'material', width : 100, align : 'center', title : '物料', formatter:formatMaterial},
-				{field : 'ammount', width : 100, align : 'center', title : '收入数量'},
+				{field : 'materialId', width : 100, align : 'center', title : '物料', formatter:formatMaterial},
+				{field : 'amount', width : 100, align : 'center', title : '收入数量'},
 				{field : 'receiveDate', width : 130, title : '收入日期', align:'center',formatter:TAOTAO.formatDateTime},
 				{field : 'sender', width : 100, title : '发送者', align:'center'},
 				{field : 'receiver', width : 100, title : '接收者', align:'center'},

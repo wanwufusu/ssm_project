@@ -25,7 +25,7 @@
 <!-- 111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111 -->
 
 <div  id="toolbar_fMeasureCheck" style=" height: 22px; padding: 3px 11px; background: #fafafa;">  
-	
+	<%--
 	<c:forEach items="${sessionScope.sysPermissionList}" var="per" >
 		<c:if test="${per=='fMeasureCheck:add' }" >
 		    <div style="float: left;">  
@@ -49,7 +49,27 @@
 		    </div>  
 		</c:if>
 	</c:forEach>
-	
+--%>
+	<%--绕过权限--%>
+	<div style="float: left;">
+		<a href="#" class="easyui-linkbutton" plain="true" icon="icon-add" onclick="fMeasureCheck_add()">
+			新增
+		</a>
+	</div>
+
+	<div style="float: left;">
+		<a href="#" class="easyui-linkbutton" plain="true" icon="icon-edit" onclick="fMeasureCheck_edit()">
+			编辑
+		</a>
+	</div>
+
+	<div style="float: left;">
+		<a href="#" class="easyui-linkbutton" plain="true" icon="icon-cancel" onclick="fMeasureCheck_delete()">
+			删除
+		</a>
+	</div>
+
+
 	<div class="datagrid-btn-separator"></div>  
 	
 	<div style="float: left;">  
@@ -449,7 +469,7 @@ function doSearch_fMeasureCheck(value,name){ //用户输入用户名,点击搜�
 		$.get("employee/edit_judge",'',function(data){
     		if(data.msg != null){
     			$.messager.alert('提示', data.msg);
-    		}else{ 
+    		}else{
     			if(!$('#empEditForm_fMeasure').form('validate')){
     				$.messager.alert('提示','表单还未填写完成!');
     				return ;

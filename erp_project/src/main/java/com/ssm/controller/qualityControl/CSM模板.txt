@@ -1,0 +1,61 @@
+—————————————————————————————————————————————————————————————————————————————————————————————————
+Controller
+—————————————————————————————————————————————————————————————————————————————————————————————————
+@Controller
+@RequestMapping("p_count_check")
+public class ProcessCountCheckController{
+
+    @Autowired
+    ProcessCountCheckService processCountCheckService;
+
+    @RequestMapping("find")
+    public String find(){
+        return "p_count_check_list";
+    }
+
+    @RequestMapping("list")
+    @ResponseBody
+    public ResponseVO<ProcessCountCheck> list(Integer page,Integer rows){
+        int offset = (page -1) * rows;
+        int allCount = processCountCheckService.findAllCount();
+        List<ProcessCountCheck> list = processCountCheckService.findByPage(rows, offset);
+        ResponseVO<ProcessCountCheck> vo = new ResponseVO<ProcessCountCheck>();
+        vo.setTotal(allCount);
+        vo.setRows(list);
+        return vo;
+    }
+}
+—————————————————————————————————————————————————————————————————————————————————————————————————
+Service
+—————————————————————————————————————————————————————————————————————————————————————————————————
+public interface ProcessCountCheckService {
+    List<ProcessCountCheck> findByPage(int rows,int offset);
+    int findAllCount();
+}
+—————————————————————————————————————————————————————————————————————————————————————————————————
+@Service
+public class ProcessCountCheckServiceImpl implements ProcessCountCheckService {
+    @Autowired
+    ProcessCountCheckMapper processCountCheckMapper;
+
+    @Override
+    public List<ProcessCountCheck> findByPage(int rows, int offset) {
+        List<ProcessCountCheck> byPage = processCountCheckMapper.findByPage(rows, offset);
+        return byPage;
+    }
+
+    @Override
+    public int findAllCount() {
+        int allCount = processCountCheckMapper.findAllCount();
+        return allCount;
+    }
+}
+—————————————————————————————————————————————————————————————————————————————————————————————————
+Mapper
+—————————————————————————————————————————————————————————————————————————————————————————————————
+public interface ProcessCountCheckMapper {
+    List<ProcessCountCheck> findByPage(@Param("rows") int rows,@Param("offset") int offset);
+    int findAllCount();
+
+}
+

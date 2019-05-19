@@ -4,7 +4,7 @@
 <script type="text/javascript" charset="utf-8" src="js/kindeditor-4.1.10/kindeditor-all-min.js"></script>
 <script type="text/javascript" charset="utf-8" src="js/kindeditor-4.1.10/lang/zh_CN.js"></script>
 <table class="easyui-datagrid" id="materialList" title="物料信息" data-options="singleSelect:false,collapsible:true,
-	pagination:true,rownumbers:true,url:'${pageContext.request.contextPath}/material/list',method:'get',pageSize:10,fitColumns:true,
+	pagination:true,rownumbers:true,url:'material/list',method:'get',pageSize:10,fitColumns:true,
 	toolbar:toolbar_material">
     <thead>
          <tr>
@@ -16,51 +16,57 @@
 			</th>
             <th data-options="field:'remaining',align:'center',width:100">剩余数量</th>
             <th data-options="field:'note',width:100,align:'center', formatter:formatMaterialNote">备注</th>
-          
+
         </tr>
     </thead>
 </table>
 
-<div  id="toolbar_material" style=" height: 22px; padding: 3px 11px; background: #fafafa;">  
-	
-	<c:forEach items="${sessionScope.sysPermissionList}" var="per" >
+<%--<c:forEach items="${sessionScope.sysPermissionList}" var="per" >
+
 		<c:if test="${per=='material:add' }" >
-		    <div style="float: left;">  
-		        <a href="#" class="easyui-linkbutton" plain="true" icon="icon-add" onclick="material_add()">新增</a>  
-		    </div>  
 		</c:if>
-		<c:if test="${per=='material:edit' }" >
-		    <div style="float: left;">  
-		        <a href="#" class="easyui-linkbutton" plain="true" icon="icon-edit" onclick="material_edit()">编辑</a>  
-		    </div>  
+	    <c:if test="${per=='material:edit' }" >
 		</c:if>
-		<c:if test="${per=='material:delete' }" >
-		    <div style="float: left;">  
+	    <c:if test="${per=='material:delete' }" >
+		</c:if>
+</c:forEach>--%>
+<div  id="toolbar_material" style=" height: 22px; padding: 3px 11px; background: #fafafa;">
+		    <div style="float: left;">
+		        <a href="#" class="easyui-linkbutton" plain="true" icon="icon-add" onclick="material_add()">新增</a>
+		    </div>
+
+
+		    <div style="float: left;">
+		        <a href="#" class="easyui-linkbutton" plain="true" icon="icon-edit" onclick="material_edit()">编辑</a>
+		    </div>
+
+
+		    <div style="float: left;">
 		        <a href="#" class="easyui-linkbutton" plain="true" icon="icon-cancel" onclick="material_delete()">
 					删除
 				</a>
-		    </div>  
-		</c:if>
-	</c:forEach>
-	
-	<div class="datagrid-btn-separator"></div>  
-	
-	<div style="float: left;">  
-		<a href="#" class="easyui-linkbutton" plain="true" icon="icon-reload" onclick="material_reload()">刷新</a>  
-	</div>  
-	
+			</div>
+
+
+
+	<div class="datagrid-btn-separator"></div>
+
+	<div style="float: left;">
+		<a href="#" class="easyui-linkbutton" plain="true" icon="icon-reload" onclick="material_reload()">刷新</a>
+	</div>
+
     <div id="search_material" style="float: right;">
-        <input id="search_text_material" class="easyui-searchbox"  
-            data-options="searcher:doSearch_material,prompt:'请输入...',menu:'#menu_material'"  
+        <input id="search_text_material" class="easyui-searchbox"
+            data-options="searcher:doSearch_material,prompt:'请输入...',menu:'#menu_material'"
             style="width:250px;vertical-align: middle;">
         </input>
-        <div id="menu_material" style="width:120px"> 
-			<div data-options="name:'materialId'">物料编号</div> 	
-			<div data-options="name:'materialType'">物料类型</div> 		
-		</div>     
-    </div>  
+        <div id="menu_material" style="width:120px">
+			<div data-options="name:'materialId'">物料编号</div>
+			<div data-options="name:'materialType'">物料类型</div>
+		</div>
+    </div>
 
-</div>  
+</div>
 
 <div id="materialEditWindow" class="easyui-window" title="编辑物料" data-options="modal:true,closed:true,resizable:true,
 	iconCls:'icon-save',href:'material/edit'" style="width:65%;height:65%;padding:10px;">
@@ -95,8 +101,8 @@ function doSearch_material(value,name){ //用户输入用户名,点击搜素,触
 			fitColumns:true,//允许表格自动缩放,以适应父容器
 	        columns : [ [ 	       
 				{field : 'ck', checkbox:true },
-				{field : 'material_id', width : 100, title : '物料编号', align:'center'},
-				{field : 'material_type', width : 100, align : 'center', title : '物料类型'},
+				{field : 'materialId', width : 100, title : '物料编号', align:'center'},
+				{field : 'materialType', width : 100, align : 'center', title : '物料类型'},
 				{field : 'status', width : 100, align : 'center', title : '物料状态'},
 				{field : 'remaining', width : 100, title : '剩余数量', align:'center'},
 				{field : 'note', width : 100, title : '备注', align:'center',formatter:formatMaterialNote}
@@ -109,8 +115,8 @@ function doSearch_material(value,name){ //用户输入用户名,点击搜素,触
 			loadMsg:'数据加载中......',  fitColumns:true,//允许表格自动缩放,以适应父容器
 	        columns : [ [ 
 				{field : 'ck', checkbox:true },
-				{field : 'material_id', width : 100, title : '物料编号', align:'center'},
-				{field : 'material_type', width : 100, align : 'center', title : '物料类型'},
+				{field : 'materialId', width : 100, title : '物料编号', align:'center'},
+				{field : 'materialType', width : 100, align : 'center', title : '物料类型'},
 				{field : 'status', width : 100, align : 'center', title : '物料状态'},
 				{field : 'remaining', width : 100, title : '剩余数量', align:'center'},
 				{field : 'note', width : 100, title : '备注', align:'center',formatter:formatMaterialNote}

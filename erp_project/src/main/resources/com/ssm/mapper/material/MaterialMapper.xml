@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.mapper.material.MaterialMapper">
+
+  <!--物料表查询结果map-->
+  <resultMap id="MaterialMap" type="com.ssm.bean.material.Material">
+    <id column="material_id"  property="materialId" />
+    <result column="material_type"  property="materialType" />
+    <result column="status"  property="status" />
+    <result column="remaining"  property="remaining" />
+    <result column="note"  property="note" />
+  </resultMap>
+  <!--物料表查询内容-->
+  <sql id="Base_Column_List">
+    material_id , material_type , status , remaining , note
+  </sql>
+  <!--查询物料list-->
+  <select id="findList" resultMap="MaterialMap">
+    select <include refid="Base_Column_List"/> from material limit #{offset},#{rows}
+  </select>
+  <!--查询物料表总COUNT数-->
+  <select id="findCount" resultType="_int">
+    select COUNT(*) from material
+  </select>
+ <!-- 根据ID查找物料-->
+  <select id="selectMaterialById" resultMap="MaterialMap">
+    select <include refid="Base_Column_List"/> from material where material_id = #{material_id}
+  </select>
+  <!--插入-->
+  <insert id="insertMaterial">
+    insert into material(<include refid="Base_Column_List"/>) values (#{materialId},#{materialType},#{status},#{remaining},#{note})
+  </insert>
+  <!--查找所有的物料list-->
+  <select id="findAllMaterialList" resultMap="MaterialMap">
+    select <include refid="Base_Column_List"/> from material
+  </select>
+
+
+
+
+
+
+</mapper>

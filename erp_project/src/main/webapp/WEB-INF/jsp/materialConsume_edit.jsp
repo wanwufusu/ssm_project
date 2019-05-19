@@ -79,7 +79,7 @@
 		}
 		materialConsumeEditEditor.sync();
 		
-		$.post("materialConsume/update_all",$("#materialConsumeEditForm").serialize(), function(data){
+		$.post("MaterialConsume/update_all",$("#materialConsumeEditForm").serialize(), function(data){
 			if(data.status == 200){
 				$.messager.alert('提示','修改成功!','info',function(){
 					$("#materialConsumeEditWindow").window('close');

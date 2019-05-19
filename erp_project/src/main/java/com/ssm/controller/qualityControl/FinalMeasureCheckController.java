@@ -1,7 +1,7 @@
 package com.ssm.controller.qualityControl;
 
 import com.ssm.bean.qualityControl.FMCVo;
-import com.ssm.service.qualityControl.impl.FinalMeasureCheckServiceImpl;
+import com.ssm.service.qualityControl.FinalMeasureCheckService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +15,7 @@ import java.util.List;
 public class FinalMeasureCheckController {
 
     @Autowired
-    FinalMeasureCheckServiceImpl finalMeasureCheckService;
+    FinalMeasureCheckService finalMeasureCheckService;
     Logger logger = Logger.getLogger(this.getClass());
 
     /**
@@ -47,7 +47,11 @@ public class FinalMeasureCheckController {
         return "measurement_list";
     }
 
-        //后面的玩意有判断功能,需要修改
+
+
+
+
+
     /**
      * 成品计量质检的添加按钮功能
      */
