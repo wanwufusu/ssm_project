@@ -75,6 +75,13 @@
     delete from product
     where product_id = #{productId,jdbcType=VARCHAR}
   </delete>
+  <delete id="deleteProductsByPrimaryKey" parameterType="java.lang.String">
+    delete from product
+    where product_id in
+    <foreach collection="productIds" item="id" open="(" close=")" separator=",">
+      #{id}
+    </foreach>
+  </delete>
   <insert id="insert" parameterType="com.ssm.bean.schedule.Product">
     insert into product (product_id, product_name, product_type, 
       image, note, status

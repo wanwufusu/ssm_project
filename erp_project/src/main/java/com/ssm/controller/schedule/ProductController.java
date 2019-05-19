@@ -88,13 +88,13 @@ public class ProductController {
         return new Product();
     }
     @RequestMapping("add")
-    public String customAdd(){
+    public String productAdd(){
         return "product_add";
     }
 
     @RequestMapping("insert")
     @ResponseBody
-    public ResponseMessage customInsert(Product product){
+    public ResponseMessage productInsert(Product product){
         int i = productService.insertProduct(product);
         if (i > 0) {
             return new ResponseMessage(200, "OK", null);
@@ -111,8 +111,8 @@ public class ProductController {
 
     @RequestMapping("delete_batch")
     @ResponseBody
-    public ResponseMessage deleteCustom(int ids){
-        int i = productService.deleteProduct(Integer.toString(ids));
+    public ResponseMessage deleteProducts(String[] ids){
+        int i = productService.deleteProducts(ids);
         if (i > 0) {
             return new ResponseMessage(200, "OK", null);
         } else {

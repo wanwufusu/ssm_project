@@ -95,4 +95,9 @@ public class ProductServiceImpl implements ProductService {
         return productMapper.selectAllProducts();
     }
 
+    @Override
+    public int deleteProducts(String[] ids) {
+        return productMapper.deleteProductsByPrimaryKey(ids);
+    }
+
 }

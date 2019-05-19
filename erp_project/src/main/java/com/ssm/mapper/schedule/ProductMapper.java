@@ -29,4 +29,6 @@ public interface ProductMapper {
     int updateByPrimaryKey(Product record);
 
     List<Product> selectAllProducts();
+
+    int deleteProductsByPrimaryKey(@Param("productIds") String[] ids);
 }

@@ -25,6 +25,8 @@ public interface ProductService {
     Product queryProductByProductId(String productId);
 
     List<Product> queryProducts();
+
+    int deleteProducts(String[] ids);
 /*    List<Product> queryPageCustomByCustomId(PageDetail pageDetail, String searchValue);
     List<Product> queryPageCustomBycustomName(PageDetail pageDetail, String searchValue);*/
 }

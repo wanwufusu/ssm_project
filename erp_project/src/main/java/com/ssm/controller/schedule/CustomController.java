@@ -110,7 +110,7 @@ public class CustomController {
 
     @RequestMapping("delete_batch")
     @ResponseBody
-    public Map deleteCustom(String ids){
+    public Map deleteCustom(String[] ids){
         HashMap<String, Object> deleteCustomResult = new HashMap<>();
         int i = customService.deleteCustom(ids);
         if (i > 0) {
@@ -156,4 +156,11 @@ public class CustomController {
     public Custom queryCustomById(@PathVariable("customId") String customId){
         return customService.queryCustomByCustomId(customId);
     }
+
+    @RequestMapping("get_data")
+    @ResponseBody
+    public List<Custom> queryAllCustoms(){
+        return customService.queryCustoms();
+    }
+
 }
