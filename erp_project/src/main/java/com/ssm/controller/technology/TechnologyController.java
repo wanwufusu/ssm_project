@@ -120,5 +120,11 @@ public class TechnologyController {
         ResponseVO.setTotal(technologies == null?0:technologies.size());
         return ResponseVO;
     }
+    @RequestMapping("get_data")
+    @ResponseBody
+    public List getData(){
+        List data = technologyService.findTechnologyId();
+        return data;
+    }
 
 }
