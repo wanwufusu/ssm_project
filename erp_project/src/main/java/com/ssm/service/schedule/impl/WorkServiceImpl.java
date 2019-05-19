@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 〈一句话功能简述〉<br>
@@ -34,5 +35,64 @@ public class WorkServiceImpl implements WorkService {
     @Override
     public List<Work> queryWorks() {
         return workMapper.selectAllWorks();
+    }
+
+    @Override
+    public int insertWork(Work work) {
+        return workMapper.insert(work);
+    }
+
+    @Override
+    public int deleteWorks(String[] ids) {
+        return workMapper.deleteWorksByPrimaryKey(ids);
+    }
+
+    @Override
+    public int updateByWorkId(Work updateWork) {
+        return workMapper.updateByPrimaryKeySelective(updateWork);
+    }
+
+    @Override
+    public List<Work> queryPageWorkByWorkId(PageDetail pageDetail, Map<String, String> condition) {
+        condition.put("workId", "%" + condition.get("workId") + "%");
+        return workMapper.selectByPageAndWorkCondition(pageDetail,condition);
+    }
+
+    @Override
+    public int queryAllRecordByWorkId(Map<String, String> condition) {
+        return workMapper.selectAllRecordsByCondition(condition);
+    }
+
+    @Override
+    public List<Work> queryPageWorkByProductName(PageDetail pageDetail, Map<String, String> condition) {
+        condition.put("productName", "%" + condition.get("productName") + "%");
+        return workMapper.selectByPageAndWorkCondition(pageDetail,condition);
+    }
+
+    @Override
+    public int queryAllRecordByProductName(Map<String, String> condition) {
+        return workMapper.selectAllRecordsByCondition(condition);
+    }
+
+    @Override
+    public List<Work> queryPageWorkByDeviceName(PageDetail pageDetail, Map<String, String> condition) {
+        condition.put("deviceName", "%" + condition.get("deviceName") + "%");
+        return workMapper.selectByPageAndWorkCondition(pageDetail,condition);
+    }
+
+    @Override
+    public int queryAllRecordByDeviceName(Map<String, String> condition) {
+        return workMapper.selectAllRecordsByCondition(condition);
+    }
+
+    @Override
+    public List<Work> queryPageWorkByProcessId(PageDetail pageDetail, Map<String, String> condition) {
+        condition.put("processId", "%" + condition.get("processId") + "%");
+        return workMapper.selectByPageAndWorkCondition(pageDetail,condition);
+    }
+
+    @Override
+    public int queryAllRecordByProcessId(Map<String, String> condition) {
+        return workMapper.selectAllRecordsByCondition(condition);
     }
 }
