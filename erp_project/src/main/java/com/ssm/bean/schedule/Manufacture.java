@@ -1,5 +1,7 @@
 package com.ssm.bean.schedule;
 
+import com.ssm.bean.technology.Technology;
+
 import java.util.Date;
 
 public class Manufacture {
@@ -7,13 +9,17 @@ public class Manufacture {
 
     private String orderId;
 
+    private Order cOrder;
+
     private String technologyId;
+
+    private Technology technology;
 
     private Integer launchQuantity;
 
-    private Date beginDate;
+    private String beginDate;
 
-    private Date endDate;
+    private String endDate;
 
     public String getManufactureSn() {
         return manufactureSn;
@@ -47,19 +53,35 @@ public class Manufacture {
         this.launchQuantity = launchQuantity;
     }
 
-    public Date getBeginDate() {
+    public String getBeginDate() {
         return beginDate;
     }
 
-    public void setBeginDate(Date beginDate) {
+    public void setBeginDate(String beginDate) {
         this.beginDate = beginDate;
     }
 
-    public Date getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
+    }
+
+    public Order getcOrder() {
+        return cOrder;
+    }
+
+    public void setcOrder(Order cOrder) {
+        this.cOrder = cOrder;
+    }
+
+    public Technology getTechnology() {
+        return technology;
+    }
+
+    public void setTechnology(Technology technology) {
+        this.technology = technology;
     }
 }

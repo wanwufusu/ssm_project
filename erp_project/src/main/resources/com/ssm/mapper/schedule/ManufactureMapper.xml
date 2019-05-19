@@ -9,8 +9,30 @@
     <result column="begin_date" jdbcType="TIMESTAMP" property="beginDate" />
     <result column="end_date" jdbcType="TIMESTAMP" property="endDate" />
   </resultMap>
+  <resultMap id="JoinResultMap" type="com.ssm.bean.schedule.Manufacture">
+    <id column="manufacture_sn" jdbcType="VARCHAR" property="manufactureSn" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="technology_id" jdbcType="VARCHAR" property="technologyId" />
+    <result column="launch_quantity" jdbcType="INTEGER" property="launchQuantity" />
+    <result column="begin_date" jdbcType="TIMESTAMP" property="beginDate" />
+    <result column="end_date" jdbcType="TIMESTAMP" property="endDate" />
+    <association property="cOrder" javaType="order">
+      <result column="order_id" property="orderId" />
+    </association>
+    <association property="technology" javaType="technology">
+      <result column="technology_id" property="technologyId"/>
+      <result column="technology_name" property="technologyName"/>
+    </association>
+  </resultMap>
   <sql id="Base_Column_List">
     manufacture_sn, order_id, technology_id, launch_quantity, begin_date, end_date
+  </sql>
+  <sql id="Join_Column_List">
+    manufacture.manufacture_sn, manufacture.order_id, manufacture.technology_id, manufacture.launch_quantity,
+    manufacture.begin_date, manufacture.end_date, c_order.order_id, technology.technology_name
+  </sql>
+  <sql id="manufacture_relatived_database">
+    manufacture, c_order, technology
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -18,9 +40,39 @@
     from manufacture
     where manufacture_sn = #{manufactureSn,jdbcType=VARCHAR}
   </select>
+  <select id="selectByPageInformation" resultMap="JoinResultMap">
+    select
+    <include refid="Join_Column_List"/>
+    from
+    <include refid="manufacture_relatived_database"/>
+    <where>
+      c_order.order_id = manufacture.order_id
+      and technology.technology_id = manufacture.technology_id
+    </where>
+    <if test="#{pageDetail} != null">
+      limit #{pageDetail.rows} offset #{pageDetail.offset}
+    </if>
+  </select>
+  <select id="selectAllRecords" resultType="_int">
+    select
+    count(*)
+    from
+    <include refid="manufacture_relatived_database"/>
+    <where>
+      c_order.order_id = manufacture.order_id
+      and technology.technology_id = manufacture.technology_id
+    </where>
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from manufacture
     where manufacture_sn = #{manufactureSn,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteManufacturesByPrimaryKey" parameterType="java.lang.String">
+    delete from manufacture
+    where manufacture_sn in
+    <foreach collection="manufactureSns" item="sn" open="(" close=")" separator=",">
+      #{sn}
+    </foreach>
   </delete>
   <insert id="insert" parameterType="com.ssm.bean.schedule.Manufacture">
     insert into manufacture (manufacture_sn, order_id, technology_id, 
