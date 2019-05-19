@@ -24,4 +24,9 @@ public class ProcessCountCheckServiceImpl implements ProcessCountCheckService {
         int allCount = processCountCheckMapper.findAllCount();
         return allCount;
     }
+    @Override
+    public int updateNote(String id, String note) {
+        int i = processCountCheckMapper.updateNote(id, note);
+        return i;
+    }
 }

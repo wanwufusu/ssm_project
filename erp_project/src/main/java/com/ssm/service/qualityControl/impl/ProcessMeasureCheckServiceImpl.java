@@ -24,4 +24,9 @@ public class ProcessMeasureCheckServiceImpl implements ProcessMeasureCheckServic
         int allCount = processMeasureCheckMapper.findAllCount();
         return allCount;
     }
+    @Override
+    public int updateNote(String id, String note) {
+        int i = processMeasureCheckMapper.updateNote(id, note);
+        return i;
+    }
 }

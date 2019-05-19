@@ -24,4 +24,10 @@ public class UnqualifyServiceImpl implements UnqualifyService {
         int allCount = unqualifyMapper.findAllCount();
         return allCount;
     }
+
+    @Override
+    public int updateNote(String id, String note) {
+        int i = unqualifyMapper.updateNote(id, note);
+        return i;
+    }
 }

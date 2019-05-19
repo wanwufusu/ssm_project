@@ -24,4 +24,7 @@
         select count(process_id) from process_measure_check
     </select>
 
+    <update id="updateNote">
+        update process_measure_check set note=#{note} where p_measure_check_id=#{id}
+    </update>
 </mapper>

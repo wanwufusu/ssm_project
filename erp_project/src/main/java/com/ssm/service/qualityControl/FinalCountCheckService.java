@@ -7,4 +7,5 @@ import java.util.List;
 public interface FinalCountCheckService {
     List<FinalCountCheck> findByPage(int rows, int offset);
     int findAllCount();
+    int updateNote(String id,String note);
 }

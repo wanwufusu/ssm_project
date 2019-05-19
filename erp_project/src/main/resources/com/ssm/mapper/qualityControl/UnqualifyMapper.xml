@@ -28,4 +28,8 @@
         select count(unqualify_apply_id) from unqualify_apply
     </select>
 
+    <update id="updateNote">
+        update unqualify_apply set note=#{note} where unqualify_apply_id=#{id}
+    </update>
+
 </mapper>

@@ -9,6 +9,7 @@ import java.util.List;
 public interface FinalCountCheckMapper {
     List<FinalCountCheck> findByPage(@Param("rows") int rows, @Param("offset") int offset);
     int findAllCount();
+    int updateNote(@Param("id") String id,@Param("note") String note);
 
 //    int deleteByPrimaryKey(String fCountCheckId);
 //

@@ -28,4 +28,8 @@
         select count(f_count_check_id) from final_count_check
     </select>
 
+    <update id="updateNote">
+        update final_count_check set note=#{note} where f_count_check_id=#{id}
+    </update>
+
 </mapper>

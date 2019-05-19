@@ -8,5 +8,6 @@ import java.util.List;
 public interface ProcessMeasureCheckMapper {
     List<ProcessMeasureCheck> findByPage(@Param("rows") int rows, @Param("offset") int offset);
     int findAllCount();
+    int updateNote(@Param("id") String id,@Param("note") String note);
 
 }

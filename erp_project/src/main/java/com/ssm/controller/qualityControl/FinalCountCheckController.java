@@ -1,6 +1,7 @@
 package com.ssm.controller.qualityControl;
 
 
+import com.ssm.bean.ResponseMessage;
 import com.ssm.bean.ResponseVO;
 import com.ssm.bean.qualityControl.FinalCountCheck;
 import com.ssm.service.qualityControl.FinalCountCheckService;
@@ -35,6 +36,24 @@ public class FinalCountCheckController {
     @RequestMapping("find")
     public String find(){
         return "f_count_check_list";
+    }
+
+    @RequestMapping("update_note")
+    @ResponseBody
+    public ResponseMessage update_note(String fCountCheckId, String note) {
+        ResponseMessage message = new ResponseMessage();
+        int i = finalCountCheckService.updateNote(fCountCheckId, note);
+        if (i == 1) {
+            message.setMsg("ok");
+            message.setData(null);
+            message.setStatus(200);
+            return message;
+        } else {
+            message.setMsg("not ok");
+            message.setData(null);
+            message.setStatus(400);
+            return message;
+        }
     }
 
 

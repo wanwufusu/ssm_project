@@ -24,4 +24,8 @@
         select count(f_measure_check_id) from final_measuret_check
     </select>
 
+    <update id="updateNote">
+        update final_measuret_check set note=#{note} where f_measure_check_id=#{id}
+    </update>
+
 </mapper>

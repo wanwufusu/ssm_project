@@ -1,5 +1,6 @@
 package com.ssm.controller.qualityControl;
 
+import com.ssm.bean.ResponseMessage;
 import com.ssm.bean.ResponseVO;
 import com.ssm.bean.qualityControl.FinalMeasuretCheck;
 import com.ssm.service.qualityControl.FinalMeasureCheckService;
@@ -37,8 +38,6 @@ public class FinalMeasureCheckController {
         return vo;
     }
 
-
-
     /**
      * 来自home.jsp的list
      * @return
@@ -47,6 +46,25 @@ public class FinalMeasureCheckController {
     public String find(){
         return "measurement_list";
     }
+
+    @RequestMapping("update_note")
+    @ResponseBody
+    public ResponseMessage update_note(String fMeasureCheckId, String note){
+        ResponseMessage message = new ResponseMessage();
+        int i = finalMeasureCheckService.updateNote(fMeasureCheckId, note);
+        if (i == 1){
+            message.setMsg("ok");
+            message.setData(null);
+            message.setStatus(200);
+            return message;
+        }else {
+            message.setMsg("not ok");
+            message.setData(null);
+            message.setStatus(400);
+            return message;
+        }
+    }
+
 
 
 
@@ -77,15 +95,6 @@ public class FinalMeasureCheckController {
      */
     @RequestMapping("delete_batch")
     public String delete_batch(){
-        //todo
-        return "/measure/list";
-    }
-
-    /**
-     * 成品计量质检的给当前行添加备注功能
-     */
-    @RequestMapping("update_note")
-    public String update_note(){
         //todo
         return "/measure/list";
     }

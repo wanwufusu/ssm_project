@@ -1,6 +1,7 @@
 package com.ssm.controller.qualityControl;
 
 
+import com.ssm.bean.ResponseMessage;
 import com.ssm.bean.ResponseVO;
 import com.ssm.bean.qualityControl.UnqualifyApply;
 import com.ssm.service.qualityControl.UnqualifyService;
@@ -33,5 +34,23 @@ public class UnqualifyController {
         vo.setTotal(allCount);
         vo.setRows(list);
         return vo;
+    }
+
+    @RequestMapping("update_note")
+    @ResponseBody
+    public ResponseMessage update_note(String unqualifyApplyId,String note){
+        ResponseMessage message = new ResponseMessage();
+        int i = unqualifyService.updateNote(unqualifyApplyId, note);
+        if (i == 1){
+            message.setMsg("ok");
+            message.setData(null);
+            message.setStatus(200);
+            return message;
+        }else {
+            message.setMsg("not ok");
+            message.setData(null);
+            message.setStatus(400);
+            return message;
+        }
     }
 }
