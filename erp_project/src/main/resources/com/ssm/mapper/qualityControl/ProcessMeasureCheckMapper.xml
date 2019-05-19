@@ -9,7 +9,7 @@
         limit #{offset},#{rows}
     </select>
 
-    <resultMap id="BaseMap" type="com.ssm.mapper.qualityControl.ProcessMeasureCheckMapper">
+    <resultMap id="BaseMap" type="com.ssm.bean.qualityControl.ProcessMeasureCheck">
         <result property="pMeasureCheckId" column="p_measure_check_id" />
         <result property="processId" column="process_id" />
         <result property="checkItem" column="check_item" />
