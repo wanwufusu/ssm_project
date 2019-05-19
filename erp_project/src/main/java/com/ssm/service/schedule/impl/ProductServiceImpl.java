@@ -57,7 +57,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public int queryAllRecordByProductId(Map<String, String> condition) {
-        condition.put("productId", "%" + condition.get("productId") + "%");
+        //condition.put("productId", "%" + condition.get("productId") + "%");
         return productMapper.selectAllRecordsByCondition(condition);
     }
 
@@ -69,7 +69,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public int queryAllRecordByProductName(Map<String, String> condition) {
-        condition.put("productName", "%" + condition.get("productName") + "%");
+        //condition.put("productName", "%" + condition.get("productName") + "%");
         return productMapper.selectAllRecordsByCondition(condition);
     }
 
@@ -81,7 +81,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public int queryAllRecordByProductType(Map<String, String> condition) {
-        condition.put("productType", "%" + condition.get("productType") + "%");
+        //condition.put("productType", "%" + condition.get("productType") + "%");
         return productMapper.selectAllRecordsByCondition(condition);
     }
 

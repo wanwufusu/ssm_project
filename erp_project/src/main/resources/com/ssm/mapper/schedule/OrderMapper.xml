@@ -17,6 +17,26 @@
     <association property="custom" column="custom_id" select="com.ssm.mapper.schedule.CustomMapper.selectByPrimaryKey"/>
     <association property="product" column="product_id" select="com.ssm.mapper.schedule.ProductMapper.selectByPrimaryKey"/>
   </resultMap>
+  <resultMap id="JoinResultMap" type="com.ssm.bean.schedule.Order">
+    <id column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="custom_id" jdbcType="VARCHAR" property="customId" />
+    <result column="product_id" jdbcType="VARCHAR" property="productId" />
+    <result column="order_date" jdbcType="TIMESTAMP" property="orderDate" />
+    <result column="request_date" jdbcType="TIMESTAMP" property="requestDate" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+    <result column="quantity" jdbcType="INTEGER" property="quantity" />
+    <result column="unit_price" jdbcType="DECIMAL" property="unitPrice" />
+    <result column="unit" jdbcType="VARCHAR" property="unit" />
+    <result column="image" jdbcType="VARCHAR" property="image" />
+    <result column="file" jdbcType="VARCHAR" property="file" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <association property="custom" javaType="custom">
+      <result column="custom_name" property="customName"/>
+    </association>
+    <association property="product" javaType="product">
+      <result column="product_name" property="productName"/>
+    </association>
+  </resultMap>
   <sql id="Base_Column_List">
     order_id, custom_id, product_id, order_date, request_date, note, quantity, unit_price, 
     unit, image, file, status
@@ -35,6 +55,28 @@
       limit #{pageDetail.rows} offset #{pageDetail.offset}
     </if>
   </select>
+  <select id="selectByPageAndOrderCondition" resultMap="JoinResultMap">
+    select
+    o.order_id, c.custom_name, p.product_name, o.order_date, o.request_date, o.note, o.quantity, o.unit_price,
+    o.unit, o.image, o.file, o.status, o.custom_id, o.product_id
+    from c_order o,custom c, product p
+    <where>
+      o.custom_id = c.custom_id
+      and o.product_id = p.product_id
+      <if test="condition.orderId != null">
+       and o.order_id like #{condition.orderId}
+      </if>
+      <if test="condition.customName != null">
+        and c.custom_name like #{condition.customName}
+      </if>
+      <if test="condition.productName != null">
+        and p.product_name like #{condition.productName}
+      </if>
+    </where>
+    <if test="#{pageDetail} != null">
+      limit #{pageDetail.rows} offset #{pageDetail.offset}
+    </if>
+  </select>
   <select id="selectAllOrders" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List"/>
@@ -45,6 +87,24 @@
         count(*)
         from c_order
     </select>
+  <select id="selectAllRecordsByCondition" resultType="_int">
+    select
+    count(*)
+    from c_order o,custom c, product p
+    <where>
+      o.custom_id = c.custom_id
+      and o.product_id = p.product_id
+      <if test="condition.orderId != null">
+        and o.order_id like #{condition.orderId}
+      </if>
+      <if test="condition.customName != null">
+        and c.custom_name like #{condition.customName}
+      </if>
+      <if test="condition.productName != null">
+        and p.product_name like #{condition.productName}
+      </if>
+    </where>
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from c_order
     where order_id = #{orderId,jdbcType=VARCHAR}

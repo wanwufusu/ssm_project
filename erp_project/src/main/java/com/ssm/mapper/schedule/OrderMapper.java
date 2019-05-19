@@ -5,6 +5,7 @@ import com.ssm.bean.schedule.PageDetail;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 public interface OrderMapper {
     int deleteByPrimaryKey(String orderId);
@@ -26,4 +27,8 @@ public interface OrderMapper {
     int deleteOrdersByPrimaryKey(@Param("orderIds") String[] ids);
 
     List<Order> selectAllOrders();
+
+    List<Order> selectByPageAndOrderCondition(@Param("pageDetail")PageDetail pageDetail, @Param("condition")Map<String, String> condition);
+
+    int selectAllRecordsByCondition(@Param("condition") Map<String, String> condition);
 }
