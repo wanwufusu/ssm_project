@@ -3,6 +3,14 @@ package com.ssm.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 〈一句话功能简述〉<br>
@@ -20,4 +28,21 @@ public class MainController {
         return "home";
     }
 
+    @RequestMapping("pic/upload")
+    @ResponseBody
+    public Map uploadImage(MultipartFile uploadFile, HttpServletRequest request) throws IOException {
+        String filename = uploadFile.getOriginalFilename();
+        //String fileType = filename.substring(filename.lastIndexOf("."));
+        String realPath = request.getSession().getServletContext().getRealPath("/WEB-INF/image/pic/");
+        File file = new File(realPath + filename);
+        if (!file.getParentFile().exists()) {
+            file.getParentFile().mkdirs();
+        }
+        uploadFile.transferTo(file);
+
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("error", 0);
+        resultMap.put("url", request.getContextPath() + "/image/pic/" + filename);
+        return resultMap;
+    }
 }

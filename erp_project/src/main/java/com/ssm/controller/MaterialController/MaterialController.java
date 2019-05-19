@@ -14,7 +14,6 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/material")
-
 public class MaterialController {
 
  @Autowired
