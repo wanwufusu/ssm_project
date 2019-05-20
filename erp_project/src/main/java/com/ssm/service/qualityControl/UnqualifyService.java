@@ -16,7 +16,7 @@ public interface UnqualifyService {
 
     int deleteByIds(String[] ids);
 
-    List<UnqualifyApply> searchList(String target, String word, int offset, int rows);
+    List searchList(String target, String word, int offset, int rows);
 
     int searchAllCount(String target, String word);
 

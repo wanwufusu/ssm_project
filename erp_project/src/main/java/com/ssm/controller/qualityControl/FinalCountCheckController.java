@@ -7,6 +7,7 @@ import com.ssm.bean.qualityControl.FinalCountCheck;
 import com.ssm.service.qualityControl.FinalCountCheckService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -52,7 +53,19 @@ public class FinalCountCheckController {
         return ResponseMessage.getMessage(i);
     }
 
-
+    @RequestMapping("/search_fCountCheck_by_{which}")
+    @ResponseBody
+    public ResponseVO likequery(@PathVariable("which")String which, String searchValue, Integer page, Integer rows){
+        searchValue = "%"+searchValue+"%";
+        String target =  which.replaceAll("[A-Z]", "_$0").toLowerCase();
+        int offset = (page - 1) * rows;
+        List list = service.searchList(target, searchValue, offset, rows);
+        int allCount = service.searchAllCount(target, searchValue);
+        ResponseVO<Object> vo = new ResponseVO<>();
+        vo.setRows(list);
+        vo.setTotal(allCount);
+        return vo;
+    }
 
 
 

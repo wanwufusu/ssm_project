@@ -2,13 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ssm.mapper.qualityControl.ProcessCountCheckMapper">
-    <select id="findByPage" resultMap="BaseMap">
-        select p_count_check_id,process_id,check_item,sample,check_number,unqualify,qualify,cdate,measure_data,p.emp_id,emp_name,result,p.note
-        from process_count_check p,employee e
-        where p.emp_id=e.emp_id
-        limit #{offset},#{rows}
-    </select>
-
+    <!--映射-->
     <resultMap id="BaseMap" type="com.ssm.bean.qualityControl.ProcessCountCheck">
         <result property="pCountCheckId" column="p_count_check_id" />
         <result property="processId" column="process_id" />
@@ -25,14 +19,36 @@
         <result property="note" column="note" />
     </resultMap>
 
+    <!--基本sql语句-->
+    <sql id="one">
+        select p_count_check_id,process_id,check_item,sample,check_number,unqualify,qualify,cdate,measure_data,p.emp_id,emp_name,result,p.note
+        from process_count_check p,employee e
+        where p.emp_id=e.emp_id
+    </sql>
+
+    <!--基本查询-->
+    <select id="findByPage" resultMap="BaseMap">
+       <include refid="one"/> limit #{offset},#{rows}
+    </select>
     <select id="findAllCount" resultType="_int">
         select count(p_count_check_id) from process_count_check
     </select>
 
+    <!--模糊查询-->
+    <select id="searchList" resultMap="BaseMap">
+        <include refid="one"/> and ${target} like #{word} limit #{offset},#{rows}
+    </select>
+    <!--模糊查询数量-->
+    <select id="searchAllCount" resultType="_int">
+        select count(${target}) from process_count_check where ${target} like #{word}
+    </select>
+
+    <!--更新备注-->
     <update id="updateNote">
         update process_count_check set note=#{note} where p_count_check_id=#{id}
     </update>
 
+    <!--批量删除-->
     <delete id="deleteByIds">
         delete from process_count_check
         where p_count_check_id in

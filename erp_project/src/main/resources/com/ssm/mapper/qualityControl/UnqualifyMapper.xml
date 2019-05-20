@@ -39,7 +39,8 @@
     </select>
     <!--模糊查询数量-->
     <select id="searchAllCount" resultType="_int">
-        select count(${target}) from unqualify_apply where ${target} like #{word}
+        select count(${target}) from unqualify_apply un,product p
+         where un.product_id=p.product_id and ${target} like #{word}
     </select>
 
     <!--更新备注-->

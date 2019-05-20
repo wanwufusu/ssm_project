@@ -14,6 +14,8 @@ public interface FinalMeasureCheckService {
 
     int deleteByIds(String[] ids);
 
+    List searchList(String target, String word, int offset, int rows);
 
+    int searchAllCount(String target, String word);
 
 }
