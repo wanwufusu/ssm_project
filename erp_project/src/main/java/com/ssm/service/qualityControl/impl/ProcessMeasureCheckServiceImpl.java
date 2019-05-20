@@ -34,4 +34,6 @@ public class ProcessMeasureCheckServiceImpl implements ProcessMeasureCheckServic
     public int deleteByIds(String[] ids) {
         return mapper.deleteByIds(ids);
     }
+
+
 }

@@ -35,4 +35,18 @@ public class UnqualifyServiceImpl implements UnqualifyService {
     public int deleteByIds(String[] ids) {
         return mapper.deleteByIds(ids);
     }
+
+    @Override
+    public List searchList(String target, String word, int offset, int rows) {
+        List list = mapper.searchList(target, word, offset, rows);
+        return list;
+    }
+
+    @Override
+    public int searchAllCount(String target, String word) {
+        int i = mapper.searchAllCount(target, word);
+        return i;
+    }
+
+
 }

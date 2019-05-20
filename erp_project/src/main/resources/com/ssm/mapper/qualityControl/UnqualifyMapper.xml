@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ssm.mapper.qualityControl.UnqualifyMapper">
-    <sql id="one" >
-        (select unqualify_apply_id,product_id,unqualify_item,unqualify_count,assembly_date,un.emp_id,emp_name,apply_date,un.note
-         from unqualify_apply un,employee e
-         where un.emp_id = e.emp_id limit #{offset},${rows})
-    </sql>
-
-    <select id="findByPage" resultMap="BaseMap">
-        select unqualify_apply_id,one.product_id,product_name,unqualify_item,unqualify_count,assembly_date,one.emp_id,emp_name,apply_date,one.note
-        from <include refid="one"/> as one,product p
-        where one.product_id = p.product_id
-    </select>
-
+    <!--映射关系-->
     <resultMap id="BaseMap" type="com.ssm.bean.qualityControl.UnqualifyApply">
         <result property="unqualifyApplyId" column="unqualify_apply_id"/>
         <result property="productId" column="product_id"/>
@@ -26,14 +15,39 @@
         <result property="note" column="note"/>
     </resultMap>
 
+    <!--主要sql语句-->
+    <sql id="one" >
+        select unqualify_apply_id,one.product_id,product_name,unqualify_item,unqualify_count,assembly_date,one.emp_id,emp_name,apply_date,one.note
+        from
+        (select unqualify_apply_id,product_id,unqualify_item,unqualify_count,assembly_date,un.emp_id,emp_name,apply_date,un.note
+         from unqualify_apply un,employee e
+         where un.emp_id = e.emp_id ) as one,product p
+        where one.product_id = p.product_id
+    </sql>
+
+    <!--普通查询列表-->
+    <select id="findByPage" resultMap="BaseMap">
+        <include refid="one"/> limit #{offset},${rows}
+    </select>
     <select id="findAllCount" resultType="_int">
         select count(unqualify_apply_id) from unqualify_apply
     </select>
 
+    <!--模糊查询-->
+    <select id="searchList" resultMap="BaseMap">
+        <include refid="one"/> and ${target} like #{word} limit #{offset},#{rows}
+    </select>
+    <!--模糊查询数量-->
+    <select id="searchAllCount" resultType="_int">
+        select count(${target}) from unqualify_apply where ${target} like #{word}
+    </select>
+
+    <!--更新备注-->
     <update id="updateNote">
         update unqualify_apply set note=#{note} where unqualify_apply_id=#{id}
     </update>
 
+    <!--批量删除-->
     <delete id="deleteByIds">
         delete from unqualify_apply
         where unqualify_apply_id in
@@ -41,5 +55,7 @@
             #{id}
         </foreach>
     </delete>
+
+
 
 </mapper>

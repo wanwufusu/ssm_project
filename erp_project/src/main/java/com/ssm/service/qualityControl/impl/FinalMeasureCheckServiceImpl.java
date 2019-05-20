@@ -35,4 +35,6 @@ public class FinalMeasureCheckServiceImpl implements FinalMeasureCheckService {
     public int deleteByIds(String[] ids) {
         return mapper.deleteByIds(ids);
     }
+
+
 }

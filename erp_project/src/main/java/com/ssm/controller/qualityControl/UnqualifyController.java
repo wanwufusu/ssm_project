@@ -5,6 +5,7 @@ import com.ssm.bean.ResponseMessage;
 import com.ssm.bean.ResponseVO;
 import com.ssm.bean.qualityControl.UnqualifyApply;
 import com.ssm.service.qualityControl.UnqualifyService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,8 @@ public class UnqualifyController {
 
     @Autowired
     UnqualifyService service;
+
+    Logger logger = Logger.getLogger(this.getClass());
 
     @RequestMapping("find")
     public String find(){
@@ -51,17 +54,23 @@ public class UnqualifyController {
         return ResponseMessage.getMessage(i);
     }
 
-    //unqualifyId
-    //productName
-    @RequestMapping("search_unqualify_by_{which}")
+    @RequestMapping("/search_unqualify_by_{which}")
     @ResponseBody
-    public ResponseVO searchList(@PathVariable("which")String which,String searchValue,Integer page,Integer rows){
+    public ResponseVO likequery(@PathVariable("which")String which,String searchValue,Integer page,Integer rows){
+        searchValue = "%"+searchValue+"%";
+        String target = null;
+        if ("unqualifyId".equals(which)){
+            target = "unqualify_apply_id";
+        }else {
+            //驼峰式转下划线式
+            target = which.replaceAll("[A-Z]", "_$0").toLowerCase();
+        }
         int offset = (page - 1) * rows;
-
-
-
+        List list = service.searchList(target, searchValue, offset, rows);
+        int allCount = service.searchAllCount(target, searchValue);
         ResponseVO<Object> vo = new ResponseVO<>();
-
+        vo.setRows(list);
+        vo.setTotal(allCount);
         return vo;
     }
 }
