@@ -56,4 +56,28 @@ public class ProcessCountCheckController{
         vo.setTotal(allCount);
         return vo;
     }
+
+    @RequestMapping("edit")
+    public String edit(){
+        return "p_count_check_edit";
+    }
+
+    @RequestMapping("add")
+    public String add(){
+        return "p_count_check_add";
+    }
+
+    @RequestMapping("insert")
+    @ResponseBody
+    public ResponseMessage insert(ProcessCountCheck pcc){
+        return ResponseMessage.getMessage(3);
+
+    }
+
+    @RequestMapping("update_all")
+    @ResponseBody
+    public ResponseMessage update_all(ProcessCountCheck pcc){
+        return ResponseMessage.getMessage(3);
+
+    }
 }

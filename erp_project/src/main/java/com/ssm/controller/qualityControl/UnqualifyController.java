@@ -73,4 +73,28 @@ public class UnqualifyController {
         vo.setTotal(allCount);
         return vo;
     }
+
+    @RequestMapping("edit")
+    public String edit(){
+        return "unqualify_edit";
+    }
+
+    @RequestMapping("add")
+    public String add(){
+        return "unqualify_add";
+    }
+
+    @RequestMapping("insert")
+    @ResponseBody
+    public ResponseMessage insert(UnqualifyApply un){
+        System.out.println(un);
+        return ResponseMessage.getMessage(3);
+    }
+
+    @RequestMapping("update_all")
+    @ResponseBody
+    public ResponseMessage update_all(UnqualifyApply un){
+        System.out.println(un);
+        return ResponseMessage.getMessage(3);
+    }
 }

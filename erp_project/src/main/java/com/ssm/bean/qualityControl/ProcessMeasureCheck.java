@@ -9,7 +9,7 @@ public class ProcessMeasureCheck {
 
     private String checkItem;
 
-    private Date cdate;
+    private String cdate;
 
     private String measureData;
 
@@ -53,11 +53,11 @@ public class ProcessMeasureCheck {
         this.checkItem = checkItem == null ? null : checkItem.trim();
     }
 
-    public Date getCdate() {
+    public String getCdate() {
         return cdate;
     }
 
-    public void setCdate(Date cdate) {
+    public void setCdate(String cdate) {
         this.cdate = cdate;
     }
 
