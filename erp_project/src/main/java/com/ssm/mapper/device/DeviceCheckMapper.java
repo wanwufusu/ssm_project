@@ -8,7 +8,41 @@ import com.ssm.bean.device.DeviceCheckExample;
 import org.apache.ibatis.annotations.Param;
 
 public interface DeviceCheckMapper {
-    long countByExample(DeviceCheckExample example);
+    List<DeviceCheck> queryAllDeviceCheckByPage(@Param("offset") int offset,@Param("rows") int rows);
+
+    int insertDeviceCheck(DeviceCheck deviceCheck);
+
+    //deviceType的接口
+    List<DeviceCheck> queryAllDeviceCheck();
+
+    //根据id来查询
+    DeviceCheck queryDeviceCheckById(int deviceCheckId);
+
+    int updateDeviceCheck(DeviceCheck deviceCheck);
+
+    int deleteDeviceCheck(@Param("id") String ids);
+
+    //差个数
+    int queryAllDeviceCheckRecord();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*long countByExample(DeviceCheckExample example);
 
     int deleteByExample(DeviceCheckExample example);
 
@@ -28,5 +62,5 @@ public interface DeviceCheckMapper {
 
     int updateByPrimaryKeySelective(DeviceCheck record);
 
-    int updateByPrimaryKey(DeviceCheck record);
+    int updateByPrimaryKey(DeviceCheck record);*/
 }

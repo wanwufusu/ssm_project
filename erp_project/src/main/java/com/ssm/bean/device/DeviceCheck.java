@@ -3,17 +3,54 @@ package com.ssm.bean.device;
 import java.util.Date;
 
 public class DeviceCheck {
+    /*deviceCheckId: 243wefew
+    deviceId: 001
+    deviceCheckEmpId: 001
+    deviceCheckDate: 2019-05-20 00:00:00
+    deviceCheckFaultId: 1
+    deviceCheckResult: 1
+    deviceParams:*/
     private String deviceCheckId;
 
     private String deviceId;
 
     private String deviceCheckEmpId;
 
-    private Date deviceCheckDate;
+    private String deviceCheckDate;
 
     private String deviceCheckResult;
 
     private String deviceCheckFaultId;
+
+    private String deviceParams;
+
+    private String deviceName;
+
+    private String deviceCheckEmp;
+
+    public String getDeviceCheckEmp() {
+        return deviceCheckEmp;
+    }
+
+    public void setDeviceCheckEmp(String deviceCheckEmp) {
+        this.deviceCheckEmp = deviceCheckEmp;
+    }
+
+    public String getDeviceParams() {
+        return deviceParams;
+    }
+
+    public void setDeviceParams(String deviceParams) {
+        this.deviceParams = deviceParams;
+    }
+
+    public String getDeviceName() {
+        return deviceName;
+    }
+
+    public void setDeviceName(String deviceName) {
+        this.deviceName = deviceName;
+    }
 
     public String getDeviceCheckId() {
         return deviceCheckId;
@@ -39,11 +76,11 @@ public class DeviceCheck {
         this.deviceCheckEmpId = deviceCheckEmpId == null ? null : deviceCheckEmpId.trim();
     }
 
-    public Date getDeviceCheckDate() {
+    public String getDeviceCheckDate() {
         return deviceCheckDate;
     }
 
-    public void setDeviceCheckDate(Date deviceCheckDate) {
+    public void setDeviceCheckDate(String deviceCheckDate) {
         this.deviceCheckDate = deviceCheckDate;
     }
 

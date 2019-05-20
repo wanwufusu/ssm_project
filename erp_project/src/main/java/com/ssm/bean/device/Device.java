@@ -9,8 +9,13 @@ public class Device {
     private String deviceName;
 
     /*private DeviceType deviceType;*/
+    private String deviceKeeper;
+
+    private String deviceIdd;
 
     private String deviceTypeId;
+
+    private String deviceTypeName;
 
     private String deviceStatusId;
 
@@ -30,7 +35,31 @@ public class Device {
 
     private String deviceParams;
 
-   /* public DeviceType getDeviceType() {
+    public String getDeviceKeeper() {
+        return deviceKeeper;
+    }
+
+    public void setDeviceKeeper(String deviceKeeper) {
+        this.deviceKeeper = deviceKeeper;
+    }
+
+
+    public String getDeviceIdd() {
+        return deviceIdd;
+    }
+
+    public void setDeviceIdd(String deviceIdd) {
+        this.deviceIdd = deviceIdd;
+    }
+
+    public String getDeviceTypeName() {
+        return deviceTypeName;
+    }
+
+    public void setDeviceTypeName(String deviceTypeName) {
+        this.deviceTypeName = deviceTypeName;
+    }
+    /* public DeviceType getDeviceType() {
         return deviceType;
     }
 

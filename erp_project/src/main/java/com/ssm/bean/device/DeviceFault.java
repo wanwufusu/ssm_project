@@ -11,9 +11,29 @@ public class DeviceFault {
 
     private String deviceFaultDetail;
 
-    private Date deviceFaultDate;
+    private String deviceFaultDate;
 
     private String deviceFaultMaintenance;
+
+    private String deviceParams;
+
+    private String deviceName;
+
+    public String getDeviceName() {
+        return deviceName;
+    }
+
+    public void setDeviceName(String deviceName) {
+        this.deviceName = deviceName;
+    }
+
+    public String getDeviceParams() {
+        return deviceParams;
+    }
+
+    public void setDeviceParams(String deviceParams) {
+        this.deviceParams = deviceParams;
+    }
 
     public String getDeviceFaultId() {
         return deviceFaultId;
@@ -47,13 +67,21 @@ public class DeviceFault {
         this.deviceFaultDetail = deviceFaultDetail == null ? null : deviceFaultDetail.trim();
     }
 
-    public Date getDeviceFaultDate() {
+    public String getDeviceFaultDate() {
+        return deviceFaultDate;
+    }
+
+    public void setDeviceFaultDate(String deviceFaultDate) {
+        this.deviceFaultDate = deviceFaultDate;
+    }
+
+    /*public Date getDeviceFaultDate() {
         return deviceFaultDate;
     }
 
     public void setDeviceFaultDate(Date deviceFaultDate) {
         this.deviceFaultDate = deviceFaultDate;
-    }
+    }*/
 
     public String getDeviceFaultMaintenance() {
         return deviceFaultMaintenance;

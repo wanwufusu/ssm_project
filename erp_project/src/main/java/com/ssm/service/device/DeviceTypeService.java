@@ -11,7 +11,9 @@ import java.util.List;
 
 public interface DeviceTypeService {
     List<DeviceType> queryDeviceType(DevicePage devicePage);
+
     int queryAllDeviceTypeRecord();
+
     int insertDeviceType(DeviceType deviceType);
     //DeviceType的接口
     List<DeviceType> getDataOfDeviceType();
@@ -19,4 +21,6 @@ public interface DeviceTypeService {
     int updateDeviceType(DeviceType deviceType);
 
     int deleteDeviceType(String ids);
+
+    DeviceType getDeviceTypeById(String id);
 }

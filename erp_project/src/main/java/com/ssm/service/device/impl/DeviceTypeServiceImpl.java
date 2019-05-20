@@ -53,4 +53,9 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
     public int deleteDeviceType(String ids) {
         return deviceTypeMapper.deleteDeviceType(ids);
     }
+
+    @Override
+    public DeviceType getDeviceTypeById(String id) {
+        return deviceTypeMapper.queryDeviceTypeById(id);
+    }
 }

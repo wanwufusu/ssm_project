@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.ssm.bean.device.DeviceFault">
     <id column="device_fault_id" jdbcType="VARCHAR" property="deviceFaultId" />
     <result column="device_id" jdbcType="VARCHAR" property="deviceId" />
+    <result column="device_name" jdbcType="VARCHAR" property="deviceName" />
     <result column="device_fault_cause" jdbcType="VARCHAR" property="deviceFaultCause" />
     <result column="device_fault_detail" jdbcType="VARCHAR" property="deviceFaultDetail" />
     <result column="device_fault_date" jdbcType="TIMESTAMP" property="deviceFaultDate" />
@@ -11,17 +12,17 @@
   </resultMap>
 
   <sql id="Base_DeviceFault_List">
-    device_id,device_fault_cause,device_fault_detail,device_fault_date,device_fault_maintenance
+    device_fault_id,device_id,device_fault_cause,device_fault_detail,device_fault_date,device_fault_maintenance
   </sql>
   <!--接口查询list-->
   <select id="queryAllDeviceFault"  resultMap="BaseResultMap">
-    select <include refid="Base_DeviceFault_List"/>
-    from device_fault
+    select device_fault_id,f.device_id,d.device_name,device_fault_cause,device_fault_detail,device_fault_date,device_fault_maintenance
+    from device_fault f,device d where f.device_id=d.device_id
   </select>
   <!--分页查询list-->
   <select id="queryAllDeviceFaultByPage"  resultMap="BaseResultMap">
-    select <include refid="Base_DeviceFault_List"/>
-    from device_fault
+    select device_fault_id,f.device_id,d.device_name,device_fault_cause,device_fault_detail,device_fault_date,device_fault_maintenance
+    from device_fault f,device d where f.device_id=d.device_id
     limit #{offset},#{rows}
   </select>
   <!--查个数-->
@@ -40,7 +41,7 @@
   </delete>
   <!--插入-->
   <insert id="insertDeviceFault" parameterType="com.ssm.bean.device.DeviceFault">
-    insert into device_fault (<include refid="Base_DeviceFault_List"/>)
+    insert into device_fault(<include refid="Base_DeviceFault_List"/>)
     values (#{deviceFaultId},#{deviceId},#{deviceFaultCause},#{deviceFaultDetail},#{deviceFaultDate},#{deviceFaultMaintenance})
   </insert>
   <!--修改-->

@@ -19,11 +19,13 @@ public interface DeviceTypeMapper {
     List<DeviceType> queryAllDeviceType();
 
     //根据id来查询
-    DeviceType queryDeviceTypeById(@Param("deviceType_id") int deviceTypeId);
+    DeviceType queryDeviceTypeById(@Param("deviceType_id") String deviceTypeId);
 
     int updateDeviceType(@Param("deviceType")DeviceType deviceType);
 
     int deleteDeviceType(@Param("id") String ids);
+
+    DeviceType getDeviceTypeById(String id);
 
 
 /*    int deleteByExample(DeviceTypeExample example);

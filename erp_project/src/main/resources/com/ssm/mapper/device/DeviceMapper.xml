@@ -5,6 +5,7 @@
     <id column="device_id" jdbcType="VARCHAR" property="deviceId" />
     <result column="device_name" jdbcType="VARCHAR" property="deviceName" />
     <result column="device_type_id" jdbcType="VARCHAR" property="deviceTypeId" />
+    <result column="device_type_name" jdbcType="VARCHAR" property="deviceTypeName" />
     <result column="device_status_id" jdbcType="VARCHAR" property="deviceStatusId" />
     <result column="device_status" jdbcType="VARCHAR" property="deviceStatus" />
     <result column="device_purchase_date" jdbcType="TIMESTAMP" property="devicePurchaseDate" />
@@ -12,6 +13,7 @@
     <result column="device_manufacture_date" jdbcType="TIMESTAMP" property="deviceManufactureDate" />
     <result column="device_service_life" jdbcType="TIMESTAMP" property="deviceServiceLife" />
     <result column="device_keeper_id" jdbcType="VARCHAR" property="deviceKeeperId" />
+    <result column="emp_name" jdbcType="VARCHAR" property="deviceKeeper" />
     <result column="note" jdbcType="VARCHAR" property="note" />
     <!--<association property="com.ssm.bean.device.Device" column="device_type_id" select="com.ssm.mapper.device.DeviceTypeMapper.queryDeviceTypeById"/>-->
   </resultMap>
@@ -21,13 +23,49 @@
   </sql>
   <!--查询分页的device-->
   <select id="queryAllDeviceByPage" resultMap="BaseResultMap">
-     select device_id,device_name,d.device_type_id,device_type_name,device_status_id,device_status,device_purchase_date,device_purchase_price,device_manufacture_date,device_service_life,device_keeper_id,d.note
-    from device_type t,device d where t.device_type_id=d.device_type_id limit #{offset},#{rows}
+     select device_id,d.device_name,d.device_type_id,t.device_type_name,device_status_id,device_status,device_purchase_date,device_purchase_price,device_manufacture_date,device_service_life,device_keeper_id,e.emp_name,d.note
+    from device_type t,device d, employee e where t.device_type_id=d.device_type_id and d.device_keeper_id=e.emp_id limit #{offset},#{rows}
   </select>
   <!--查所有的个数-->
   <select id="findCount" resultType="_int">
     select count(*) from device
   </select>
+  <!--接口-->
+  <select id="queryAllDevice" resultMap="BaseResultMap">
+    select device_id,d.device_name,d.device_type_id,t.device_type_name,device_status_id,device_status,device_purchase_date,device_purchase_price,device_manufacture_date,device_service_life,device_keeper_id,e.emp_name,d.note
+    from device_type t,device d, employee e where t.device_type_id=d.device_type_id and d.device_keeper_id=e.emp_id
+  </select>
+
+  <!--根据deviceId查询-->
+  <select id="queryDeviceById" resultMap="BaseResultMap">
+    select <include refid="Base_Device_List"/>
+    from device where device_id=#{device_id}
+  </select>
+  <!--删除-->
+  <delete id="deleteDevice" parameterType="java.lang.String">
+    delete from device
+    where device_id=#{id}
+  </delete>
+  <!--插入-->
+  <insert id="insertDevice" parameterType="com.ssm.bean.device.Device">
+    insert into device(<include refid="Base_Device_List"/>)
+    values (#{deviceId},#{deviceName},#{deviceTypeId},#{deviceStatus},#{devicePurchaseDate},#{devicePurchasePrice},#{deviceManufactureDate},#{deviceServiceLife},#{deviceKeeperId},#{note})
+  </insert>
+  <!--修改-->
+  <update id="updateDevice" parameterType="com.ssm.bean.device.Device">
+    update device
+    set device_id=#{deviceId},
+    device_name=#{deviceName},
+    device_type_id=#{deviceTypeId},
+    device_status=#{deviceStatus},
+    device_purchase_date=#{devicePurchaseDate},
+    device_purchase_price=#{devicePurchasePrice},
+    device_manufacture_date=#{deviceManufactureDate},
+    device_service_life=#{deviceServiceLife},
+    device_keeper_id=#{deviceKeeperId},
+    note=#{note}
+    where device_id=#{device.deviceId}
+  </update>
 </mapper>
 
   <!--<sql id="Example_Where_Clause">

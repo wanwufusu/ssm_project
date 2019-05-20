@@ -9,9 +9,21 @@ import org.apache.ibatis.annotations.Param;
 
 public interface DeviceMapper {
 
-    List<Device> queryAllDeviceByPage(int offset, int rows);
+    List<Device> queryAllDeviceByPage(@Param("offset") int offset, @Param("rows") int rows);
 
     int findCount();
+    //接口
+    List<Device> queryAllDevice();
+    //根据id来查询
+
+    Device queryDeviceById(@Param("device_id") String deviceId);
+
+
+    int updateDevice(@Param("device") Device device);
+
+    int deleteDevice(@Param("id") String ids);
+
+    int insertDevice(Device device);
 
     //逆向工程生成
 

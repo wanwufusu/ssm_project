@@ -28,6 +28,31 @@ public class DeviceServiceImpl implements DeviceService {
         return deviceMapper.findCount();
     }
 
+    @Override
+    public List<Device> getDataOfDevice() {
+        return deviceMapper.queryAllDevice();
+    }
+
+    @Override
+    public int insertDevice(Device device) {
+        return deviceMapper.insertDevice(device);
+    }
+
+    @Override
+    public int deleteDevice(String ids) {
+        return deviceMapper.deleteDevice(ids);
+    }
+
+    @Override
+    public Device queryDeviceByProductId(String deviceId) {
+        return deviceMapper.queryDeviceById(deviceId);
+    }
+
+    @Override
+    public int updataDevice(Device device) {
+        return deviceMapper.updateDevice(device);
+    }
+
     /*@Override
     public int insertDeviceType(Device device) {
         return 0;

@@ -24,6 +24,7 @@ public interface DeviceFaultMapper {
 
     int deleteDeviceFault(@Param("id") String ids);
 
+    //差个数
     int queryAllDeviceFaultRecord();
 
 

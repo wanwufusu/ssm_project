@@ -8,8 +8,57 @@
     <result column="device_check_date" jdbcType="TIMESTAMP" property="deviceCheckDate" />
     <result column="device_check_result" jdbcType="VARCHAR" property="deviceCheckResult" />
     <result column="device_check_fault_id" jdbcType="VARCHAR" property="deviceCheckFaultId" />
+    <result column="device_name" jdbcType="VARCHAR" property="deviceName" />
+    <result column="emp_name" jdbcType="VARCHAR" property="deviceCheckEmp" />
+
+
   </resultMap>
-  <sql id="Example_Where_Clause">
+  <sql id="Base_DeviceCheck_List">
+    device_check_id,device_id,device_check_emp_id,device_check_date,device_check_result,device_check_fault_id
+  </sql>
+  <!--接口查询list-->
+  <select id="queryAllDeviceCheck"  resultMap="BaseResultMap">
+    select device_check_id,c.device_id,device_check_emp_id,device_check_date,device_check_result,device_check_fault_id,device_name,emp_name
+    from device_check c,device d,employee e where c.device_id=d.device_id and c.device_check_emp_id=e.emp_id
+  </select>
+  <!--分页查询list-->
+  <select id="queryAllDeviceCheckByPage"  resultMap="BaseResultMap">
+    select device_check_id,c.device_id,device_check_emp_id,device_check_date,device_check_result,device_check_fault_id,device_name,emp_name
+    from device_check c,device d,employee e where c.device_id=d.device_id and c.device_check_emp_id=e.emp_id
+    limit #{offset},#{rows}
+  </select>
+  <!--查个数-->
+  <select id="queryAllDeviceCheckRecord" resultType="_int">
+    select count(*) from device_check
+  </select>
+  <!--根据deviceCheckId查询-->
+  <select id="queryDeviceCheckById" resultMap="BaseResultMap">
+    select <include refid="Base_DeviceCheck_List"/>
+    from device_check where device_check_id=#{deviceCheckId}
+  </select>
+  <!--删除-->
+  <delete id="deleteDeviceCheck" parameterType="java.lang.String">
+    delete from device_check
+    where device_check_id=#{id}
+  </delete>
+  <!--插入-->
+  <insert id="insertDeviceCheck" parameterType="com.ssm.bean.device.DeviceCheck">
+    insert into device_check(<include refid="Base_DeviceCheck_List"/>)
+    values (#{deviceCheckId},#{deviceId},#{deviceCheckEmpId},#{deviceCheckDate},#{deviceCheckResult},#{deviceCheckFaultId})
+  </insert>
+  <!--修改-->
+  <update id="updateDeviceCheck" parameterType="com.ssm.bean.device.DeviceCheck">
+    update device_check
+    set device_id=#{deviceId},
+    device_check_emp_id=#{deviceCheckEmpId},
+    device_check_date=#{deviceCheckDate},
+    device_check_result=#{deviceCheckResult},
+    device_check_fault_id=#{deviceCheckFaultId}
+    where device_check_id=#{deviceCheckId}
+  </update>
+
+</mapper>
+  <!--<sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
         <if test="criteria.valid">
@@ -226,4 +275,4 @@
       device_check_fault_id = #{deviceCheckFaultId,jdbcType=VARCHAR}
     where device_check_id = #{deviceCheckId,jdbcType=VARCHAR}
   </update>
-</mapper>
+</mapper>-->

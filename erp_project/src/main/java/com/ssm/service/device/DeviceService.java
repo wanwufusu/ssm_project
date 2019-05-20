@@ -8,9 +8,17 @@ import java.util.List;
 public interface DeviceService {
     List<Device> queryDevice(DevicePage devicePage);
     int findCount();
-    /*int insertDeviceType(Device device);
-    //Device的接口
-    List<Device> getDataOfDevice();*/
+
+    //接口
+    List<Device> getDataOfDevice();
 
 
+    int insertDevice(Device device);
+
+    int deleteDevice(String ids);
+
+    //按id查询
+    Device queryDeviceByProductId(String deviceId);
+
+    int updataDevice(Device device);
 }
