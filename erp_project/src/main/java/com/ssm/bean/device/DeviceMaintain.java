@@ -10,7 +10,7 @@ public class DeviceMaintain {
 
     private String deviceMaintainEmpId;
 
-    private Date deviceMaintainDate;
+    private String deviceMaintainDate;
 
     private String deviceMaintainResult;
 
@@ -42,11 +42,11 @@ public class DeviceMaintain {
         this.deviceMaintainEmpId = deviceMaintainEmpId == null ? null : deviceMaintainEmpId.trim();
     }
 
-    public Date getDeviceMaintainDate() {
+    public String getDeviceMaintainDate() {
         return deviceMaintainDate;
     }
 
-    public void setDeviceMaintainDate(Date deviceMaintainDate) {
+    public void setDeviceMaintainDate(String deviceMaintainDate) {
         this.deviceMaintainDate = deviceMaintainDate;
     }
 

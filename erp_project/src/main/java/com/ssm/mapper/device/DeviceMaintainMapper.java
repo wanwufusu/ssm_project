@@ -8,7 +8,25 @@ import com.ssm.bean.device.DeviceMaintainExample;
 import org.apache.ibatis.annotations.Param;
 
 public interface DeviceMaintainMapper {
-    long countByExample(DeviceMaintainExample example);
+    List<DeviceMaintain> queryAllDeviceMaintainByPage(@Param("offset") int offset,@Param("rows") int rows);
+
+    int insertDeviceMaintain(DeviceMaintain deviceMaintain);
+
+    //deviceMaintain的接口
+    List<DeviceMaintain> queryAllDeviceMaintain();
+
+    //根据id来查询
+    DeviceMaintain queryDeviceMaintainById(int deviceMaintainId);
+
+    int updateDeviceMaintain(DeviceMaintain deviceMaintain);
+
+    int deleteDeviceMaintain(@Param("id") String ids);
+
+    //差个数
+    int queryAllDeviceMaintainRecord();
+
+
+    /*long countByExample(DeviceMaintainExample example);
 
     int deleteByExample(DeviceMaintainExample example);
 
@@ -28,5 +46,5 @@ public interface DeviceMaintainMapper {
 
     int updateByPrimaryKeySelective(DeviceMaintain record);
 
-    int updateByPrimaryKey(DeviceMaintain record);
+    int updateByPrimaryKey(DeviceMaintain record);*/
 }

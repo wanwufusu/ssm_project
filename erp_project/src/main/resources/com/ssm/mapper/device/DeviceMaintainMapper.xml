@@ -2,15 +2,64 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ssm.mapper.device.DeviceMaintainMapper">
   <resultMap id="BaseResultMap" type="com.ssm.bean.device.DeviceMaintain">
-    <id column="device_maintain_id" jdbcType="VARCHAR" property="deviceMaintainId" />
-    <result column="device_fault_id" jdbcType="VARCHAR" property="deviceFaultId" />
-    <result column="device_maintain_emp_id" jdbcType="VARCHAR" property="deviceMaintainEmpId" />
-    <result column="device_maintain_date" jdbcType="TIMESTAMP" property="deviceMaintainDate" />
-    <result column="device_maintain_result" jdbcType="VARCHAR" property="deviceMaintainResult" />
-    <result column="device_maintain_cost" jdbcType="DECIMAL" property="deviceMaintainCost" />
-    <result column="note" jdbcType="VARCHAR" property="note" />
+    <id column="device_maintain_id" property="deviceMaintainId" />
+    <result column="device_fault_id" property="deviceFaultId" />
+    <result column="device_maintain_emp_id" property="deviceMaintainEmpId" />
+    <result column="device_maintain_date" property="deviceMaintainDate" />
+    <result column="device_maintain_result" property="deviceMaintainResult" />
+    <result column="device_maintain_cost" property="deviceMaintainCost" />
+    <result column="note" property="note" />
+    <result column="emp_name" property="deviceMaintainEmp" />
   </resultMap>
-  <sql id="Example_Where_Clause">
+  <sql id="Base_DeviceMaintain_List">
+    device_maintain_id, device_fault_id, device_maintain_emp_id, device_maintain_date,
+    device_maintain_result, device_maintain_cost, note, emp_name
+</sql>
+  <!--接口查询list-->
+  <select id="queryAllDeviceMaintain"  resultMap="BaseResultMap">
+    select device_maintain_id,device_fault_id,device_maintain_emp_id,device_maintain_date,device_maintain_result,device_maintain_cost,note,e.emp_name
+    from device_fault f,device_maintain m,employee e where f.device_fault_id=m.device_fault_id and e.emp_id=m.device_maintain_emp_id
+    <!--select <include refid="Base_DeviceMaintain_List" />
+    from device_maintain
+    LEFT JOIN employee ON device_maintain.device_maintain_emp_id = employee.emp_id-->
+</select>
+  <!--分页查询list-->
+  <select id="queryAllDeviceMaintainByPage"  resultMap="BaseResultMap">
+    select device_maintain_id,device_fault_id,device_maintain_emp_id,device_maintain_date,device_maintain_result,device_maintain_cost,note,e.emp_name
+    from device_fault f,device_maintain m,employee e where f.device_fault_id=m.device_fault_id and e.emp_id=m.device_maintain_emp_id
+    limit #{offset},#{rows}
+  </select>
+  <!--查个数-->
+  <select id="queryAllDeviceMaintainRecord" resultType="_int">
+    select count(*) from device_maintain
+  </select>
+  <!--根据devicemaintainId查询-->
+  <select id="queryDeviceMaintainById" resultMap="BaseResultMap">
+    select <include refid="Base_DeviceMaintain_List"/>
+    from device_maintain where device_maintain_id=#{deviceMaintainId}
+  </select>
+  <!--删除-->
+  <delete id="deleteDeviceMaintain" parameterType="java.lang.String">
+    delete from device_maintain
+    where device_maintain_id=#{id}
+  </delete>
+  <!--插入-->
+  <insert id="insertDeviceMaintain" parameterType="com.ssm.bean.device.DeviceMaintain">
+    insert into device_maintain(<include refid="Base_DeviceMaintain_List"/>)
+    values (#{deviceMaintainId},#{deviceFaultId},#{deviceMaintainEmpId},#{deviceMaintainDate},#{deviceMaintainResult},#{deviceMaintainCost})
+  </insert>
+  <!--修改-->
+  <update id="updateDeviceMaintain" parameterType="com.ssm.bean.device.DeviceMaintain">
+    update device_maintain
+    set device_fault_id=#{deviceFaultId},
+    device_maintain_emp_id=#{deviceMaintainEmpId},
+    device_maintain_date=#{deviceMaintainDate},
+    device_maintain_result=#{deviceMaintainResult},
+    device_maintain_cost=#{deviceMaintainCost}
+    where device_maintain_id=#{deviceMaintainId}
+  </update>
+</mapper>
+  <!--<sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
         <if test="criteria.valid">
@@ -243,4 +292,4 @@
       note = #{note,jdbcType=VARCHAR}
     where device_maintain_id = #{deviceMaintainId,jdbcType=VARCHAR}
   </update>
-</mapper>
+</mapper>-->
