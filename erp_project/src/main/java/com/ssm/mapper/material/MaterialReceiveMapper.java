@@ -22,4 +22,6 @@ public interface MaterialReceiveMapper {
     List<MaterialReceive> searchMaterialReceive(@Param("offset") int offset, @Param("rows") int rows,@Param("searchValue") String searchValue);
 
     int searchMaterialReceiveCount(@Param("searchValue")String searchValue);
+
+    int updateNote(@Param("receiveId") String receiveId, @Param("note") String note);
 }

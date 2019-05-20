@@ -28,7 +28,7 @@ import java.util.Map;
 @Controller
 public class MainController {
 
-    @RequestMapping("erp")
+    @RequestMapping("home")
     public String ERPHomePage(Model model){
         return "home";
     }

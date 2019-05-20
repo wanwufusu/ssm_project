@@ -15,7 +15,9 @@ public interface ProcessService {
 
     boolean deleteProcess(String ids);
 
-    List<Process> findProcessById(String pid, Integer rows, Integer offset);
+    List<Process> findProcessById(String pid, int rows, int offset);
 
     Process findById(String processId);
+
+    List<Process> findProcessByTid(String tid, int rows, int offset);
 }

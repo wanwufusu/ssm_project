@@ -45,6 +45,11 @@ public class MaterialReceiveServiceImpl implements MaterialReceiveService {
     }
 
     @Override
+    public int updateNote(String receiveId, String note) {
+        return materialReceiveMapper.updateNote(receiveId,note);
+    }
+
+    @Override
     public MaterialReceive selectMaterialReceiveById(String receiveId) {
         return materialReceiveMapper.selectMaterialReceiveById(receiveId);
     }

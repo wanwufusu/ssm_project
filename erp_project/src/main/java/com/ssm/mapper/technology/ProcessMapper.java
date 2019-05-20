@@ -23,4 +23,6 @@ public interface ProcessMapper {
     List<Process> findAll();
 
     List<Process> findByPid(@Param("pid") String pid, @Param("rows") Integer rows, @Param("offset") Integer offset);
+
+    List<Process> findByTid(@Param("tid") String tid, @Param("rows") int rows, @Param("offset") int offset);
 }

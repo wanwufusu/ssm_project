@@ -54,4 +54,10 @@
     select count(*) from material_receive where receive_id like '%${searchValue}%'
   </select>
 
+
+  <!--更新备注-->
+  <update id="updateNote">
+    update material_receive set note = #{note} where receive_id = #{receiveId}
+  </update>
+
 </mapper>

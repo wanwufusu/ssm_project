@@ -23,7 +23,7 @@ public class ProcessController {
         List<Process> data = processService.findAll();
         return data;
     }
-    @RequestMapping("get/{processId")
+    @RequestMapping("get/{processId}")
     @ResponseBody
     public Process getDataById(@PathVariable("processId") String processId){
         Process data = processService.findById(processId);
@@ -111,6 +111,11 @@ public class ProcessController {
     @RequestMapping("search_process_by_technologyPlanId")
     @ResponseBody
     public ResponseVO searchByTechnologyPlanId(String searchValue,Integer page,Integer rows){
-        return null;
+        int offset = (page - 1) * rows;
+        List<Process> processes = processService.findProcessByTid(searchValue,rows,offset);
+        ResponseVO<Process> responseVO = new ResponseVO<>();
+        responseVO.setTotal(processes == null?0:processes.size());
+        responseVO.setRows(processes);
+        return responseVO;
     }
 }

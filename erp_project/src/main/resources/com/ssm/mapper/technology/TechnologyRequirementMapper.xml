@@ -210,4 +210,37 @@
       revise_time = #{reviseTime,jdbcType=TIMESTAMP}
     where technology_requirement_id = #{technologyRequirementId,jdbcType=VARCHAR}
   </update>
+  <!--<select id="findByPage" resultMap="BaseResultMap">
+        select technology_requirement_id, technology_id, requirement, add_time, revise_time
+        from technology_requirement
+        limit #{offset} , #{rows}
+    </select>-->
+  <resultMap id="mapLeft" type="com.ssm.bean.technology.TechnologyRequirement">
+    <id column="technology_requirement_id" jdbcType="VARCHAR" property="technologyRequirementId" />
+    <result column="technology_id" jdbcType="VARCHAR" property="technologyId" />
+    <result column="requirement" jdbcType="VARCHAR" property="requirement" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="revise_time" jdbcType="TIMESTAMP" property="reviseTime" />
+    <result column="technology_name" property="technologyName"/>
+<!--    <association property="technology" javaType="technology">
+      <result column="technology_id" jdbcType="VARCHAR" property="technologyId" />
+      <result column="technology_name" jdbcType="VARCHAR" property="technologyName" />
+    </association>-->
+  </resultMap>
+
+  <select id="findByPage" resultMap="mapLeft">
+         SELECT tr.technology_requirement_id, tr.technology_id, tr.requirement, tr.add_time, tr.revise_time,t.technology_name
+         from technology_requirement tr,technology t where t.technology_id = tr.technology_id
+         limit #{offset} , #{rows}
+   </select>
+  <select id="findById" resultMap="mapLeft">
+         SELECT tr.technology_requirement_id, tr.technology_id, tr.requirement, tr.add_time, tr.revise_time,t.technology_name
+         from technology_requirement tr,technology t where t.technology_id = tr.technology_id and technology_requirement_id = #{id}
+         limit #{offset} , #{rows}
+   </select>
+  <select id="findByName" resultMap="mapLeft">
+         SELECT tr.technology_requirement_id, tr.technology_id, tr.requirement, tr.add_time, tr.revise_time,t.technology_name
+         from technology_requirement tr,technology t where t.technology_id = tr.technology_id and technology_name = #{name}
+         limit #{offset} , #{rows}
+   </select>
 </mapper>
