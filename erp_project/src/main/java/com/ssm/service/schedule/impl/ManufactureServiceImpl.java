@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 〈一句话功能简述〉<br>
@@ -46,5 +47,38 @@ public class ManufactureServiceImpl implements ManufactureService {
     @Override
     public int updateByManufactureId(Manufacture updateManufacture) {
         return manufactureMapper.updateByPrimaryKeySelective(updateManufacture);
+    }
+
+    @Override
+    public List<Manufacture> queryPageManufactureByManufactureSn(PageDetail pageDetail, Map<String, String> condition) {
+        condition.put("manufactureSn", "%" + condition.get("manufactureSn") + "%");
+        return manufactureMapper.selectByPageAndManufactureCondition(pageDetail,condition);
+    }
+
+    @Override
+    public int queryAllRecordByManufactureSn(Map<String, String> condition) {
+        return manufactureMapper.selectAllRecordsByCondition(condition);
+    }
+
+    @Override
+    public List<Manufacture> queryPageManufactureByOrderId(PageDetail pageDetail, Map<String, String> condition) {
+        condition.put("orderId", "%" + condition.get("orderId") + "%");
+        return manufactureMapper.selectByPageAndManufactureCondition(pageDetail,condition);
+    }
+
+    @Override
+    public int queryAllRecordByOrderId(Map<String, String> condition) {
+        return manufactureMapper.selectAllRecordsByCondition(condition);
+    }
+
+    @Override
+    public List<Manufacture> queryPageManufactureByTechnologyName(PageDetail pageDetail, Map<String, String> condition) {
+        condition.put("technologyName", "%" + condition.get("technologyName") + "%");
+        return manufactureMapper.selectByPageAndManufactureCondition(pageDetail,condition);
+    }
+
+    @Override
+    public int queryAllRecordByTechnologyName(Map<String, String> condition) {
+        return manufactureMapper.selectAllRecordsByCondition(condition);
     }
 }

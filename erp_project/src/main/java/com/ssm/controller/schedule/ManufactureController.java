@@ -12,7 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 〈一句话功能简述〉<br>
@@ -45,6 +47,42 @@ public class ManufactureController {
 
         responseVO.setRows(manufactures);
         responseVO.setTotal(manufactureService.queryAllManufacture());
+        return responseVO;
+    }
+
+    @RequestMapping("search_manufacture_by_manufactureSn")
+    @ResponseBody
+    public ResponseVO manufacturesQueryById(Model model, PageDetail pageDetail, String searchValue){
+        Map<String, String> condition =  new HashMap<String, String>(){{put("manufactureSn", searchValue);}};
+        pageDetail.setOffset((pageDetail.getPage()-1)*pageDetail.getRows());
+        List<Manufacture> manufactures = manufactureService.queryPageManufactureByManufactureSn(pageDetail, condition);
+        ResponseVO<Manufacture> responseVO = new ResponseVO<>();
+        responseVO.setRows(manufactures);
+        responseVO.setTotal(manufactureService.queryAllRecordByManufactureSn(condition));
+        return responseVO;
+    }
+
+    @RequestMapping("search_manufacture_by_manufactureOrderId")
+    @ResponseBody
+    public ResponseVO manufacturesQueryByOrderId(Model model, PageDetail pageDetail, String searchValue){
+        Map<String, String> condition =  new HashMap<String, String>(){{put("orderId", searchValue);}};
+        pageDetail.setOffset((pageDetail.getPage()-1)*pageDetail.getRows());
+        List<Manufacture> manufactures = manufactureService.queryPageManufactureByOrderId(pageDetail, condition);
+        ResponseVO<Manufacture> responseVO = new ResponseVO<>();
+        responseVO.setRows(manufactures);
+        responseVO.setTotal(manufactureService.queryAllRecordByOrderId(condition));
+        return responseVO;
+    }
+
+    @RequestMapping("search_manufacture_by_manufactureTechnologyName")
+    @ResponseBody
+    public ResponseVO manufacturesQueryByTechnologyName(Model model, PageDetail pageDetail, String searchValue){
+        Map<String, String> condition =  new HashMap<String, String>(){{put("technologyName", searchValue);}};
+        pageDetail.setOffset((pageDetail.getPage()-1)*pageDetail.getRows());
+        List<Manufacture> manufactures = manufactureService.queryPageManufactureByTechnologyName(pageDetail, condition);
+        ResponseVO<Manufacture> responseVO = new ResponseVO<>();
+        responseVO.setRows(manufactures);
+        responseVO.setTotal(manufactureService.queryAllRecordByTechnologyName(condition));
         return responseVO;
     }
 

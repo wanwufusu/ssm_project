@@ -17,9 +17,69 @@
     from task
     where task_id = #{taskId,jdbcType=VARCHAR}
   </select>
+  <select id="selectByPageInformation" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from
+    task
+    <if test="#{pageDetail} != null">
+      limit #{pageDetail.rows} offset #{pageDetail.offset}
+    </if>
+  </select>
+  <select id="selectByPageAndTaskCondition" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from
+    task
+    <where>
+      <if test="condition.taskId != null">
+        task_id like #{condition.taskId}
+      </if>
+      <if test="condition.workId != null">
+        and work_id like #{condition.workId}
+      </if>
+      <if test="condition.manufactureSn != null">
+        and manufacture_sn like #{condition.manufactureSn}
+      </if>
+    </where>
+    <if test="#{pageDetail} != null">
+      limit #{pageDetail.rows} offset #{pageDetail.offset}
+    </if>
+  </select>
+  <select id="selectAllRecords" resultType="_int">
+    select
+    count(*)
+    from
+    task
+  </select>
+  <select id="selectAllRecordsByCondition" resultType="_int">
+    select
+    count(*)
+    from
+    task
+    <where>
+      <if test="condition.taskId != null">
+        task_id like #{condition.taskId}
+      </if>
+      <if test="condition.workId != null">
+        and work_id like #{condition.workId}
+      </if>
+      <if test="condition.manufactureSn != null">
+        and manufacture_sn like #{condition.manufactureSn}
+      </if>
+    </where>
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from task
     where task_id = #{taskId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteTasksByPrimaryKey" parameterType="java.lang.String">
+    delete
+    from task
+    where task_id in
+    <foreach collection="taskIds" item="id" open="(" close=")" separator=",">
+      #{id}
+    </foreach>
   </delete>
   <insert id="insert" parameterType="com.ssm.bean.schedule.Task">
     insert into task (task_id, manufacture_sn, work_id, 

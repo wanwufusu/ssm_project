@@ -63,6 +63,47 @@
       and technology.technology_id = manufacture.technology_id
     </where>
   </select>
+  <select id="selectByPageAndManufactureCondition" resultMap="JoinResultMap">
+    select
+    <include refid="Join_Column_List"/>
+    from
+    <include refid="manufacture_relatived_database"/>
+    <where>
+      c_order.order_id = manufacture.order_id
+      and technology.technology_id = manufacture.technology_id
+      <if test="condition.manufactureSn != null">
+        and manufacture.manufacture_sn like #{condition.manufactureSn}
+      </if>
+      <if test="condition.orderId != null">
+        and manufacture.order_id like #{condition.orderId}
+      </if>
+      <if test="condition.technologyName != null">
+        and technology.technology_name like #{condition.technologyName}
+      </if>
+    </where>
+    <if test="#{pageDetail} != null">
+      limit #{pageDetail.rows} offset #{pageDetail.offset}
+    </if>
+  </select>
+  <select id="selectAllRecordsByCondition" resultType="_int">
+    select
+    count(*)
+    from
+    <include refid="manufacture_relatived_database"/>
+    <where>
+      c_order.order_id = manufacture.order_id
+      and technology.technology_id = manufacture.technology_id
+      <if test="condition.manufactureSn != null">
+        and manufacture.manufacture_sn like #{condition.manufactureSn}
+      </if>
+      <if test="condition.orderId != null">
+        and manufacture.order_id like #{condition.orderId}
+      </if>
+      <if test="condition.technologyName != null">
+        and technology.technology_name like #{condition.technologyName}
+      </if>
+    </where>
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from manufacture
     where manufacture_sn = #{manufactureSn,jdbcType=VARCHAR}
