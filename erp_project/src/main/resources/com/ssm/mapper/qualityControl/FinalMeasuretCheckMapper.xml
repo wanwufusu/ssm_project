@@ -52,4 +52,16 @@
         </foreach>
     </delete>
 
+    <!--添加-->
+    <insert id="insert">
+        insert into final_measuret_check (f_measure_check_id,order_id,check_item,cdate,measure_data,emp_id,result,note)
+        values (#{record.fMeasureCheckId},#{record.orderId},#{record.checkItem},#{record.cdate},#{record.measureData},#{record.empId},#{record.result},#{record.note})
+    </insert>
+
+    <!--更新-->
+    <update id="updateAll">
+        update final_measuret_check set order_id=#{record.orderId},check_item=#{record.checkItem},cdate=#{record.cdate},measure_data=#{record.measureData},emp_id=#{record.empId},result=#{record.result},note=#{record.note}
+        where f_measure_check_id=#{record.fMeasureCheckId}
+    </update>
+
 </mapper>

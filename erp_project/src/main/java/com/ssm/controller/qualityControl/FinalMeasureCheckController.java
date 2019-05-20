@@ -87,18 +87,19 @@ public class FinalMeasureCheckController {
     }
 
 
+
     @RequestMapping("insert")
     @ResponseBody
-    public ResponseMessage insert(FinalMeasuretCheck fmc){
-        return ResponseMessage.getMessage(3);
-
+    public ResponseMessage insert(FinalMeasuretCheck un){
+        int i = service.insert(un);
+        return ResponseMessage.getMessage(i);
     }
 
     @RequestMapping("update_all")
     @ResponseBody
-    public ResponseMessage update_all(FinalMeasuretCheck fmc){
-        return ResponseMessage.getMessage(3);
-
+    public ResponseMessage update_all(FinalMeasuretCheck un){
+        int i = service.updateAll(un);
+        return ResponseMessage.getMessage(i);
     }
 
 

@@ -77,19 +77,19 @@ public class FinalCountCheckController {
         return "f_count_check_add";
     }
 
+
     @RequestMapping("insert")
     @ResponseBody
-    public ResponseMessage insert(FinalCountCheck fcc){
-        return ResponseMessage.getMessage(3);
-
+    public ResponseMessage insert(FinalCountCheck un){
+        int i = service.insert(un);
+        return ResponseMessage.getMessage(i);
     }
 
     @RequestMapping("update_all")
     @ResponseBody
-    public ResponseMessage update_all(FinalCountCheck fcc){
-        return ResponseMessage.getMessage(3);
-
+    public ResponseMessage update_all(FinalCountCheck un){
+        int i = service.updateAll(un);
+        return ResponseMessage.getMessage(i);
     }
-
 
 }

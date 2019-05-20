@@ -52,5 +52,19 @@
         </foreach>
     </delete>
 
+    <!--添加-->
+    <insert id="insert">
+        insert into process_measure_check (p_measure_check_id,process_id,check_item,cdate,measure_data,emp_id,result,note)
+        values (#{record.pMeasureCheckId},#{record.processId},#{record.checkItem},
+        #{record.cdate},#{record.measureData},#{record.empId},#{record.result},#{record.note})
+    </insert>
+
+    <!--更新-->
+    <update id="updateAll">
+        update process_measure_check set process_id=#{record.processId},check_item=#{record.checkItem},cdate=#{record.cdate},
+        measure_data=#{record.measureData},emp_id=#{record.empId},result=#{record.result},note=#{record.note}
+        where p_measure_check_id=#{record.pMeasureCheckId}
+    </update>
+
 
 </mapper>

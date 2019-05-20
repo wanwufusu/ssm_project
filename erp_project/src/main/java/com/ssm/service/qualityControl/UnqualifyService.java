@@ -20,4 +20,7 @@ public interface UnqualifyService {
 
     int searchAllCount(String target, String word);
 
+    int updateAll(UnqualifyApply record);
+
+    int  insert(UnqualifyApply record);
 }

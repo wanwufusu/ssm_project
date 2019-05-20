@@ -38,15 +38,7 @@ public class FinalCountCheck {
 
     private String note;
 
-    private String productParams;
 
-    public String getProductParams() {
-        return productParams;
-    }
-
-    public void setProductParams(String productParams) {
-        this.productParams = productParams;
-    }
 
     public String getfCountCheckId() {
         return fCountCheckId;

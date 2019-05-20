@@ -87,14 +87,14 @@ public class UnqualifyController {
     @RequestMapping("insert")
     @ResponseBody
     public ResponseMessage insert(UnqualifyApply un){
-        System.out.println(un);
-        return ResponseMessage.getMessage(3);
+        int i = service.insert(un);
+        return ResponseMessage.getMessage(i);
     }
 
     @RequestMapping("update_all")
     @ResponseBody
     public ResponseMessage update_all(UnqualifyApply un){
-        System.out.println(un);
-        return ResponseMessage.getMessage(3);
+        int i = service.updateAll(un);
+        return ResponseMessage.getMessage(i);
     }
 }

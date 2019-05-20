@@ -48,5 +48,14 @@ public class UnqualifyServiceImpl implements UnqualifyService {
         return i;
     }
 
+    @Override
+    public int updateAll(UnqualifyApply record) {
+        return mapper.updateAll(record);
+    }
+    @Override
+    public int insert(UnqualifyApply record) {
+        return mapper.insert(record);
+    }
+
 
 }

@@ -19,4 +19,8 @@ public interface ProcessMeasureCheckMapper {
 
     int searchAllCount(@Param("target") String target, @Param("word") String word);
 
+    int updateAll(@Param("record") ProcessMeasureCheck record);
+
+    int insert(@Param("record") ProcessMeasureCheck record);
+
 }

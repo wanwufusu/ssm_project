@@ -17,4 +17,8 @@ public interface ProcessCountCheckService {
     List searchList(String target, String word, int offset, int rows);
 
     int searchAllCount(String target, String word);
+
+    int updateAll(ProcessCountCheck record);
+
+    int  insert(ProcessCountCheck record);
 }
