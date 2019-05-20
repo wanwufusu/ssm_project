@@ -1,10 +1,7 @@
 package com.ssm.service.technology;
 
-import com.ssm.bean.technology.Technology;
-import com.ssm.bean.technology.TechnologyExample;
+
 import com.ssm.bean.technology.TechnologyPlan;
-import com.ssm.bean.technology.TechnologyPlanExample;
-import com.ssm.mapper.technology.TechnologyMapper;
 import com.ssm.mapper.technology.TechnologyPlanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,8 +11,6 @@ import java.util.List;
 public class TechnologyPlanServiceImpl implements TechnologyPlanService {
     @Autowired
     TechnologyPlanMapper technologyPlanMapper;
-    @Autowired
-    TechnologyMapper technologyMapper;
     @Override
     public boolean addTechnologyPlan(TechnologyPlan technologyPlan) {
         TechnologyPlan check = technologyPlanMapper.selectByPrimaryKey(technologyPlan.getTechnologyPlanId());
@@ -60,15 +55,14 @@ public class TechnologyPlanServiceImpl implements TechnologyPlanService {
     }
 
     @Override
-    public TechnologyPlan getTechnology(TechnologyPlan technologyPlan) {
-        Technology technology = technologyMapper.selectByPrimaryKey(technologyPlan.getTechnologyId());
-        technologyPlan.setTechnologyName(technology.getTechnologyName());
-        return technologyPlan;
-    }
-
-    @Override
     public List<TechnologyPlan> findPlan() {
         List<TechnologyPlan> technologyPlans = technologyPlanMapper.findPlan();
         return technologyPlans;
+    }
+
+    @Override
+    public TechnologyPlan findById(String technologyPlanId) {
+        TechnologyPlan data = technologyPlanMapper.selectById(technologyPlanId);
+        return data;
     }
 }

@@ -28,4 +28,6 @@ public interface MaterialConsumeMapper {
     List<MaterialConsume> searchMaterialConsume(@Param("offset") int offset,@Param("rows") int rows, @Param("searchValue") String searchValue);
 
     int searchMaterialConsumeCount(@Param("searchValue") String searchValue);
+
+    int updateNote(@Param("consumeId") String consumeId, @Param("note") String note);
 }

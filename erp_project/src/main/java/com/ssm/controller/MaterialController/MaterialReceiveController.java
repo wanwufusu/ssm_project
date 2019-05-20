@@ -130,4 +130,21 @@ public class MaterialReceiveController {
     }
 
 
+    //更新备注
+    @RequestMapping("materialReceive/update_note")
+    @ResponseBody
+    public ResponseMessage note(String receiveId,String note){
+        ResponseMessage responseMessage = new ResponseMessage();
+        int count = materialReceiveService.updateNote(receiveId,note);
+        if(count > 0){
+            responseMessage.setStatus(200);
+            responseMessage.setMsg("修改成功");
+        }else{
+            responseMessage.setStatus(404);
+            responseMessage.setMsg("修改失败");
+        }
+        return responseMessage;
+    }
+
+
 }

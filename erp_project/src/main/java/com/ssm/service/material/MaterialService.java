@@ -25,4 +25,6 @@ public interface MaterialService {
     List<Material> searchMaterial(int offset, int rows, String searchValue);
 
     int searchMaterialCount(String searchValue);
+
+    int updateNote(String materialId, String note);
 }

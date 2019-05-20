@@ -34,11 +34,16 @@
   <sql id="manufacture_relatived_database">
     manufacture, c_order, technology
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="JoinResultMap">
     select 
-    <include refid="Base_Column_List" />
-    from manufacture
-    where manufacture_sn = #{manufactureSn,jdbcType=VARCHAR}
+    <include refid="Join_Column_List" />
+    from
+    <include refid="manufacture_relatived_database"/>
+    <where>
+      c_order.order_id = manufacture.order_id
+      and technology.technology_id = manufacture.technology_id
+      and manufacture.manufacture_sn = #{manufactureSn,jdbcType=VARCHAR}
+    </where>
   </select>
   <select id="selectByPageInformation" resultMap="JoinResultMap">
     select

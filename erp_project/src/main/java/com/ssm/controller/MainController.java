@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * 〈一句话功能简述〉<br>
@@ -28,7 +29,7 @@ import java.util.Map;
 @Controller
 public class MainController {
 
-    @RequestMapping("erp")
+    @RequestMapping("home")
     public String ERPHomePage(Model model){
         return "home";
     }
@@ -37,6 +38,7 @@ public class MainController {
     @ResponseBody
     public Map uploadImage(MultipartFile uploadFile, HttpServletRequest request) throws IOException {
         String filename = uploadFile.getOriginalFilename();
+        filename = UUID.randomUUID().toString() + filename;
         //String fileType = filename.substring(filename.lastIndexOf("."));
         String realPath = request.getSession().getServletContext().getRealPath("/WEB-INF/image/pic/");
         File file = new File(realPath + filename);
@@ -54,6 +56,7 @@ public class MainController {
     @ResponseBody
     public Map uploadFile(MultipartFile file, HttpServletRequest request) throws IOException {
         String filename = file.getOriginalFilename();
+        filename = UUID.randomUUID().toString() + filename;
         //String fileType = filename.substring(filename.lastIndexOf("."));
         String realPath = request.getSession().getServletContext().getRealPath("/WEB-INF/file/");
         File newFile = new File(realPath + filename);

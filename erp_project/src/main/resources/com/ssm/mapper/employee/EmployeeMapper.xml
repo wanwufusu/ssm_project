@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.mapper.employee.EmployeeMapper">
+  <resultMap id="BaseResultMap" type="com.ssm.bean.employee.Employee">
+    <id column="emp_id" jdbcType="VARCHAR" property="empId" />
+    <result column="emp_name" jdbcType="VARCHAR" property="empName" />
+    <result column="sex" jdbcType="CHAR" property="sex" />
+    <result column="id_code" jdbcType="VARCHAR" property="idCode" />
+    <result column="birthday" jdbcType="DATE" property="birthday" />
+    <result column="join_date" jdbcType="DATE" property="joinDate" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="education" jdbcType="VARCHAR" property="education" />
+    <result column="degree" jdbcType="VARCHAR" property="degree" />
+    <result column="major" jdbcType="VARCHAR" property="major" />
+    <result column="graduate_school" jdbcType="VARCHAR" property="graduateSchool" />
+    <result column="education_form" jdbcType="VARCHAR" property="educationForm" />
+    <!-- <result column="department_id" jdbcType="VARCHAR" property="departmentId" />-->
+    <association property="department" javaType="com.ssm.bean.employee.Department">
+      <result column="department_id" jdbcType="VARCHAR" property="departmentId" />
+      <result column="department_name" jdbcType="VARCHAR" property="departmentName" />
+      <result column="note" jdbcType="VARCHAR" property="note" />
+    </association>
+  </resultMap>
+  <sql id="Base_Column_List">
+    emp_id, emp_name, sex, id_code, birthday, join_date, status, education, degree, major,
+    graduate_school, education_form, department_id
+  </sql>
+
+  <!--连接查询-->
+  <select id="selectEmployeeList" resultMap="BaseResultMap">
+      select
+      e.emp_id, e.emp_name, e.sex, e.id_code, e.birthday, e.join_date, e.status, e.education,
+      e.degree, e.major, e.graduate_school, e.education_form,
+      d.department_id, d.department_name, d.note
+      from employee e
+      left join department d
+      on e.department_id = d.department_id
+  </select>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        select
+      e.emp_id, e.emp_name, e.sex, e.id_code, e.birthday, e.join_date, e.status, e.education,
+      e.degree, e.major, e.graduate_school, e.education_form,
+      d.department_id, d.department_name, d.note
+      from employee e
+      left join department d
+      on e.department_id = d.department_id
+      where e.emp_id like CONCAT('%',#{id},'%')
+    </select>
+
+  <select id="searchEmployeeListById" resultMap="BaseResultMap">
+        select
+      e.emp_id, e.emp_name, e.sex, e.id_code, e.birthday, e.join_date, e.status, e.education,
+      e.degree, e.major, e.graduate_school, e.education_form,
+      d.department_id, d.department_name, d.note
+      from employee e
+      left join department d
+      on e.department_id = d.department_id
+      where e.emp_id like CONCAT('%',#{id},'%')
+    </select>
+
+  <select id="searchEmployeeListByName" resultMap="BaseResultMap">
+        select
+      e.emp_id, e.emp_name, e.sex, e.id_code, e.birthday, e.join_date, e.status, e.education,
+      e.degree, e.major, e.graduate_school, e.education_form,
+      d.department_id, d.department_name, d.note
+      from employee e
+      left join department d
+      on e.department_id = d.department_id
+      where e.emp_name like CONCAT('%',#{name},'%')
+    </select>
+
+  <select id="searchEmployeeListByDepartmentName" resultMap="BaseResultMap">
+        select
+      e.emp_id, e.emp_name, e.sex, e.id_code, e.birthday, e.join_date, e.status, e.education,
+      e.degree, e.major, e.graduate_school, e.education_form,
+      d.department_id, d.department_name, d.note
+      from employee e
+      left join department d
+      on e.department_id = d.department_id
+      where d.department_name like CONCAT('%',#{name},'%')
+    </select>
+
+  <insert id="insertEmployee">
+        insert into employee (emp_id, emp_name, sex, id_code, birthday, join_date, status, education, degree, major,
+    graduate_school, education_form, department_id) values (#{empId},#{empName},#{sex},#{idCode},#{birthday}
+    ,#{joinDate},#{status},#{education},#{degree},#{major},#{graduateSchool},#{educationForm},#{departmentId})
+    </insert>
+
+  <delete id="deleteEmployeeById">
+        delete from employee where emp_id = #{ids}
+    </delete>
+
+  <update id="editEmployee">
+        update employee set  emp_name=#{empName}, sex=#{sex}, id_code=#{idCode},birthday=#{birthday},
+        join_date=#{joinDate}, status=#{status},education=#{education}, degree=#{degree}, major=#{major},
+        graduate_school=#{graduateSchool}, education_form=#{educationForm}, department_id=#{departmentId}
+        where emp_id = #{empId}
+    </update>
+</mapper>

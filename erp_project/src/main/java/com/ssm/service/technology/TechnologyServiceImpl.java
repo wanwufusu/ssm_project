@@ -57,8 +57,14 @@ public class TechnologyServiceImpl implements TechnologyService {
     }
 
     @Override
-    public List findTechnologyId() {
-        List data = technologyMapper.findTechnologyId();
+    public List<Technology> findAll() {
+        List<Technology> data = technologyMapper.findAll();
+        return data;
+    }
+
+    @Override
+    public Technology findById(String technologyId) {
+        Technology data = technologyMapper.selectByPrimaryKey(technologyId);
         return data;
     }
 }

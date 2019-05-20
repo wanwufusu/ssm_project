@@ -18,7 +18,7 @@ public class ProcessCountCheck {
 
     private BigDecimal qualify;
 
-    private Date cdate;
+    private String cdate;
 
     private String measureData;
 
@@ -94,11 +94,11 @@ public class ProcessCountCheck {
         this.qualify = qualify;
     }
 
-    public Date getCdate() {
+    public String getCdate() {
         return cdate;
     }
 
-    public void setCdate(Date cdate) {
+    public void setCdate(String cdate) {
         this.cdate = cdate;
     }
 

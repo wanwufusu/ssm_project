@@ -23,4 +23,6 @@ public interface MaterialConsumeService {
     List<MaterialConsume> searchMaterialConsume(int offset, int rows, String searchValue);
 
     int searchMaterialConsumeCount(String searchValue);
+
+    int updateNote(String consumeId, String note);
 }

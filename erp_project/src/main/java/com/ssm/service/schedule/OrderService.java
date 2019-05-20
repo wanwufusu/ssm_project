@@ -30,4 +30,6 @@ public interface OrderService {
     List<Order> queryPageOrderByProductName(PageDetail pageDetail, Map<String, String> condition);
 
     int queryAllRecordByProductName(Map<String, String> condition);
+
+    Order queryOrderByOrderIdId(String orderId);
 }

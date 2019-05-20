@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -164,5 +165,11 @@ public class WorkController {
     @ResponseBody
     public List<Work> workList(){
         return workService.queryWorks();
+    }
+
+    @RequestMapping("get/{workId}")
+    @ResponseBody
+    public Work queryWorkById(@PathVariable("workId") String workId) {
+        return workService.queryWorkById(workId);
     }
 }

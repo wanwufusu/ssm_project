@@ -11,12 +11,12 @@ public class UnqualifyApply {
 
     private Integer unqualifyCount;
 
-    private Date assemblyDate;
+    private String assemblyDate;
 
     private String empId;
     private String empName;
 
-    private Date applyDate;
+    private String applyDate;
 
     public String getEmpId() {
         return empId;
@@ -54,12 +54,16 @@ public class UnqualifyApply {
         this.unqualifyCount = unqualifyCount;
     }
 
-    public Date getAssemblyDate() {
+    public String getAssemblyDate() {
         return assemblyDate;
     }
 
-    public void setAssemblyDate(Date assemblyDate) {
+    public void setAssemblyDate(String assemblyDate) {
         this.assemblyDate = assemblyDate;
+    }
+
+    public void setApplyDate(String applyDate) {
+        this.applyDate = applyDate;
     }
 
     public String getProductName() {
@@ -85,12 +89,8 @@ public class UnqualifyApply {
         this.empName = empName;
     }
 
-    public Date getApplyDate() {
+    public String getApplyDate() {
         return applyDate;
-    }
-
-    public void setApplyDate(Date applyDate) {
-        this.applyDate = applyDate;
     }
 
     public String getNote() {

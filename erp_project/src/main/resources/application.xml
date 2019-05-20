@@ -14,6 +14,8 @@
     <mvc:resources mapping="/js/**" location="/WEB-INF/js/"/>
     <mvc:resources mapping="/image/**" location="/WEB-INF/image/"/>
     <mvc:resources mapping="/file/**" location="/WEB-INF/file/"/>
+
+    <!--配置日期转换器-->
     <!--<mvc:annotation-driven conversion-service="formattingConverter"/>
     <bean id="formattingConverter" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
         <property name="converters">
@@ -22,4 +24,18 @@
             </set>
         </property>
     </bean>-->
+
+
+    <!-- 配置拦截器 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/js/**"/>
+            <mvc:exclude-mapping path="/css/**"/>
+            <mvc:exclude-mapping path="/image/**"/>
+            <mvc:exclude-mapping path="/file/**"/>
+            <bean class="com.ssm.bean.LoginInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
 </beans>

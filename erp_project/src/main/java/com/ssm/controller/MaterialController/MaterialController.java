@@ -144,6 +144,22 @@ public class MaterialController {
         return materialService.selectMaterialById(materialId);
     }
 
+    //更新备注
+    @RequestMapping("/update_note")
+    @ResponseBody
+    public ResponseMessage note(String materialId,String note){
+        ResponseMessage responseMessage = new ResponseMessage();
+        int count = materialService.updateNote(materialId,note);
+        if(count > 0){
+            responseMessage.setStatus(200);
+            responseMessage.setMsg("修改成功");
+        }else{
+            responseMessage.setStatus(404);
+            responseMessage.setMsg("修改失败");
+        }
+        return responseMessage;
+    }
+
 
 
 }

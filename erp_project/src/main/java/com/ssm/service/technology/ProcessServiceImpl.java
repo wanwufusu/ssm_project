@@ -13,6 +13,55 @@ public class ProcessServiceImpl implements ProcessService {
     @Override
     public List<Process> findAll() {
         List<Process> processes = processMapper.findAll();
-        return null;
+        return processes;
+    }
+
+    @Override
+    public Process findById(String processId) {
+        Process data = processMapper.selectByPrimaryKey(processId);
+        return data;
+    }
+
+    @Override
+    public List<Process> findProcess(int rows, int offset) {
+        List<Process> processes = processMapper.findByPage(rows,offset);
+        return processes;
+    }
+
+    @Override
+    public boolean addProcess(Process process) {
+        Process check = processMapper.selectByPrimaryKey(process.getProcessId());
+        if(check == null){
+            processMapper.insert(process);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean editProcess(Process process) {
+        int i = processMapper.updateByPrimaryKey(process);
+        if(i > 0){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean deleteProcess(String ids) {
+        processMapper.deleteByPrimaryKey(ids);
+        return true;
+    }
+
+    @Override
+    public List<Process> findProcessById(String pid, int rows, int offset) {
+        List<Process> processes = processMapper.findByPid(pid,rows,offset);
+        return processes;
+    }
+
+    @Override
+    public List<Process> findProcessByTid(String tid, int rows, int offset) {
+        List<Process> processes = processMapper.findByTid(tid,rows,offset);
+        return processes;
     }
 }

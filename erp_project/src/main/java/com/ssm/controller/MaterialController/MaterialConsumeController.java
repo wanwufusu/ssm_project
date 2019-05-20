@@ -42,7 +42,7 @@ public class MaterialConsumeController {
     //插入操作
     @RequestMapping("MaterialConsume/add_judge")
     @ResponseBody
-    public String judge(){
+    public String addjudge(){
         return "";
     }
     @RequestMapping("materialConsume/add")
@@ -103,5 +103,47 @@ public class MaterialConsumeController {
         responseVO.setRows(list);
         responseVO.setTotal(count);
         return responseVO;
+    }
+
+    //编辑页面
+
+    @RequestMapping("MaterialConsume/edit_judge")
+    @ResponseBody
+    public String editjudge(){
+        return "";
+    }
+    @RequestMapping("materialConsume/edit")
+    public String edit(){
+        return "materialConsume_edit";
+    }
+    @RequestMapping("MaterialConsume/update_all")
+    @ResponseBody
+    public ResponseMessage update(MaterialConsume materialConsume){
+        ResponseMessage responseMessage = new ResponseMessage();
+        int result = materialConsumeService.updateMaterialConsumeById(materialConsume);
+        if(result > 0){
+            responseMessage.setStatus(200);
+            responseMessage.setMsg("修改成功");
+        }else {
+            responseMessage.setStatus(404);
+            responseMessage.setMsg("修改失败");
+        }
+        return responseMessage;
+    }
+
+    //更新备注
+    @RequestMapping("MaterialConsume/update_note")
+    @ResponseBody
+    public ResponseMessage note(String consumeId,String note){
+        ResponseMessage responseMessage = new ResponseMessage();
+        int count = materialConsumeService.updateNote(consumeId,note);
+        if(count > 0){
+            responseMessage.setStatus(200);
+            responseMessage.setMsg("修改成功");
+        }else{
+            responseMessage.setStatus(404);
+            responseMessage.setMsg("修改失败");
+        }
+        return responseMessage;
     }
 }

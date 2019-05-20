@@ -65,4 +65,9 @@ public class MaterialServiceImpl implements MaterialService {
     public int searchMaterialCount(String searchValue) {
         return materialMapper.searchMaterialCount(searchValue);
     }
+
+    @Override
+    public int updateNote(String materialId, String note) {
+        return materialMapper.updateNote(materialId,note);
+    }
 }

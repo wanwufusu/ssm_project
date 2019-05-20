@@ -11,7 +11,7 @@
         	<th data-options="field:'ck',checkbox:true"></th>
         	<th data-options="field:'receiveId',align:'center',width:100">物料收入编号</th>
             <th data-options="field:'material',width:100,align:'center',formatter:formatMaterial">物料</th>
-            <th data-options="field:'ammount',align:'center',width:100">收入数量</th>
+            <th data-options="field:'amount',align:'center',width:100">收入数量</th>
             <th data-options="field:'receiveDate',width:130,align:'center',formatter:TAOTAO.formatDateTime">
 				收入日期
 			</th>

@@ -12,27 +12,48 @@ import java.util.List;
 public class FinalMeasureCheckServiceImpl implements FinalMeasureCheckService {
 
     @Autowired
-    FinalMeasuretCheckMapper finalMeasuretCheckMapper;
+    FinalMeasuretCheckMapper mapper;
 
     @Override
     public List<FinalMeasuretCheck> findByPage(int rows, int offset) {
-        List<FinalMeasuretCheck> item = finalMeasuretCheckMapper.findByPage(rows, offset);
+        List<FinalMeasuretCheck> item = mapper.findByPage(rows, offset);
         return item;
     }
 
     @Override
     public int findAllCount() {
-        return finalMeasuretCheckMapper.findAllCount();
+        return mapper.findAllCount();
     }
 
     @Override
     public int updateNote(String id, String note) {
-        int i = finalMeasuretCheckMapper.updateNote(id, note);
+        int i = mapper.updateNote(id, note);
         return i;
     }
 
     @Override
     public int deleteByIds(String[] ids) {
-        return finalMeasuretCheckMapper.deleteByIds(ids);
+        return mapper.deleteByIds(ids);
+    }
+
+    @Override
+    public List searchList(String target, String word, int offset, int rows) {
+        List list = mapper.searchList(target, word, offset, rows);
+        return list;
+    }
+
+    @Override
+    public int searchAllCount(String target, String word) {
+        int i = mapper.searchAllCount(target, word);
+        return i;
+    }
+
+    @Override
+    public int updateAll(FinalMeasuretCheck record) {
+        return mapper.updateAll(record);
+    }
+    @Override
+    public int insert(FinalMeasuretCheck record) {
+        return mapper.insert(record);
     }
 }

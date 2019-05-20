@@ -14,7 +14,8 @@
     <result column="sender" property="sender"/>
     <result column="receiver" property="receiver"/>
     <result column="note" property="note"/>
-    <association column="material_id" property="material" select="com.ssm.mapper.material.MaterialMapper.selectMaterialById"/>
+    <association column="material_id" property="material"
+                 select="com.ssm.mapper.material.MaterialMapper.selectMaterialById"/>
   </resultMap>
 
   <!--物料收入表查询内容-->
@@ -45,13 +46,19 @@
   </foreach>
   </delete>
  <!--模糊查询-->
-  <select id="searchMaterialConsume" resultMap="MaterialReceiveMap">
-    select <include refid="Base_Receive_List"/> from material_receive where receive_id like '%${searchValue}%'
+  <select id="searchMaterialReceive" resultMap="MaterialReceiveMap">
+    select <include refid="Base_Receive_List"/> from material_receive where receive_id like CONCAT('%',#{searchValue},'%')
     limit #{offset},#{rows}
   </select>
   <!--模糊查询数量-->
   <select id="searchMaterialReceiveCount" resultType="_int">
-    select count(*) from material_receive where receive_id like '%${searchValue}%'
+    select count(*) from material_receive where receive_id like CONCAT('%',#{searchValue},'%')
   </select>
+
+
+  <!--更新备注-->
+  <update id="updateNote">
+    update material_receive set note = #{note} where receive_id = #{receiveId}
+  </update>
 
 </mapper>

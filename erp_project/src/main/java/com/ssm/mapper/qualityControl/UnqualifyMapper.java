@@ -15,6 +15,14 @@ public interface UnqualifyMapper {
 
     int deleteByIds(@Param("ids") String[] ids);
 
+    List searchList(@Param("target") String target, @Param("word") String word, @Param("offset") int offset, @Param("rows") int rows);
+
+    int searchAllCount(@Param("target") String target, @Param("word") String word);
+
+    int updateAll(@Param("record") UnqualifyApply record);
+
+    int insert(@Param("record") UnqualifyApply record);
+
 //    int deleteByPrimaryKey(String unqualifyApplyId);
 //
 //    int insert(UnqualifyApply record);

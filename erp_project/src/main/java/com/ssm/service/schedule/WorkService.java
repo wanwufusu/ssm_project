@@ -34,4 +34,6 @@ public interface WorkService {
     List<Work> queryPageWorkByProcessId(PageDetail pageDetail, Map<String, String> condition);
 
     int queryAllRecordByProcessId(Map<String, String> condition);
+
+    Work queryWorkById(String workId);
 }

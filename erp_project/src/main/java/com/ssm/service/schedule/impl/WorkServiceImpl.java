@@ -95,4 +95,9 @@ public class WorkServiceImpl implements WorkService {
     public int queryAllRecordByProcessId(Map<String, String> condition) {
         return workMapper.selectAllRecordsByCondition(condition);
     }
+
+    @Override
+    public Work queryWorkById(String workId) {
+        return workMapper.selectByPrimaryKey(workId);
+    }
 }

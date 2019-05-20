@@ -2,13 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ssm.mapper.qualityControl.ProcessMeasureCheckMapper">
-    <select id="findByPage" resultMap="BaseMap">
-        select p_measure_check_id,process_id,check_item,cdate,measure_data,p.emp_id,emp_name,result,p.note
-        from process_measure_check p,employee e
-        where p.emp_id=e.emp_id
-        limit #{offset},#{rows}
-    </select>
-
+    <!--映射-->
     <resultMap id="BaseMap" type="com.ssm.bean.qualityControl.ProcessMeasureCheck">
         <result property="pMeasureCheckId" column="p_measure_check_id" />
         <result property="processId" column="process_id" />
@@ -21,14 +15,35 @@
         <result property="note" column="note" />
     </resultMap>
 
+    <!--基本SQL语句-->
+    <sql id="one">
+        select p_measure_check_id,process_id,check_item,cdate,measure_data,p.emp_id,emp_name,result,p.note
+        from process_measure_check p,employee e
+        where p.emp_id=e.emp_id
+    </sql>
+
+    <!--普通查询-->
+    <select id="findByPage" resultMap="BaseMap">
+        <include refid="one"/>  limit #{offset},#{rows}
+    </select>
     <select id="findAllCount" resultType="_int">
         select count(process_id) from process_measure_check
     </select>
+    <!--模糊查询-->
+    <select id="searchList" resultMap="BaseMap">
+        <include refid="one"/> and ${target} like #{word} limit #{offset},#{rows}
+    </select>
+    <!--模糊查询数量-->
+    <select id="searchAllCount" resultType="_int">
+        select count(${target}) from process_measure_check where ${target} like #{word}
+    </select>
 
+    <!--更新备注-->
     <update id="updateNote">
         update process_measure_check set note=#{note} where p_measure_check_id=#{id}
     </update>
 
+    <!--批量删除-->
     <delete id="deleteByIds">
         delete from process_measure_check
         where p_measure_check_id in
@@ -36,4 +51,20 @@
             #{id}
         </foreach>
     </delete>
+
+    <!--添加-->
+    <insert id="insert">
+        insert into process_measure_check (p_measure_check_id,process_id,check_item,cdate,measure_data,emp_id,result,note)
+        values (#{record.pMeasureCheckId},#{record.processId},#{record.checkItem},
+        #{record.cdate},#{record.measureData},#{record.empId},#{record.result},#{record.note})
+    </insert>
+
+    <!--更新-->
+    <update id="updateAll">
+        update process_measure_check set process_id=#{record.processId},check_item=#{record.checkItem},cdate=#{record.cdate},
+        measure_data=#{record.measureData},emp_id=#{record.empId},result=#{record.result},note=#{record.note}
+        where p_measure_check_id=#{record.pMeasureCheckId}
+    </update>
+
+
 </mapper>

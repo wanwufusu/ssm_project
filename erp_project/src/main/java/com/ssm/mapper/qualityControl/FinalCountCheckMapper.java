@@ -16,6 +16,13 @@ public interface FinalCountCheckMapper {
 
     int deleteByIds(@Param("ids") String[] ids);
 
+    List searchList(@Param("target") String target, @Param("word") String word, @Param("offset") int offset, @Param("rows") int rows);
+
+    int searchAllCount(@Param("target") String target, @Param("word") String word);
+
+    int updateAll(@Param("record") FinalCountCheck record);
+
+    int insert(@Param("record") FinalCountCheck record);
 
 //    int deleteByPrimaryKey(String fCountCheckId);
 //
