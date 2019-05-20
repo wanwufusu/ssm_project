@@ -28,4 +28,10 @@ public interface TechnologyRequirementMapper {
     int updateByPrimaryKeySelective(TechnologyRequirement record);
 
     int updateByPrimaryKey(TechnologyRequirement record);
+
+    List<TechnologyRequirement> findByPage(@Param("rows") int rows, @Param("offset") int offset);
+
+    List<TechnologyRequirement> findById(@Param("id") String id, @Param("rows") Integer rows, @Param("offset") int offset);
+
+    List<TechnologyRequirement> findByName(@Param("name") String name, @Param("rows") Integer rows, @Param("offset") int offset);
 }

@@ -54,8 +54,14 @@ public class ProcessServiceImpl implements ProcessService {
     }
 
     @Override
-    public List<Process> findProcessById(String pid, Integer rows, Integer offset) {
+    public List<Process> findProcessById(String pid, int rows, int offset) {
         List<Process> processes = processMapper.findByPid(pid,rows,offset);
-        return null;
+        return processes;
+    }
+
+    @Override
+    public List<Process> findProcessByTid(String tid, int rows, int offset) {
+        List<Process> processes = processMapper.findByTid(tid,rows,offset);
+        return processes;
     }
 }

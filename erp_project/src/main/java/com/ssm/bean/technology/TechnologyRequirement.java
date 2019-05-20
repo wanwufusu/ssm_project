@@ -7,11 +7,23 @@ public class TechnologyRequirement {
 
     private String technologyId;
 
+    private String technologyName;
+
+    private Technology technology;
+
     private String requirement;
 
-    private Date addTime;
+    private String addTime;
 
-    private Date reviseTime;
+    private String reviseTime;
+
+    public Technology getTechnology() {
+        return technology;
+    }
+
+    public void setTechnology(Technology technology) {
+        this.technology = technology;
+    }
 
     public String getTechnologyRequirementId() {
         return technologyRequirementId;
@@ -29,6 +41,14 @@ public class TechnologyRequirement {
         this.technologyId = technologyId == null ? null : technologyId.trim();
     }
 
+    public String getTechnologyName() {
+        return technologyName;
+    }
+
+    public void setTechnologyName(String technologyName) {
+        this.technologyName = technologyName;
+    }
+
     public String getRequirement() {
         return requirement;
     }
@@ -37,19 +57,20 @@ public class TechnologyRequirement {
         this.requirement = requirement == null ? null : requirement.trim();
     }
 
-    public Date getAddTime() {
+    public String getAddTime() {
         return addTime;
     }
 
-    public void setAddTime(Date addTime) {
+    public void setAddTime(String addTime) {
         this.addTime = addTime;
     }
 
-    public Date getReviseTime() {
+    public String getReviseTime() {
         return reviseTime;
     }
 
-    public void setReviseTime(Date reviseTime) {
+    public void setReviseTime(String reviseTime) {
         this.reviseTime = reviseTime;
     }
+
 }

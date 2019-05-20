@@ -94,4 +94,10 @@
         where process_id = #{pid}
         limit #{offset} , #{rows}
     </select>
+  <select id="findByTid" resultMap="BaseResultMap">
+        select  process_id, technology_plan_id, sequence, quota
+        from process
+        where technology_plan_id = #{tid}
+        limit #{offset} , #{rows}
+    </select>
 </mapper>
