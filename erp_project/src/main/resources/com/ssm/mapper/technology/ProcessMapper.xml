@@ -88,4 +88,10 @@
         select  process_id, technology_plan_id, sequence, quota
         from process
     </select>
+  <select id="findByPid" resultMap="BaseResultMap">
+        select  process_id, technology_plan_id, sequence, quota
+        from process
+        where process_id = #{pid}
+        limit #{offset} , #{rows}
+    </select>
 </mapper>

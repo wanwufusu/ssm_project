@@ -71,4 +71,10 @@ public class TechnologyPlanServiceImpl implements TechnologyPlanService {
         List<TechnologyPlan> technologyPlans = technologyPlanMapper.findPlan();
         return technologyPlans;
     }
+
+    @Override
+    public TechnologyPlan findById(String technologyPlanId) {
+        TechnologyPlan data = technologyPlanMapper.selectByPrimaryKey(technologyPlanId);
+        return data;
+    }
 }

@@ -13,6 +13,6 @@ public interface TechnologyService {
        List<Technology> findTechnologyById(String id, int rows, int offset);
        List<Technology> findTechnologyByName(String name, int rows, int offset);
        List<Technology> findTechnology(int rows, int offset);
-       List findTechnologyId();
-
+       Technology findById(String technologyId);
+       List<Technology> findAll();
 }

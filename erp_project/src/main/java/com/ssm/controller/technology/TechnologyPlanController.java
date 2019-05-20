@@ -6,6 +6,7 @@ import com.ssm.bean.technology.TechnologyPlan;
 import com.ssm.service.technology.TechnologyPlanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -50,19 +51,13 @@ public class TechnologyPlanController {
     }
     @RequestMapping("insert")
     @ResponseBody
-    public Map insert(TechnologyPlan technologyPlan){
-        HashMap<String,Object> insertTechnologyPlanResult = new HashMap<>();
+    public ResponseMessage insert(TechnologyPlan technologyPlan){
         boolean flog = technologyPlanService.addTechnologyPlan(technologyPlan);
         if(flog){
-            insertTechnologyPlanResult.put("status",200);
-            insertTechnologyPlanResult.put("msg","OK");
-            insertTechnologyPlanResult.put("data",null);
-        }else {
-            insertTechnologyPlanResult.put("status",404);
-            insertTechnologyPlanResult.put("msg","fail");
-            insertTechnologyPlanResult.put("data","insert fail");
+            return new ResponseMessage(200,"OK",null);
+        }else{
+            return new ResponseMessage(404,"fail","insert fail");
         }
-        return insertTechnologyPlanResult;
     }
     @RequestMapping("edit_judge")
     @ResponseBody
@@ -90,19 +85,13 @@ public class TechnologyPlanController {
     }
     @RequestMapping("delete_batch")
     @ResponseBody
-    public Map delteteBatch(String ids){
-        HashMap<String,Object> deleteTechnologyPlanResult = new HashMap<>();
+    public ResponseMessage delteteBatch(String ids){
         boolean flag =technologyPlanService.deleteTechnologyPlan(ids);
         if(flag){
-            deleteTechnologyPlanResult.put("status",200);
-            deleteTechnologyPlanResult.put("msg","OK");
-            deleteTechnologyPlanResult.put("data","delete fail");
-        }else {
-            deleteTechnologyPlanResult.put("status",404);
-            deleteTechnologyPlanResult.put("msg","fail");
-            deleteTechnologyPlanResult.put("data","delete fail");
+            return new ResponseMessage(200,"OK",null);
+        }else{
+            return new ResponseMessage(404,"fail","delete fail");
         }
-        return deleteTechnologyPlanResult;
     }
     @RequestMapping("search_technologyPlan_by_technologyPlanId")
     @ResponseBody
@@ -146,6 +135,14 @@ public class TechnologyPlanController {
                 technologyPlan = technologyPlan1;
             }
         }
+        return data;
+    }
+    @RequestMapping("get/{technologyPlanId}")
+    @ResponseBody
+    public TechnologyPlan getDataById(@PathVariable("technologyPlanId") String technologyPlanId){
+        TechnologyPlan data = technologyPlanService.findById(technologyPlanId);
+        TechnologyPlan technologyPlan = technologyPlanService.getTechnology(data);
+        data = technologyPlan;
         return data;
     }
 }
