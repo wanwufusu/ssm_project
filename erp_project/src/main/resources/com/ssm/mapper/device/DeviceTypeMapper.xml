@@ -10,7 +10,9 @@
     <result column="device_type_producer" jdbcType="VARCHAR" property="deviceTypeProducer" />
     <result column="device_type_quantity" jdbcType="INTEGER" property="deviceTypeQuantity" />
     <result column="device_type_warranty" jdbcType="TIMESTAMP" property="deviceTypeWarranty" />
+    <!--<result column="device_type_params" jdbcType="VARCHAR" property="deviceTypeParams" />-->
   </resultMap>
+
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -73,7 +75,49 @@
     device_type_id, device_type_name, device_type_model, device_type_spec, device_type_supplier, 
     device_type_producer, device_type_quantity, device_type_warranty
   </sql>
-  <select id="selectByExample" parameterType="com.ssm.bean.device.DeviceTypeExample" resultMap="BaseResultMap">
+  <!--动态sql语句，包含device_Type的列名-->
+  <sql id="Base_DeviceType_List">
+    device_type_id,device_type_name,device_type_model,device_type_spec,device_type_supplier,device_type_producer,device_type_quantity,device_type_warranty
+  </sql>
+  <!--分页查询list-->
+  <select id="queryAllDeviceTypeByPage"  resultMap="BaseResultMap">
+    select <include refid="Base_DeviceType_List"/>
+    from device_type
+    limit #{offset},#{rows}
+  </select>
+  <!--根据id查询-->
+  <select id="queryDeviceTypeById" resultMap="BaseResultMap">
+    select <include refid="Base_DeviceType_List"/>
+    from device_type where device_type_id=#{device_id}
+  </select>
+  <!--接口查询list-->
+  <select id="queryAllDeviceType"  resultMap="BaseResultMap">
+    select <include refid="Base_DeviceType_List"/>
+    from device_type
+  </select>
+  <!--插入-->
+  <insert id="insertDeviceType" parameterType="com.ssm.bean.device.DeviceType">
+    insert into device_type (<include refid="Base_DeviceType_List"/>)
+    values (#{deviceType.deviceTypeId},#{deviceType.deviceTypeName},#{deviceType.deviceTypeModel},#{deviceType.deviceTypeSpec},#{deviceType.deviceTypeSupplier},#{deviceType.deviceTypeProducer},#{deviceType.deviceTypeQuantity},#{deviceType.deviceTypeWarranty})
+  </insert>
+ <!--修改-->
+  <update id="updateDeviceType" parameterType="com.ssm.bean.device.DeviceType">
+    update device_type
+    set device_type_name=#{deviceType.deviceTypeName},
+    device_type_model=#{deviceType.deviceTypeModel},
+    device_type_spec=#{deviceType.deviceTypeSpec},
+    device_type_supplier=#{deviceType.deviceTypeSupplier},
+    device_type_producer=#{deviceType.deviceTypeProducer},
+    device_type_quantity=#{deviceType.deviceTypeQuantity},
+    device_type_warranty=#{deviceType.deviceTypeWarranty}
+    where device_type_id=#{deviceType.deviceTypeId}
+  </update>
+  <!--删除-->
+  <delete id="deleteDeviceType" parameterType="java.lang.String">
+    delete from device_type
+    where device_type_id=#{id}
+  </delete>
+<!--  <select id="selectByExample" parameterType="com.ssm.bean.device.DeviceTypeExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -167,14 +211,14 @@
         #{deviceTypeWarranty,jdbcType=TIMESTAMP},
       </if>
     </trim>
-  </insert>
+  </insert>-->
   <select id="countByExample" parameterType="com.ssm.bean.device.DeviceTypeExample" resultType="java.lang.Long">
     select count(*) from device_type
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map">
+<!--  <update id="updateByExampleSelective" parameterType="map">
     update device_type
     <set>
       <if test="record.deviceTypeId != null">
@@ -257,5 +301,5 @@
       device_type_quantity = #{deviceTypeQuantity,jdbcType=INTEGER},
       device_type_warranty = #{deviceTypeWarranty,jdbcType=TIMESTAMP}
     where device_type_id = #{deviceTypeId,jdbcType=VARCHAR}
-  </update>
+  </update>-->
 </mapper>

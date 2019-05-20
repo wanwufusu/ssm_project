@@ -1,31 +1,40 @@
 package com.ssm.service.device.impl;
 
-
+import com.ssm.bean.device.Device;
 import com.ssm.bean.device.DevicePage;
-import com.ssm.bean.device.DeviceType;
-import com.ssm.bean.device.DeviceTypeExample;
-import com.ssm.mapper.device.DeviceTypeMapper;
+import com.ssm.mapper.device.DeviceMapper;
 import com.ssm.service.device.DeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+
 
 @Service
 public class DeviceServiceImpl implements DeviceService {
 
     @Autowired
-    DeviceTypeMapper deviceTypeMapper;
+    DeviceMapper deviceMapper;
     @Override
-    public List<DeviceType> queryDeviceType(DevicePage devicePage) {
+    public List<Device> queryDevice(DevicePage devicePage) {
+        int rows = devicePage.getRows();
+        int offset = devicePage.getOffset();
+        List<Device> devices = deviceMapper.queryAllDeviceByPage(offset,rows);
+        return devices;
+    }
 
+    @Override
+    public int findCount() {
+        return deviceMapper.findCount();
+    }
+
+    /*@Override
+    public int insertDeviceType(Device device) {
+        return 0;
+    }
+
+    @Override
+    public List<Device> getDataOfDevice() {
         return null;
-    }
-
-    @Override
-    public int queryAllDeviceTypeRecord() {
-        DeviceTypeExample deviceTypeExample = new DeviceTypeExample();
-        return (int) deviceTypeMapper.countByExample(deviceTypeExample);
-    }
+    }*/
 }

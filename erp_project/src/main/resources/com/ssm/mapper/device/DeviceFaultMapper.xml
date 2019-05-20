@@ -9,7 +9,52 @@
     <result column="device_fault_date" jdbcType="TIMESTAMP" property="deviceFaultDate" />
     <result column="device_fault_maintenance" jdbcType="VARCHAR" property="deviceFaultMaintenance" />
   </resultMap>
-  <sql id="Example_Where_Clause">
+
+  <sql id="Base_DeviceFault_List">
+    device_id,device_fault_cause,device_fault_detail,device_fault_date,device_fault_maintenance
+  </sql>
+  <!--接口查询list-->
+  <select id="queryAllDeviceFault"  resultMap="BaseResultMap">
+    select <include refid="Base_DeviceFault_List"/>
+    from device_fault
+  </select>
+  <!--分页查询list-->
+  <select id="queryAllDeviceFaultByPage"  resultMap="BaseResultMap">
+    select <include refid="Base_DeviceFault_List"/>
+    from device_fault
+    limit #{offset},#{rows}
+  </select>
+  <!--查个数-->
+  <select id="queryAllDeviceFaultRecord" resultType="_int">
+    select count(*) from device_fault
+  </select>
+  <!--根据deviceFaultId查询-->
+  <select id="queryDeviceFaultById" resultMap="BaseResultMap">
+    select <include refid="Base_DeviceFault_List"/>
+    from device_fault where device_fault_id=#{deviceFaultId}
+  </select>
+  <!--删除-->
+  <delete id="deleteDeviceFault" parameterType="java.lang.String">
+    delete from device_fault
+    where device_fault_id=#{id}
+  </delete>
+  <!--插入-->
+  <insert id="insertDeviceFault" parameterType="com.ssm.bean.device.DeviceFault">
+    insert into device_fault (<include refid="Base_DeviceFault_List"/>)
+    values (#{deviceFaultId},#{deviceId},#{deviceFaultCause},#{deviceFaultDetail},#{deviceFaultDate},#{deviceFaultMaintenance})
+  </insert>
+  <!--修改-->
+  <update id="updateDeviceFault" parameterType="com.ssm.bean.device.DeviceFault">
+    update device_fault
+    set device_id=#{deviceId},
+    device_fault_cause=#{deviceFaultCause},
+    device_fault_detail=#{deviceFaultDetail},
+    device_fault_date=#{deviceFaultDate},
+    device_fault_maintenance=#{deviceFaultMaintenance}
+    where device_fault_id=#{deviceFaultId}
+  </update>
+</mapper>
+  <!--<sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
         <if test="criteria.valid">
@@ -226,4 +271,4 @@
       device_fault_maintenance = #{deviceFaultMaintenance,jdbcType=VARCHAR}
     where device_fault_id = #{deviceFaultId,jdbcType=VARCHAR}
   </update>
-</mapper>
+</mapper>-->

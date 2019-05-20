@@ -8,7 +8,14 @@ import com.ssm.bean.device.DeviceExample;
 import org.apache.ibatis.annotations.Param;
 
 public interface DeviceMapper {
-    long countByExample(DeviceExample example);
+
+    List<Device> queryAllDeviceByPage(int offset, int rows);
+
+    int findCount();
+
+    //逆向工程生成
+
+    /*long countByExample(DeviceExample example);
 
     int deleteByExample(DeviceExample example);
 
@@ -28,5 +35,7 @@ public interface DeviceMapper {
 
     int updateByPrimaryKeySelective(Device record);
 
-    int updateByPrimaryKey(Device record);
+    int updateByPrimaryKey(Device record);*/
+
+
 }

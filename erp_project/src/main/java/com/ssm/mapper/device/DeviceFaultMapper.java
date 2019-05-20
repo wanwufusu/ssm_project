@@ -8,7 +8,31 @@ import com.ssm.bean.device.DeviceFaultExample;
 import org.apache.ibatis.annotations.Param;
 
 public interface DeviceFaultMapper {
-    long countByExample(DeviceFaultExample example);
+
+
+    List<DeviceFault> queryAllDeviceFaultByPage(@Param("offset") int offset,@Param("rows") int rows);
+
+    int insertDeviceFault(DeviceFault deviceFault);
+
+    //deviceType的接口
+    List<DeviceFault> queryAllDeviceFault();
+
+    //根据id来查询
+    DeviceFault queryDeviceFaultById(int deviceFaultId);
+
+    int updateDeviceFault(DeviceFault deviceFault);
+
+    int deleteDeviceFault(@Param("id") String ids);
+
+    int queryAllDeviceFaultRecord();
+
+
+
+
+
+
+    /*以下是自动生成的-----------------------*/
+    /*long countByExample(DeviceFaultExample example);
 
     int deleteByExample(DeviceFaultExample example);
 
@@ -28,5 +52,5 @@ public interface DeviceFaultMapper {
 
     int updateByPrimaryKeySelective(DeviceFault record);
 
-    int updateByPrimaryKey(DeviceFault record);
+    int updateByPrimaryKey(DeviceFault record);*/
 }

@@ -3,6 +3,7 @@ package com.ssm.mapper.device;
 
 import java.util.List;
 
+import com.ssm.bean.device.DevicePage;
 import com.ssm.bean.device.DeviceType;
 import com.ssm.bean.device.DeviceTypeExample;
 import org.apache.ibatis.annotations.Param;
@@ -10,7 +11,22 @@ import org.apache.ibatis.annotations.Param;
 public interface DeviceTypeMapper {
     long countByExample(DeviceTypeExample example);
 
-    int deleteByExample(DeviceTypeExample example);
+    List<DeviceType> queryAllDeviceTypeByPage(@Param("offset") int offset,@Param("rows") int rows);
+
+    int insertDeviceType(@Param("deviceType") DeviceType deviceType);
+
+    //deviceType的接口
+    List<DeviceType> queryAllDeviceType();
+
+    //根据id来查询
+    DeviceType queryDeviceTypeById(@Param("deviceType_id") int deviceTypeId);
+
+    int updateDeviceType(@Param("deviceType")DeviceType deviceType);
+
+    int deleteDeviceType(@Param("id") String ids);
+
+
+/*    int deleteByExample(DeviceTypeExample example);
 
     int deleteByPrimaryKey(String deviceTypeId);
 
@@ -28,5 +44,5 @@ public interface DeviceTypeMapper {
 
     int updateByPrimaryKeySelective(DeviceType record);
 
-    int updateByPrimaryKey(DeviceType record);
+    int updateByPrimaryKey(DeviceType record);*/
 }

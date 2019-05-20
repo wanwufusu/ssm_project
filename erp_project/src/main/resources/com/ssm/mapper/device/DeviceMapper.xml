@@ -13,8 +13,24 @@
     <result column="device_service_life" jdbcType="TIMESTAMP" property="deviceServiceLife" />
     <result column="device_keeper_id" jdbcType="VARCHAR" property="deviceKeeperId" />
     <result column="note" jdbcType="VARCHAR" property="note" />
+    <!--<association property="com.ssm.bean.device.Device" column="device_type_id" select="com.ssm.mapper.device.DeviceTypeMapper.queryDeviceTypeById"/>-->
   </resultMap>
-  <sql id="Example_Where_Clause">
+
+  <sql id="Base_Device_List">
+    device_id,device_name,device_type_id,device_status,device_purchase_date,device_purchase_price,device_manufacture_date,device_service_life,device_keeper_id,note
+  </sql>
+  <!--查询分页的device-->
+  <select id="queryAllDeviceByPage" resultMap="BaseResultMap">
+     select device_id,device_name,d.device_type_id,device_type_name,device_status_id,device_status,device_purchase_date,device_purchase_price,device_manufacture_date,device_service_life,device_keeper_id,d.note
+    from device_type t,device d where t.device_type_id=d.device_type_id limit #{offset},#{rows}
+  </select>
+  <!--查所有的个数-->
+  <select id="findCount" resultType="_int">
+    select count(*) from device
+  </select>
+</mapper>
+
+  <!--<sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
         <if test="criteria.valid">
@@ -305,5 +321,6 @@
       device_keeper_id = #{deviceKeeperId,jdbcType=VARCHAR},
       note = #{note,jdbcType=VARCHAR}
     where device_id = #{deviceId,jdbcType=VARCHAR}
-  </update>
-</mapper>
+  </update>-->
+<!--
+</mapper>-->

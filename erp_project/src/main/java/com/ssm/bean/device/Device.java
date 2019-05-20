@@ -8,6 +8,8 @@ public class Device {
 
     private String deviceName;
 
+    /*private DeviceType deviceType;*/
+
     private String deviceTypeId;
 
     private String deviceStatusId;
@@ -25,6 +27,24 @@ public class Device {
     private String deviceKeeperId;
 
     private String note;
+
+    private String deviceParams;
+
+   /* public DeviceType getDeviceType() {
+        return deviceType;
+    }
+
+    public void setDeviceType(DeviceType deviceType) {
+        this.deviceType = deviceType;
+    }*/
+
+    public String getDeviceParams() {
+        return deviceParams;
+    }
+
+    public void setDeviceParams(String deviceParams) {
+        this.deviceParams = deviceParams;
+    }
 
     public String getDeviceId() {
         return deviceId;
