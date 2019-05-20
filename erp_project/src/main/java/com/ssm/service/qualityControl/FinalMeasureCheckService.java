@@ -18,4 +18,8 @@ public interface FinalMeasureCheckService {
 
     int searchAllCount(String target, String word);
 
+    int updateAll(FinalMeasuretCheck record);
+
+    int  insert(FinalMeasuretCheck record);
+
 }

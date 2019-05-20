@@ -46,4 +46,13 @@ public class ProcessCountCheckServiceImpl implements ProcessCountCheckService {
         int i = mapper.searchAllCount(target, word);
         return i;
     }
+
+    @Override
+    public int updateAll(ProcessCountCheck record) {
+        return mapper.updateAll(record);
+    }
+    @Override
+    public int insert(ProcessCountCheck record) {
+        return mapper.insert(record);
+    }
 }

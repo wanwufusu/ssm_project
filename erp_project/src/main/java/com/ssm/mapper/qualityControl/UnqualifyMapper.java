@@ -19,6 +19,9 @@ public interface UnqualifyMapper {
 
     int searchAllCount(@Param("target") String target, @Param("word") String word);
 
+    int updateAll(@Param("record") UnqualifyApply record);
+
+    int insert(@Param("record") UnqualifyApply record);
 
 //    int deleteByPrimaryKey(String unqualifyApplyId);
 //

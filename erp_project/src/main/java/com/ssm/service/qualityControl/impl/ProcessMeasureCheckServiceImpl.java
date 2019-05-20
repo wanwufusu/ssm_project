@@ -46,4 +46,13 @@ public class ProcessMeasureCheckServiceImpl implements ProcessMeasureCheckServic
         int i = mapper.searchAllCount(target, word);
         return i;
     }
+
+    @Override
+    public int updateAll(ProcessMeasureCheck record) {
+        return mapper.updateAll(record);
+    }
+    @Override
+    public int insert(ProcessMeasureCheck record) {
+        return mapper.insert(record);
+    }
 }

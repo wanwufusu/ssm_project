@@ -20,7 +20,9 @@ public interface FinalMeasuretCheckMapper {
 
     int searchAllCount(@Param("target") String target, @Param("word") String word);
 
+    int updateAll(@Param("record") FinalMeasuretCheck record);
 
+    int insert(@Param("record") FinalMeasuretCheck record);
 //    int deleteByPrimaryKey(String fMeasureCheckId);
 //
 //    int insert(FinalMeasuretCheck record);

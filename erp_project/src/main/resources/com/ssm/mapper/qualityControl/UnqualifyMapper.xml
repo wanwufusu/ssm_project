@@ -59,4 +59,19 @@
 
 
 
+    <!--添加-->
+    <insert id="insert">
+        insert into unqualify_apply (unqualify_apply_id,product_id,unqualify_item,unqualify_count,assembly_date,emp_id,apply_date,note)
+        values (#{record.unqualifyApplyId},#{record.productId},#{record.unqualifyItem},
+        #{record.unqualifyCount},#{record.assemblyDate},#{record.empId},#{record.applyDate},#{record.note})
+    </insert>
+
+    <!--更新-->
+    <update id="updateAll">
+        update unqualify_apply set product_id=#{record.productId}, unqualify_item=#{record.unqualifyItem},unqualify_count=#{record.unqualifyCount},
+        assembly_date=#{record.assemblyDate},emp_id=#{record.empId},apply_date=#{record.applyDate},note=#{record.note}
+        where unqualify_apply_id=#{record.unqualifyApplyId}
+    </update>
+
+
 </mapper>

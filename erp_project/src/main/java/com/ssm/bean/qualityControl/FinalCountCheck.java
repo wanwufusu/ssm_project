@@ -18,7 +18,7 @@ public class FinalCountCheck {
 
     private BigDecimal qualify;
 
-    private Date cdate;
+    private String cdate;
 
     private String measureData;
 
@@ -37,6 +37,8 @@ public class FinalCountCheck {
     private String result;
 
     private String note;
+
+
 
     public String getfCountCheckId() {
         return fCountCheckId;
@@ -94,11 +96,11 @@ public class FinalCountCheck {
         this.qualify = qualify;
     }
 
-    public Date getCdate() {
+    public String getCdate() {
         return cdate;
     }
 
-    public void setCdate(Date cdate) {
+    public void setCdate(String cdate) {
         this.cdate = cdate;
     }
 

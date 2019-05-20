@@ -46,4 +46,13 @@ public class FinalCountCheckServiceImpl implements FinalCountCheckService {
         int i = mapper.searchAllCount(target, word);
         return i;
     }
+
+    @Override
+    public int updateAll(FinalCountCheck record) {
+        return mapper.updateAll(record);
+    }
+    @Override
+    public int insert(FinalCountCheck record) {
+        return mapper.insert(record);
+    }
 }

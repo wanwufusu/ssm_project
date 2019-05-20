@@ -1,6 +1,7 @@
 package com.ssm.service.qualityControl;
 
 import com.ssm.bean.qualityControl.FinalCountCheck;
+import com.ssm.bean.qualityControl.UnqualifyApply;
 
 import java.util.List;
 
@@ -17,4 +18,8 @@ public interface FinalCountCheckService {
     List searchList(String target, String word, int offset, int rows);
 
     int searchAllCount(String target, String word);
+
+    int updateAll(FinalCountCheck record);
+
+    int  insert(FinalCountCheck record);
 }

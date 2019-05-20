@@ -57,4 +57,18 @@
         </foreach>
     </delete>
 
+    <!--添加-->
+    <insert id="insert">
+        insert into process_count_check (p_count_check_id,process_id,check_item,sample,check_number,unqualify,qualify,cdate,measure_data,emp_id,result,note)
+        values (#{record.pCountCheckId},#{record.processId},#{record.checkItem},
+        #{record.sample},#{record.checkNumber},#{record.unqualify},#{record.qualify},#{record.cdate},#{record.measureData},#{record.empId},#{record.result},#{record.note})
+    </insert>
+
+    <!--更新-->
+    <update id="updateAll">
+        update process_count_check set process_id=#{record.processId},check_item=#{record.checkItem},sample=#{record.sample},
+        check_number=#{record.checkNumber},unqualify=#{record.unqualify},qualify=#{record.qualify},cdate=#{record.cdate},measure_data=#{record.measureData},emp_id=#{record.empId},result=#{record.result},note=#{record.note}
+        where p_count_check_id=#{record.pCountCheckId}
+    </update>
+
 </mapper>

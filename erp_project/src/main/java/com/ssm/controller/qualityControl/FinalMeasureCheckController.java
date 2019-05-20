@@ -76,8 +76,31 @@ public class FinalMeasureCheckController {
         return vo;
     }
 
+    @RequestMapping("edit")
+    public String edit(){
+        return "measurement_edit";
+    }
+
+    @RequestMapping("add")
+    public String add(){
+        return "measurement_add";
+    }
 
 
+
+    @RequestMapping("insert")
+    @ResponseBody
+    public ResponseMessage insert(FinalMeasuretCheck un){
+        int i = service.insert(un);
+        return ResponseMessage.getMessage(i);
+    }
+
+    @RequestMapping("update_all")
+    @ResponseBody
+    public ResponseMessage update_all(FinalMeasuretCheck un){
+        int i = service.updateAll(un);
+        return ResponseMessage.getMessage(i);
+    }
 
 
 

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 @Controller
-@RequestMapping("/f_count_check")
+@RequestMapping("f_count_check")
 public class FinalCountCheckController {
 
     @Autowired
@@ -67,7 +67,29 @@ public class FinalCountCheckController {
         return vo;
     }
 
+    @RequestMapping("edit")
+    public String edit(){
+        return "f_count_check_edit";
+    }
+
+    @RequestMapping("add")
+    public String add(){
+        return "f_count_check_add";
+    }
 
 
+    @RequestMapping("insert")
+    @ResponseBody
+    public ResponseMessage insert(FinalCountCheck un){
+        int i = service.insert(un);
+        return ResponseMessage.getMessage(i);
+    }
+
+    @RequestMapping("update_all")
+    @ResponseBody
+    public ResponseMessage update_all(FinalCountCheck un){
+        int i = service.updateAll(un);
+        return ResponseMessage.getMessage(i);
+    }
 
 }

@@ -20,6 +20,10 @@ public interface FinalCountCheckMapper {
 
     int searchAllCount(@Param("target") String target, @Param("word") String word);
 
+    int updateAll(@Param("record") FinalCountCheck record);
+
+    int insert(@Param("record") FinalCountCheck record);
+
 //    int deleteByPrimaryKey(String fCountCheckId);
 //
 //    int insert(FinalCountCheck record);
