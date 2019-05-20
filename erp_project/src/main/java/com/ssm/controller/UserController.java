@@ -27,7 +27,7 @@ public class UserController {
    @RequestMapping("/ajaxLogin" )
    @ResponseBody
     public Object login(String username, String password){
-       session.setMaxInactiveInterval(60);
+       session.setMaxInactiveInterval(60*30);
        Map<String,Object> map = new HashMap<>();
         User user;
             if (userService.findUserByUsername(username) != null) {
