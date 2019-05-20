@@ -47,11 +47,11 @@
  </delete>
 <!--模糊查询-->
   <select id="searchMaterial" resultMap="MaterialMap">
-  select <include refid="Base_Column_List"/> from material where material_id like '%${searchValue}%'
+  select <include refid="Base_Column_List"/> from material where material_id like CONCAT('%',#{searchValue},'%')
   limit #{offset},#{rows}
 </select>
   <select id="searchMaterialCount" resultType="_int">
-    select count(*) from material where material_id like '%${searchValue}%'
+    select count(*) from material where material_id like CONCAT('%',#{searchValue},'%')
   </select>
 
   <!--更新备注-->

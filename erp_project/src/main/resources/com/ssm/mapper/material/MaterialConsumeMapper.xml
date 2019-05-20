@@ -67,12 +67,12 @@
   </delete>
   <!--模糊查询-->
   <select id="searchMaterialConsume" resultMap="MaterialConsumeMap">
-    select <include refid="Base_Consume_List"/> from material_consume where consume_id like '%${searchValue}%'
+    select <include refid="Base_Consume_List"/> from material_consume where consume_id like CONCAT('%',#{searchValue},'%')
                                                 limit #{offset},#{rows}
   </select>
   <!--模糊查询数量-->
   <select id="searchMaterialConsumeCount" resultType="_int">
-    select count(*) from material_consume where consume_id like '%${searchValue}%'
+    select count(*) from material_consume where consume_id like CONCAT('%',#{searchValue},'%')
   </select>
 
     <!--更新备注-->
