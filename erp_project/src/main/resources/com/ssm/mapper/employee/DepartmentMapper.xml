@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.mapper.employee.DepartmentMapper">
+    <resultMap id="BaseResultMap" type="com.ssm.bean.employee.Department">
+        <id column="department_id" jdbcType="VARCHAR" property="departmentId" />
+        <result column="department_name" jdbcType="VARCHAR" property="departmentName" />
+        <result column="note" jdbcType="VARCHAR" property="note" />
+    </resultMap>
+
+    <select id="selectDepartmentList" resultMap="BaseResultMap">
+      select department_id, department_name, note from department
+  </select>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        select department_id, department_name, note from department where department_id like CONCAT('%',#{id},'%')
+    </select>
+
+    <select id="searchDepartmentListById" resultMap="BaseResultMap">
+      select department_id, department_name, note from department where department_id like CONCAT('%',#{id},'%')
+  </select>
+
+    <select id="searchDepartmentListByName" resultMap="BaseResultMap">
+      select department_id, department_name, note from department where department_name like CONCAT('%',#{name},'%')
+  </select>
+
+    <insert id="insertDepartment">
+      insert into department (department_id, department_name, note) values(#{departmentId},#{departmentName},#{note})
+  </insert>
+
+    <delete id="deleteDepartmentById">
+    delete from department where department_id = #{id}
+  </delete>
+
+    <update id="editDepartment">
+      update department set department_name = #{param2} ,note=#{param3} where department_id = #{param1}
+  </update>
+
+    <update id="updateNoteById">
+      update department set note = #{param2} where department_id = #{param1}
+    </update>
+</mapper>

@@ -1,5 +1,7 @@
 package com.ssm.bean.material;
 
+import com.ssm.bean.schedule.Work;
+
 import java.util.Date;
 
 public class MaterialConsume {

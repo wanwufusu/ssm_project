@@ -1,7 +1,8 @@
 package com.ssm.mapper.material;
 
 import com.ssm.bean.material.MaterialConsume;
-import com.ssm.bean.material.Work;
+
+import com.ssm.bean.schedule.Work;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -19,4 +20,12 @@ public interface MaterialConsumeMapper {
     int insertMaterialConsume(MaterialConsume materialConsume);
 
     List findWorkList();
+
+    int updateMaterialConsumeById(MaterialConsume materialConsume);
+
+    int deleteBatch(@Param("ids") String[] ids);
+
+    List<MaterialConsume> searchMaterialConsume(@Param("offset") int offset,@Param("rows") int rows, @Param("searchValue") String searchValue);
+
+    int searchMaterialConsumeCount(@Param("searchValue") String searchValue);
 }

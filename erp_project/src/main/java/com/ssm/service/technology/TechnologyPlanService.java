@@ -11,4 +11,7 @@ public interface TechnologyPlanService {
     List<TechnologyPlan> findTechnologyPlanById(String id, int rows, int offset);
     List<TechnologyPlan> findTechnologyPlanByName(String name, int rows, int offset);
     List<TechnologyPlan> findTechnologyPlan(int rows, int offset);
+    TechnologyPlan getTechnology(TechnologyPlan technologyPlan);
+    List<TechnologyPlan> findPlan();
+    TechnologyPlan findById(String technologyPlanId);
 }

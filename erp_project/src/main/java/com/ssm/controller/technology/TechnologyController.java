@@ -7,13 +7,11 @@ import com.ssm.bean.technology.Technology;
 import com.ssm.service.technology.TechnologyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 
 @Controller
 @RequestMapping("technology")
@@ -29,10 +27,10 @@ public class TechnologyController {
     public ResponseVO list(Integer page, Integer rows){
         int offset = (page - 1) * rows;
         List<Technology> technologies = technologyService.findTechnology(rows,offset);
-        ResponseVO ResponseVO = new ResponseVO();
-        ResponseVO.setRows(technologies);
-        ResponseVO.setTotal(technologies == null?0:technologies.size());
-        return ResponseVO;
+        ResponseVO responseVO = new ResponseVO();
+        responseVO.setRows(technologies);
+        responseVO.setTotal(technologies == null?0:technologies.size());
+        return responseVO;
     }
     @RequestMapping("add")
     public String add(){
@@ -46,19 +44,13 @@ public class TechnologyController {
     }
     @RequestMapping("insert")
     @ResponseBody
-    public Map insert(Technology technology){
-        HashMap<String,Object> insertTechnologyResult = new HashMap<>();
+    public ResponseMessage insert(Technology technology){
         boolean flog = technologyService.addTechnology(technology);
         if(flog){
-            insertTechnologyResult.put("status",200);
-            insertTechnologyResult.put("msg","OK");
-            insertTechnologyResult.put("data",null);
-        }else {
-            insertTechnologyResult.put("status",404);
-            insertTechnologyResult.put("msg","fail");
-            insertTechnologyResult.put("data","insert fail");
+            return new ResponseMessage(200,"OK",null);
+        }else{
+            return new ResponseMessage(404,"fail","insert fail");
         }
-        return insertTechnologyResult;
     }
     @RequestMapping("edit_judge")
     @ResponseBody
@@ -86,45 +78,43 @@ public class TechnologyController {
     }
     @RequestMapping("delete_batch")
     @ResponseBody
-    public Map delteteBatch(String ids){
-        HashMap<String,Object> deleteTechnologyResult = new HashMap<>();
+    public ResponseMessage delteteBatch(String ids){
         boolean flag =technologyService.deleteTechnology(ids);
         if(flag){
-            deleteTechnologyResult.put("status",200);
-            deleteTechnologyResult.put("msg","OK");
-            deleteTechnologyResult.put("data","delete fail");
-        }else {
-            deleteTechnologyResult.put("status",404);
-            deleteTechnologyResult.put("msg","fail");
-            deleteTechnologyResult.put("data","delete fail");
+            return new ResponseMessage(200,"OK",null);
+        }else{
+            return new ResponseMessage(404,"fail","delete fail");
         }
-        return deleteTechnologyResult;
     }
     @RequestMapping("search_technology_by_technologyId")
     @ResponseBody
     public ResponseVO searchByTechnologyId(String searchValue,Integer page,Integer rows){
         int offset = (page - 1) * rows;
         List<Technology> technologies = technologyService.findTechnologyById(searchValue,rows,offset);
-        ResponseVO<Technology> ResponseVO = new ResponseVO<>();
-        ResponseVO.setRows(technologies);
-        ResponseVO.setTotal(technologies == null?0:technologies.size());
-        return ResponseVO;
+        ResponseVO<Technology> responseVO = new ResponseVO<>();
+        responseVO.setRows(technologies);
+        responseVO.setTotal(technologies == null?0:technologies.size());
+        return responseVO;
     }
     @RequestMapping("search_technology_by_technologyName")
     @ResponseBody
     public ResponseVO searchByTechnologyName(String searchValue,Integer page,Integer rows){
         int offset = (page - 1) * rows;
         List<Technology> technologies = technologyService.findTechnologyByName(searchValue,rows,offset);
-        ResponseVO<Technology> ResponseVO = new ResponseVO<>();
-        ResponseVO.setRows(technologies);
-        ResponseVO.setTotal(technologies == null?0:technologies.size());
-        return ResponseVO;
+        ResponseVO<Technology> responseVO = new ResponseVO<>();
+        responseVO.setRows(technologies);
+        responseVO.setTotal(technologies == null?0:technologies.size());
+        return responseVO;
     }
     @RequestMapping("get_data")
     @ResponseBody
-    public List getData(){
-        List data = technologyService.findTechnologyId();
+    public List<Technology> getData(){
+        List<Technology> data = technologyService.findAll();
         return data;
     }
-
+    @RequestMapping("get/{technologyId}")
+    @ResponseBody
+    public Technology getDataById(@PathVariable("technologyId") String technologyId){
+        return technologyService.findById(technologyId);
+    }
 }

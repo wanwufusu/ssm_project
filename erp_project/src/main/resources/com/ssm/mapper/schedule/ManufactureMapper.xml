@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.mapper.schedule.ManufactureMapper">
+  <resultMap id="BaseResultMap" type="com.ssm.bean.schedule.Manufacture">
+    <id column="manufacture_sn" jdbcType="VARCHAR" property="manufactureSn" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="technology_id" jdbcType="VARCHAR" property="technologyId" />
+    <result column="launch_quantity" jdbcType="INTEGER" property="launchQuantity" />
+    <result column="begin_date" jdbcType="TIMESTAMP" property="beginDate" />
+    <result column="end_date" jdbcType="TIMESTAMP" property="endDate" />
+  </resultMap>
+  <resultMap id="JoinResultMap" type="com.ssm.bean.schedule.Manufacture">
+    <id column="manufacture_sn" jdbcType="VARCHAR" property="manufactureSn" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="technology_id" jdbcType="VARCHAR" property="technologyId" />
+    <result column="launch_quantity" jdbcType="INTEGER" property="launchQuantity" />
+    <result column="begin_date" jdbcType="TIMESTAMP" property="beginDate" />
+    <result column="end_date" jdbcType="TIMESTAMP" property="endDate" />
+    <association property="cOrder" javaType="order">
+      <result column="order_id" property="orderId" />
+    </association>
+    <association property="technology" javaType="technology">
+      <result column="technology_id" property="technologyId"/>
+      <result column="technology_name" property="technologyName"/>
+    </association>
+  </resultMap>
+  <sql id="Base_Column_List">
+    manufacture_sn, order_id, technology_id, launch_quantity, begin_date, end_date
+  </sql>
+  <sql id="Join_Column_List">
+    manufacture.manufacture_sn, manufacture.order_id, manufacture.technology_id, manufacture.launch_quantity,
+    manufacture.begin_date, manufacture.end_date, c_order.order_id, technology.technology_name
+  </sql>
+  <sql id="manufacture_relatived_database">
+    manufacture, c_order, technology
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="JoinResultMap">
+    select 
+    <include refid="Join_Column_List" />
+    from
+    <include refid="manufacture_relatived_database"/>
+    <where>
+      c_order.order_id = manufacture.order_id
+      and technology.technology_id = manufacture.technology_id
+      and manufacture.manufacture_sn = #{manufactureSn,jdbcType=VARCHAR}
+    </where>
+  </select>
+  <select id="selectByPageInformation" resultMap="JoinResultMap">
+    select
+    <include refid="Join_Column_List"/>
+    from
+    <include refid="manufacture_relatived_database"/>
+    <where>
+      c_order.order_id = manufacture.order_id
+      and technology.technology_id = manufacture.technology_id
+    </where>
+    <if test="#{pageDetail} != null">
+      limit #{pageDetail.rows} offset #{pageDetail.offset}
+    </if>
+  </select>
+  <select id="selectAllRecords" resultType="_int">
+    select
+    count(*)
+    from
+    <include refid="manufacture_relatived_database"/>
+    <where>
+      c_order.order_id = manufacture.order_id
+      and technology.technology_id = manufacture.technology_id
+    </where>
+  </select>
+  <select id="selectByPageAndManufactureCondition" resultMap="JoinResultMap">
+    select
+    <include refid="Join_Column_List"/>
+    from
+    <include refid="manufacture_relatived_database"/>
+    <where>
+      c_order.order_id = manufacture.order_id
+      and technology.technology_id = manufacture.technology_id
+      <if test="condition.manufactureSn != null">
+        and manufacture.manufacture_sn like #{condition.manufactureSn}
+      </if>
+      <if test="condition.orderId != null">
+        and manufacture.order_id like #{condition.orderId}
+      </if>
+      <if test="condition.technologyName != null">
+        and technology.technology_name like #{condition.technologyName}
+      </if>
+    </where>
+    <if test="#{pageDetail} != null">
+      limit #{pageDetail.rows} offset #{pageDetail.offset}
+    </if>
+  </select>
+  <select id="selectAllRecordsByCondition" resultType="_int">
+    select
+    count(*)
+    from
+    <include refid="manufacture_relatived_database"/>
+    <where>
+      c_order.order_id = manufacture.order_id
+      and technology.technology_id = manufacture.technology_id
+      <if test="condition.manufactureSn != null">
+        and manufacture.manufacture_sn like #{condition.manufactureSn}
+      </if>
+      <if test="condition.orderId != null">
+        and manufacture.order_id like #{condition.orderId}
+      </if>
+      <if test="condition.technologyName != null">
+        and technology.technology_name like #{condition.technologyName}
+      </if>
+    </where>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from manufacture
+    where manufacture_sn = #{manufactureSn,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteManufacturesByPrimaryKey" parameterType="java.lang.String">
+    delete from manufacture
+    where manufacture_sn in
+    <foreach collection="manufactureSns" item="sn" open="(" close=")" separator=",">
+      #{sn}
+    </foreach>
+  </delete>
+  <insert id="insert" parameterType="com.ssm.bean.schedule.Manufacture">
+    insert into manufacture (manufacture_sn, order_id, technology_id, 
+      launch_quantity, begin_date, end_date
+      )
+    values (#{manufactureSn,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, #{technologyId,jdbcType=VARCHAR}, 
+      #{launchQuantity,jdbcType=INTEGER}, #{beginDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.bean.schedule.Manufacture">
+    insert into manufacture
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="manufactureSn != null">
+        manufacture_sn,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="technologyId != null">
+        technology_id,
+      </if>
+      <if test="launchQuantity != null">
+        launch_quantity,
+      </if>
+      <if test="beginDate != null">
+        begin_date,
+      </if>
+      <if test="endDate != null">
+        end_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="manufactureSn != null">
+        #{manufactureSn,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="technologyId != null">
+        #{technologyId,jdbcType=VARCHAR},
+      </if>
+      <if test="launchQuantity != null">
+        #{launchQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="beginDate != null">
+        #{beginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.bean.schedule.Manufacture">
+    update manufacture
+    <set>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="technologyId != null">
+        technology_id = #{technologyId,jdbcType=VARCHAR},
+      </if>
+      <if test="launchQuantity != null">
+        launch_quantity = #{launchQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="beginDate != null">
+        begin_date = #{beginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        end_date = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where manufacture_sn = #{manufactureSn,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.bean.schedule.Manufacture">
+    update manufacture
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      technology_id = #{technologyId,jdbcType=VARCHAR},
+      launch_quantity = #{launchQuantity,jdbcType=INTEGER},
+      begin_date = #{beginDate,jdbcType=TIMESTAMP},
+      end_date = #{endDate,jdbcType=TIMESTAMP}
+    where manufacture_sn = #{manufactureSn,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,10 +1,12 @@
 package com.ssm.controller.MaterialController;
 
 import com.ssm.bean.ResponseMessage;
+import com.ssm.bean.ResponseVO;
 import com.ssm.bean.material.Material;
 import com.ssm.bean.material.MaterialConsume;
 import com.ssm.bean.material.MaterialVO;
-import com.ssm.bean.material.Work;
+
+import com.ssm.bean.schedule.Work;
 import com.ssm.service.material.MaterialConsumeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,6 +38,8 @@ public class MaterialConsumeController {
         consumeMaterialVO.setRows(list);
         return consumeMaterialVO;
     }
+
+    //插入操作
     @RequestMapping("MaterialConsume/add_judge")
     @ResponseBody
     public String judge(){
@@ -65,10 +69,39 @@ public class MaterialConsumeController {
             return responseMessage;
         }
     }
-    @RequestMapping("work/get_data")
+
+
+    //删除操作
+    @RequestMapping("MaterialConsume/delete_judge")
     @ResponseBody
-    public List<Work> workList(){
-        List list = materialConsumeService.findWorkList();
-        return list;
+    public String delete_judge(){
+        return "";
+    }
+    @RequestMapping("MaterialConsume/delete_batch")
+    @ResponseBody
+    public ResponseMessage delete_batch(String[] ids){
+        ResponseMessage responseMessage = new ResponseMessage();
+        int count = materialConsumeService.deleteBatch(ids);
+        if(count > 0){
+            responseMessage.setStatus(200);
+            responseMessage.setMsg("删除成功");
+        }else{
+            responseMessage.setStatus(404);
+            responseMessage.setMsg("删除失败");
+        }
+        return responseMessage;
+    }
+
+    //模糊查询
+    @RequestMapping("MaterialConsume/search_materialConsume_by_consumeId")
+    @ResponseBody
+    public ResponseVO<MaterialConsume> search(int page, int rows, String searchValue){
+        ResponseVO<MaterialConsume> responseVO = new ResponseVO<>();
+        int offset = (page - 1) * rows;
+        List<MaterialConsume> list = materialConsumeService.searchMaterialConsume(offset,rows,searchValue);
+        int count = materialConsumeService.searchMaterialConsumeCount(searchValue);
+        responseVO.setRows(list);
+        responseVO.setTotal(count);
+        return responseVO;
     }
 }

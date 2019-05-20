@@ -31,5 +31,5 @@ public interface TechnologyMapper {
     List<Technology> findByPage(@Param("rows") int rows,@Param("offset") int offset);
     List<Technology> findById(@Param("id") String id,@Param("rows") int rows,@Param("offset") int offset);
     List<Technology> findByName(@Param("name") String name,@Param("rows") int rows,@Param("offset") int offset);
-    List findTechnologyId();
+    List<Technology> findAll();
 }

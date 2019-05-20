@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -33,7 +34,7 @@ public class OrderController {
     Logger logger = Logger.getLogger(this.getClass());
 
     @RequestMapping("find")
-    public String customList(Model model){
+    public String orderList(Model model){
         return "order_list";
     }
 
@@ -148,5 +149,11 @@ public class OrderController {
     @ResponseBody
     public List<Order> queryAllOrders(){
         return orderService.queryOrders();
+    }
+
+    @RequestMapping("get/{orderId}")
+    @ResponseBody
+    public Order queryOrderById(@PathVariable("orderId") String orderId){
+        return orderService.queryOrderByOrderIdId(orderId);
     }
 }
