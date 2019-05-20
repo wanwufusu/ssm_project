@@ -24,7 +24,17 @@ public class ProcessCountCheck {
 
     private String empId;
 
+    private String empName;
+
     private String result;
+
+    public String getEmpId() {
+        return empId;
+    }
+
+    public void setEmpId(String empId) {
+        this.empId = empId;
+    }
 
     private String note;
 
@@ -100,12 +110,12 @@ public class ProcessCountCheck {
         this.measureData = measureData == null ? null : measureData.trim();
     }
 
-    public String getEmpId() {
-        return empId;
+    public String getEmpName() {
+        return empName;
     }
 
-    public void setEmpId(String empId) {
-        this.empId = empId == null ? null : empId.trim();
+    public void setEmpName(String empName) {
+        this.empName = empName;
     }
 
     public String getResult() {

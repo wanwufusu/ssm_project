@@ -1,11 +1,15 @@
 package com.ssm.bean.material;
 
+import com.ssm.bean.schedule.Work;
+
 import java.util.Date;
 
 public class MaterialConsume {
     private String consumeId;
     private String workId;
+    private Work work;
     private String materialId;
+    private Material material;
     private int consumeAmount;
     private String consumeDate;
     private String sender;
@@ -13,6 +17,22 @@ public class MaterialConsume {
     private String note;
 
     public MaterialConsume() {
+    }
+
+    public Material getMaterial() {
+        return material;
+    }
+
+    public void setMaterial(Material material) {
+        this.material = material;
+    }
+
+    public Work getWork() {
+        return work;
+    }
+
+    public void setWork(Work work) {
+        this.work = work;
     }
 
     public String getMaterialId() {
@@ -38,8 +58,6 @@ public class MaterialConsume {
     public void setWorkId(String workId) {
         this.workId = workId;
     }
-
-
 
 
     public int getConsumeAmount() {

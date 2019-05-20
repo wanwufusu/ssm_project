@@ -1,6 +1,8 @@
 package com.ssm.controller.qualityControl;
 
-import com.ssm.bean.qualityControl.FMCVo;
+import com.ssm.bean.ResponseMessage;
+import com.ssm.bean.ResponseVO;
+import com.ssm.bean.qualityControl.FinalMeasuretCheck;
 import com.ssm.service.qualityControl.FinalMeasureCheckService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,19 +26,17 @@ public class FinalMeasureCheckController {
      */
     @RequestMapping("list")
     @ResponseBody
-    public FMCVo list(Integer page, Integer rows){
+    public ResponseVO<FinalMeasuretCheck> list(Integer page, Integer rows){
         //todo
         int offset = (page - 1) * rows;
 
         List finalMeasureCheck = finalMeasureCheckService.findByPage(rows,offset);
         int allCount = finalMeasureCheckService.findAllCount();
-        FMCVo fmcVo = new FMCVo();
-        fmcVo.setRows(finalMeasureCheck);
-        fmcVo.setTotal(allCount);
-        return fmcVo;
+        ResponseVO<FinalMeasuretCheck> vo = new ResponseVO<>();
+        vo.setRows(finalMeasureCheck);
+        vo.setTotal(allCount);
+        return vo;
     }
-
-
 
     /**
      * 来自home.jsp的list
@@ -47,47 +47,26 @@ public class FinalMeasureCheckController {
         return "measurement_list";
     }
 
-
-
-
-
-
-    /**
-     * 成品计量质检的添加按钮功能
-     */
-    @RequestMapping("add")
-    public String add(){
-        //todo
-        return "measurement_add";
-    }
-
-    /**
-     * 成品计量质检的编辑按钮功能
-     */
-    @RequestMapping("edit")
-    public String edit(){
-        //todo
-        return "measurement_edit";
-    }
-
-    /**
-     * 成品计量质检的删除选定功能
-     * 返回list页面
-     */
-    @RequestMapping("delete_batch")
-    public String delete_batch(){
-        //todo
-        return "/measure/list";
-    }
-
-    /**
-     * 成品计量质检的给当前行添加备注功能
-     */
     @RequestMapping("update_note")
-    public String update_note(){
-        //todo
-        return "/measure/list";
+    @ResponseBody
+    public ResponseMessage update_note(String fMeasureCheckId, String note){
+        int i = finalMeasureCheckService.updateNote(fMeasureCheckId, note);
+        return ResponseMessage.getMessage(i);
     }
+
+    @RequestMapping("delete_batch")
+    @ResponseBody
+    public ResponseMessage delete_batch(String[] ids){
+        int i = finalMeasureCheckService.deleteByIds(ids);
+        return ResponseMessage.getMessage(i);
+    }
+
+
+
+
+
+
+
 
 
 }

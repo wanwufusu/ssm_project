@@ -60,7 +60,7 @@
 			return ;
 		}
 		
-		$.post("work/update_all",$("#workEditForm").serialize(), function(data){
+		$.post("Work/update_all",$("#workEditForm").serialize(), function(data){
 			if(data.status == 200){
 				$.messager.alert('提示','修改作业成功!','info',function(){
 					$("#workEditWindow").window('close');

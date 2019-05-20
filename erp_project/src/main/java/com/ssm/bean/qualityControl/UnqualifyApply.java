@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class UnqualifyApply {
     private String unqualifyApplyId;
-
+    private String productId;
     private String productName;
 
     private String unqualifyItem;
@@ -13,9 +13,18 @@ public class UnqualifyApply {
 
     private Date assemblyDate;
 
+    private String empId;
     private String empName;
 
     private Date applyDate;
+
+    public String getEmpId() {
+        return empId;
+    }
+
+    public void setEmpId(String empId) {
+        this.empId = empId;
+    }
 
     private String note;
 
@@ -59,6 +68,13 @@ public class UnqualifyApply {
 
     public void setProductName(String productName) {
         this.productName = productName;
+    }
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 
     public String getEmpName() {

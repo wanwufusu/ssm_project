@@ -2,24 +2,24 @@
 Controller
 —————————————————————————————————————————————————————————————————————————————————————————————————
 @Controller
-@RequestMapping("p_count_check")
-public class ProcessCountCheckController{
+@RequestMapping("p_measure_check")
+public class ProcessMeasureCheckController{
 
     @Autowired
-    ProcessCountCheckService processCountCheckService;
+    ProcessMeasureCheckService processMeasureCheckService;
 
     @RequestMapping("find")
     public String find(){
-        return "p_count_check_list";
+        return "p_measure_check_list";
     }
 
     @RequestMapping("list")
     @ResponseBody
-    public ResponseVO<ProcessCountCheck> list(Integer page,Integer rows){
+    public ResponseVO<ProcessMeasureCheck> list(Integer page,Integer rows){
         int offset = (page -1) * rows;
-        int allCount = processCountCheckService.findAllCount();
-        List<ProcessCountCheck> list = processCountCheckService.findByPage(rows, offset);
-        ResponseVO<ProcessCountCheck> vo = new ResponseVO<ProcessCountCheck>();
+        int allCount = processMeasureCheckService.findAllCount();
+        List<ProcessMeasureCheck> list = processMeasureCheckService.findByPage(rows, offset);
+        ResponseVO<ProcessMeasureCheck> vo = new ResponseVO<ProcessMeasureCheck>();
         vo.setTotal(allCount);
         vo.setRows(list);
         return vo;
@@ -28,34 +28,42 @@ public class ProcessCountCheckController{
 —————————————————————————————————————————————————————————————————————————————————————————————————
 Service
 —————————————————————————————————————————————————————————————————————————————————————————————————
-public interface ProcessCountCheckService {
-    List<ProcessCountCheck> findByPage(int rows,int offset);
+public interface ProcessMeasureCheckService {
+    List<ProcessMeasureCheck> findByPage(int rows,int offset);
     int findAllCount();
 }
 —————————————————————————————————————————————————————————————————————————————————————————————————
 @Service
-public class ProcessCountCheckServiceImpl implements ProcessCountCheckService {
+public class ProcessMeasureCheckServiceImpl implements ProcessMeasureCheckService {
     @Autowired
-    ProcessCountCheckMapper processCountCheckMapper;
+    ProcessMeasureCheckMapper processMeasureCheckMapper;
 
     @Override
-    public List<ProcessCountCheck> findByPage(int rows, int offset) {
-        List<ProcessCountCheck> byPage = processCountCheckMapper.findByPage(rows, offset);
+    public List<ProcessMeasureCheck> findByPage(int rows, int offset) {
+        List<ProcessMeasureCheck> byPage = processMeasureCheckMapper.findByPage(rows, offset);
         return byPage;
     }
 
     @Override
     public int findAllCount() {
-        int allCount = processCountCheckMapper.findAllCount();
+        int allCount = processMeasureCheckMapper.findAllCount();
         return allCount;
     }
 }
 —————————————————————————————————————————————————————————————————————————————————————————————————
 Mapper
 —————————————————————————————————————————————————————————————————————————————————————————————————
-public interface ProcessCountCheckMapper {
-    List<ProcessCountCheck> findByPage(@Param("rows") int rows,@Param("offset") int offset);
+public interface ProcessMeasureCheckMapper {
+    List<ProcessMeasureCheck> findByPage(@Param("rows") int rows,@Param("offset") int offset);
     int findAllCount();
 
 }
+
+—————————————————————————————————————————————————————————————————————————————————————————————————
+—————————————————————————————————————————————————————————————————————————————————————————————————
+updateNote模板
+—————————————————————————————————————————————————————————————————————————————————————————————————
+—————————————————————————————————————————————————————————————————————————————————————————————————
+
+
 

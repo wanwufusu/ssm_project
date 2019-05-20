@@ -1,6 +1,7 @@
 package com.ssm.controller.qualityControl;
 
 
+import com.ssm.bean.ResponseMessage;
 import com.ssm.bean.ResponseVO;
 import com.ssm.bean.qualityControl.FinalCountCheck;
 import com.ssm.service.qualityControl.FinalCountCheckService;
@@ -37,24 +38,23 @@ public class FinalCountCheckController {
         return "f_count_check_list";
     }
 
-
-
-
-
-
-
-
-
-
-    /**
-     * 成品计数质检的添加
-     * @return
-     */
-    @RequestMapping("insert")
-    public String insert(){
-        //todo
-        return "f_count_check_add";
+    @RequestMapping("update_note")
+    @ResponseBody
+    public ResponseMessage update_note(String fCountCheckId, String note) {
+        int i = finalCountCheckService.updateNote(fCountCheckId, note);
+        return ResponseMessage.getMessage(i);
     }
 
-    //事情没有这么简单
+    @RequestMapping("delete_batch")
+    @ResponseBody
+    public ResponseMessage delete_batch(String[] ids){
+        int i = finalCountCheckService.deleteByIds(ids);
+        return ResponseMessage.getMessage(i);
+    }
+
+
+
+
+
+
 }

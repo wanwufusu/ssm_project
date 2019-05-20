@@ -41,4 +41,8 @@ public interface CustomMapper {
     int updateByPrimaryKeySelective(Custom record);
 
     int updateByPrimaryKey(Custom record);
+
+    int deleteCustomsByPrimaryKey(@Param("customIds") String[] customId);
+
+    List<Custom> selectCustoms();
 }

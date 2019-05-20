@@ -23,4 +23,15 @@ public class FinalCountCheckServiceImpl implements FinalCountCheckService {
     public int findAllCount() {
         return finalCountCheckMapper.findAllCount();
     }
+
+    @Override
+    public int updateNote(String id, String note) {
+        int i = finalCountCheckMapper.updateNote(id, note);
+        return i;
+    }
+
+    @Override
+    public int deleteByIds(String[] ids) {
+        return finalCountCheckMapper.deleteByIds(ids);
+    }
 }

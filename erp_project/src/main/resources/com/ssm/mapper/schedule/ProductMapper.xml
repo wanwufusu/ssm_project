@@ -26,6 +26,11 @@
       limit #{pageDetail.rows} offset #{pageDetail.offset}
     </if>
   </select>
+  <select id="selectAllProducts" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from product
+  </select>
   <select id="selectByPageAndProductCondition" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List"/>
@@ -69,6 +74,13 @@
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from product
     where product_id = #{productId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteProductsByPrimaryKey" parameterType="java.lang.String">
+    delete from product
+    where product_id in
+    <foreach collection="productIds" item="id" open="(" close=")" separator=",">
+      #{id}
+    </foreach>
   </delete>
   <insert id="insert" parameterType="com.ssm.bean.schedule.Product">
     insert into product (product_id, product_name, product_type, 

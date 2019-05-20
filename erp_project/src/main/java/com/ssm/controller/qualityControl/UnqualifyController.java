@@ -1,6 +1,7 @@
 package com.ssm.controller.qualityControl;
 
 
+import com.ssm.bean.ResponseMessage;
 import com.ssm.bean.ResponseVO;
 import com.ssm.bean.qualityControl.UnqualifyApply;
 import com.ssm.service.qualityControl.UnqualifyService;
@@ -33,5 +34,19 @@ public class UnqualifyController {
         vo.setTotal(allCount);
         vo.setRows(list);
         return vo;
+    }
+
+    @RequestMapping("update_note")
+    @ResponseBody
+    public ResponseMessage update_note(String unqualifyApplyId,String note){
+        int i = unqualifyService.updateNote(unqualifyApplyId, note);
+        return ResponseMessage.getMessage(i);
+    }
+
+    @RequestMapping("delete_batch")
+    @ResponseBody
+    public ResponseMessage delete_batch(String[] ids){
+        int i = unqualifyService.deleteByIds(ids);
+        return ResponseMessage.getMessage(i);
     }
 }

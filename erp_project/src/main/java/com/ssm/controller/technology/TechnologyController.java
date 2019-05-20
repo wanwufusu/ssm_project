@@ -29,10 +29,10 @@ public class TechnologyController {
     public ResponseVO list(Integer page, Integer rows){
         int offset = (page - 1) * rows;
         List<Technology> technologies = technologyService.findTechnology(rows,offset);
-        ResponseVO ResponseVO = new ResponseVO();
-        ResponseVO.setRows(technologies);
-        ResponseVO.setTotal(technologies == null?0:technologies.size());
-        return ResponseVO;
+        ResponseVO responseVO = new ResponseVO();
+        responseVO.setRows(technologies);
+        responseVO.setTotal(technologies == null?0:technologies.size());
+        return responseVO;
     }
     @RequestMapping("add")
     public String add(){
@@ -105,20 +105,26 @@ public class TechnologyController {
     public ResponseVO searchByTechnologyId(String searchValue,Integer page,Integer rows){
         int offset = (page - 1) * rows;
         List<Technology> technologies = technologyService.findTechnologyById(searchValue,rows,offset);
-        ResponseVO<Technology> ResponseVO = new ResponseVO<>();
-        ResponseVO.setRows(technologies);
-        ResponseVO.setTotal(technologies == null?0:technologies.size());
-        return ResponseVO;
+        ResponseVO<Technology> responseVO = new ResponseVO<>();
+        responseVO.setRows(technologies);
+        responseVO.setTotal(technologies == null?0:technologies.size());
+        return responseVO;
     }
     @RequestMapping("search_technology_by_technologyName")
     @ResponseBody
     public ResponseVO searchByTechnologyName(String searchValue,Integer page,Integer rows){
         int offset = (page - 1) * rows;
         List<Technology> technologies = technologyService.findTechnologyByName(searchValue,rows,offset);
-        ResponseVO<Technology> ResponseVO = new ResponseVO<>();
-        ResponseVO.setRows(technologies);
-        ResponseVO.setTotal(technologies == null?0:technologies.size());
-        return ResponseVO;
+        ResponseVO<Technology> responseVO = new ResponseVO<>();
+        responseVO.setRows(technologies);
+        responseVO.setTotal(technologies == null?0:technologies.size());
+        return responseVO;
+    }
+    @RequestMapping("get_data")
+    @ResponseBody
+    public List getData(){
+        List data = technologyService.findTechnologyId();
+        return data;
     }
 
 }

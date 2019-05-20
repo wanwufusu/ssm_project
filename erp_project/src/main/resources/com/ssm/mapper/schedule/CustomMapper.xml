@@ -77,6 +77,11 @@
     custom_id, custom_name, full_name, address, fax, email, owner_name, owner_tel, status, 
     note
   </sql>
+    <select id="selectCustoms" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from custom
+    </select>
     <select id="selectByPageInformation" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
@@ -151,6 +156,13 @@
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from custom
     where custom_id = #{customId,jdbcType=VARCHAR}
+  </delete>
+    <delete id="deleteCustomsByPrimaryKey" parameterType="java.lang.String">
+    delete from custom
+    where custom_id in 
+    <foreach collection="customIds" item="id" open="(" close=")" separator=",">
+        #{id}
+    </foreach>
   </delete>
     <delete id="deleteByExample" parameterType="com.ssm.bean.schedule.CustomExample">
         delete from custom

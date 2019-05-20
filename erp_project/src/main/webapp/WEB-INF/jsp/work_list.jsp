@@ -20,23 +20,23 @@
 
 <div  id="toolbar_work" style=" height: 22px; padding: 3px 11px; background: #fafafa;">  
 	
-	<c:forEach items="${sessionScope.sysPermissionList}" var="per" >
-		<c:if test="${per=='work:add' }" >
+<%--	<c:forEach items="${sessionScope.sysPermissionList}" var="per" >
+		<c:if test="${per=='Work:add' }" >--%>
 		    <div style="float: left;">  
 		        <a href="#" class="easyui-linkbutton" plain="true" icon="icon-add" onclick="work_add()">新增</a>  
 		    </div>  
-		</c:if>
-		<c:if test="${per=='work:edit' }" >
+<%--		</c:if>
+		<c:if test="${per=='Work:edit' }" >--%>
 		    <div style="float: left;">  
 		        <a href="#" class="easyui-linkbutton" plain="true" icon="icon-edit" onclick="work_edit()">编辑</a>  
 		    </div>  
-		</c:if>
-		<c:if test="${per=='work:delete' }" >
+<%--		</c:if>
+		<c:if test="${per=='Work:delete' }" >--%>
 		    <div style="float: left;">  
 		        <a href="#" class="easyui-linkbutton" plain="true" icon="icon-cancel" onclick="work_delete()">删除</a>  
 		    </div>  
-		</c:if>
-	</c:forEach>
+<%--		</c:if>
+	</c:forEach>--%>
 	
 	<div class="datagrid-btn-separator"></div>  
 	
@@ -221,7 +221,7 @@ function doSearch_work(value,name){ //用户输入用户名,点击搜素,触发�
 	if(value == null || value == ''){
 		$("#workList").datagrid({
 	        title:'作业列表', singleSelect:false, collapsible:true, pagination:true, rownumbers:true, method:'get',
-			nowrap:true, toolbar:"toolbar_work", url:'work/list', method:'get', loadMsg:'数据加载中......',
+			nowrap:true, toolbar:"toolbar_work", url:'Work/list', method:'get', loadMsg:'数据加载中......',
 			fitColumns:true,//允许表格自动缩放,以适应父容器
 	        columns : [ [ 
 				{field : 'ck', checkbox:true },
@@ -236,7 +236,7 @@ function doSearch_work(value,name){ //用户输入用户名,点击搜素,触发�
 	}else{
 		$("#workList").datagrid({  
 	        title:'作业列表', singleSelect:false, collapsible:true, pagination:true, rownumbers:true, method:'get',
-			nowrap:true, toolbar:"toolbar_work", url:'work/search_work_by_'+name+'?searchValue='+value,
+			nowrap:true, toolbar:"toolbar_work", url:'Work/search_work_by_'+name+'?searchValue='+value,
 			loadMsg:'数据加载中......',  fitColumns:true,//允许表格自动缩放,以适应父容器
 	        columns : [ [ 
 				{field : 'ck', checkbox:true },
@@ -465,7 +465,7 @@ function doSearch_work(value,name){ //用户输入用户名,点击搜素,触发�
     }
     
     function work_add(){
-    	$.get("work/add_judge",'',function(data){
+    	$.get("Work/add_judge",'',function(data){
        		if(data.msg != null){
        			$.messager.alert('提示', data.msg);
        		}else{
@@ -475,7 +475,7 @@ function doSearch_work(value,name){ //用户输入用户名,点击搜素,触发�
     }
     
     function work_edit(){
-    	$.get("work/edit_judge",'',function(data){
+    	$.get("Work/edit_judge",'',function(data){
        		if(data.msg != null){
        			$.messager.alert('提示', data.msg);
        		}else{
@@ -505,7 +505,7 @@ function doSearch_work(value,name){ //用户输入用户名,点击搜素,触发�
     }
     
     function work_delete(){
-    	$.get("work/delete_judge",'',function(data){
+    	$.get("Work/delete_judge",'',function(data){
        		if(data.msg != null){
        			$.messager.alert('提示', data.msg);
        		}else{
@@ -517,7 +517,7 @@ function doSearch_work(value,name){ //用户输入用户名,点击搜素,触发�
             	$.messager.confirm('确认','确定删除ID为 '+ids+' 的作业吗？',function(r){
             	    if (r){
             	    	var params = {"ids":ids};
-                    	$.post("work/delete_batch",params, function(data){
+                    	$.post("Work/delete_batch",params, function(data){
                 			if(data.status == 200){
                 				$.messager.alert('提示','删除作业成功!',undefined,function(){
                 					$("#workList").datagrid("reload");

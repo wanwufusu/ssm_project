@@ -24,4 +24,15 @@ public class FinalMeasureCheckServiceImpl implements FinalMeasureCheckService {
     public int findAllCount() {
         return finalMeasuretCheckMapper.findAllCount();
     }
+
+    @Override
+    public int updateNote(String id, String note) {
+        int i = finalMeasuretCheckMapper.updateNote(id, note);
+        return i;
+    }
+
+    @Override
+    public int deleteByIds(String[] ids) {
+        return finalMeasuretCheckMapper.deleteByIds(ids);
+    }
 }

@@ -55,4 +55,23 @@ public class ResponseMessage {
                 ", data='" + data + '\'' +
                 '}';
     }
+
+    /**
+     * 传入mapper的返回数量，当大于0时产生正常的状态返回信息
+     * @param i
+     * @return
+     */
+    public static ResponseMessage getMessage(int i){
+        ResponseMessage message = new ResponseMessage();
+        if (i >= 1) {
+            message.setMsg("OK");
+            message.setData(null);
+            message.setStatus(200);
+        } else {
+            message.setMsg("FAIL");
+            message.setData(null);
+            message.setStatus(404);
+        }
+        return message;
+    }
 }
