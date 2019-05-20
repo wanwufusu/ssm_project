@@ -59,6 +59,32 @@
       limit #{pageDetail.rows} offset #{pageDetail.offset}
     </if>
   </select>
+    <select id="selectByPageAndWorkCondition" resultMap="JoinResultMap">
+        select
+        <include refid="Join_Column_List"/>
+        from
+        <include refid="work_relatived_database"/>
+        <where>
+            product.product_id = work.product_id
+            and process.process_id = work.process_id
+            and device.device_id = work.device_id
+            <if test="condition.workId != null">
+                and work.work_id like #{condition.workId}
+            </if>
+            <if test="condition.productName != null">
+                and product.product_name like #{condition.productName}
+            </if>
+            <if test="condition.deviceName != null">
+                and device.device_name like #{condition.deviceName}
+            </if>
+            <if test="condition.processId != null">
+                and process.process_id like #{condition.processId}
+            </if>
+        </where>
+        <if test="#{pageDetail} != null">
+            limit #{pageDetail.rows} offset #{pageDetail.offset}
+        </if>
+    </select>
     <select id="selectAllRecords" resultType="_int">
         select
         count(*)
@@ -70,7 +96,30 @@
             and device.device_id = work.device_id
         </where>
     </select>
-    <select id="selectAllOrders" resultMap="BaseResultMap">
+    <select id="selectAllRecordsByCondition" resultType="_int">
+        select
+        count(*)
+        from
+        <include refid="work_relatived_database"/>
+        <where>
+            product.product_id = work.product_id
+            and process.process_id = work.process_id
+            and device.device_id = work.device_id
+            <if test="condition.workId != null">
+                and work.work_id like #{condition.workId}
+            </if>
+            <if test="condition.productName != null">
+                and product.product_name like #{condition.productName}
+            </if>
+            <if test="condition.deviceName != null">
+                and device.device_name like #{condition.deviceName}
+            </if>
+            <if test="condition.processId != null">
+                and process.process_id like #{condition.processId}
+            </if>
+        </where>
+    </select>
+    <select id="selectAllWorks" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from work
@@ -79,6 +128,13 @@
     delete from work
     where work_id = #{workId,jdbcType=VARCHAR}
   </delete>
+    <delete id="deleteWorksByPrimaryKey" parameterType="java.lang.String">
+        delete from work
+        where work_id in
+        <foreach collection="workIds" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
   <insert id="insert" parameterType="com.ssm.bean.schedule.Work">
     insert into work (work_id, process_number, product_id, 
       process_id, device_id, rating

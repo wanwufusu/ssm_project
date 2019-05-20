@@ -17,4 +17,12 @@ public interface MaterialService {
     Material selectMaterialById(String materialId);
 
     List findAllMaterialList();
+
+    int updateMaterialById(Material material);
+
+    int deleteBatch(String[] ids);
+
+    List<Material> searchMaterial(int offset, int rows, String searchValue);
+
+    int searchMaterialCount(String searchValue);
 }

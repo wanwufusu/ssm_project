@@ -5,6 +5,7 @@ import com.ssm.bean.schedule.Work;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 public interface WorkMapper {
     int deleteByPrimaryKey(String workId);
@@ -24,4 +25,10 @@ public interface WorkMapper {
     int updateByPrimaryKey(Work record);
 
     List<Work> selectAllWorks();
+
+    int deleteWorksByPrimaryKey(@Param("workIds") String[] ids);
+
+    List<Work> selectByPageAndWorkCondition(@Param("pageDetail") PageDetail pageDetail,@Param("condition") Map<String, String> condition);
+
+    int selectAllRecordsByCondition(@Param("condition")Map<String, String> condition);
 }

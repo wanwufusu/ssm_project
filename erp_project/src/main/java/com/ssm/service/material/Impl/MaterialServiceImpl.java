@@ -43,4 +43,26 @@ public class MaterialServiceImpl implements MaterialService {
     public List findAllMaterialList() {
         return materialMapper.findAllMaterialList();
     }
+
+    @Override
+    public int updateMaterialById(Material material) {
+        return materialMapper.updateMaterialById(material);
+    }
+
+    @Override
+    public int deleteBatch(String[] ids) {
+
+        return materialMapper.deleteBatch(ids);
+
+    }
+
+    @Override
+    public List<Material> searchMaterial(int offset, int rows, String searchValue) {
+        return materialMapper.searchMaterial(offset,rows,searchValue);
+    }
+
+    @Override
+    public int searchMaterialCount(String searchValue) {
+        return materialMapper.searchMaterialCount(searchValue);
+    }
 }
