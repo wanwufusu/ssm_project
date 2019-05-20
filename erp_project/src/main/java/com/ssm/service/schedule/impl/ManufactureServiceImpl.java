@@ -81,4 +81,9 @@ public class ManufactureServiceImpl implements ManufactureService {
     public int queryAllRecordByTechnologyName(Map<String, String> condition) {
         return manufactureMapper.selectAllRecordsByCondition(condition);
     }
+
+    @Override
+    public Manufacture queryManufactureByManufactureSn(String manufactureSn) {
+        return manufactureMapper.selectByPrimaryKey(manufactureSn);
+    }
 }

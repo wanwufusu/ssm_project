@@ -28,4 +28,6 @@ public interface ManufactureService {
     List<Manufacture> queryPageManufactureByTechnologyName(PageDetail pageDetail, Map<String, String> condition);
 
     int queryAllRecordByTechnologyName(Map<String, String> condition);
+
+    Manufacture queryManufactureByManufactureSn(String manufactureSn);
 }

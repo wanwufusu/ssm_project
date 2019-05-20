@@ -86,4 +86,9 @@ public class OrderServiceImpl implements OrderService {
     public int queryAllRecordByProductName(Map<String, String> condition) {
         return orderMapper.selectAllRecordsByCondition(condition);
     }
+
+    @Override
+    public Order queryOrderByOrderIdId(String orderId) {
+        return orderMapper.selectByPrimaryKey(orderId);
+    }
 }

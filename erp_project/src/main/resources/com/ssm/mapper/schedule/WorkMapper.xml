@@ -39,11 +39,17 @@
   <sql id="work_relatived_database">
     work, product, device, process
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="JoinResultMap">
     select 
-    <include refid="Base_Column_List" />
-    from work
-    where work_id = #{workId,jdbcType=VARCHAR}
+    <include refid="Join_Column_List" />
+    from
+    <include refid="work_relatived_database"/>
+      <where>
+          product.product_id = work.product_id
+          and process.process_id = work.process_id
+          and device.device_id = work.device_id
+          and work.work_id = #{workId,jdbcType=VARCHAR}
+      </where>
   </select>
   <select id="selectByPageInformation" resultMap="JoinResultMap">
     select
