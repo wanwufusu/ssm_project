@@ -17,6 +17,11 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @RequestMapping("/")
+    public String home(){
+        return "login";
+    }
+
    @RequestMapping("/ajaxLogin" )
    @ResponseBody
     public Object login(HttpSession session,String username, String password){
