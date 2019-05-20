@@ -16,6 +16,8 @@ public class UserController {
 
     @Autowired
     UserService userService;
+    @Autowired
+    HttpSession session;
 
     @RequestMapping("/")
     public String home(){
@@ -24,7 +26,8 @@ public class UserController {
 
    @RequestMapping("/ajaxLogin" )
    @ResponseBody
-    public Object login(HttpSession session,String username, String password){
+    public Object login(String username, String password){
+       session.setMaxInactiveInterval(60);
        Map<String,Object> map = new HashMap<>();
         User user;
             if (userService.findUserByUsername(username) != null) {
@@ -43,5 +46,11 @@ public class UserController {
 
             return map;
         }
+
+    @RequestMapping("/logout")
+    public String logout(){
+        session.removeAttribute("activeUser");
+        return "forward:/home";
+    }
 
 }
