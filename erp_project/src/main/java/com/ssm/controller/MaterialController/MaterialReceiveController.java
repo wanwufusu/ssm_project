@@ -3,7 +3,7 @@ package com.ssm.controller.MaterialController;
 import com.ssm.bean.ResponseMessage;
 import com.ssm.bean.material.MaterialReceive;
 import com.ssm.bean.material.MaterialVO;
-import com.ssm.bean.material.Work;
+import com.ssm.bean.schedule.Work;
 import com.ssm.service.material.MaterialReceiveService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

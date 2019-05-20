@@ -27,10 +27,16 @@ public class TechnologyPlanController {
     public ResponseVO list(Integer page, Integer rows){
         int offset = (page - 1) * rows;
         List<TechnologyPlan> technologies = technologyPlanService.findTechnologyPlan(rows,offset);
-        ResponseVO ResponseVO = new ResponseVO();
-        ResponseVO.setRows(technologies);
-        ResponseVO.setTotal(technologies == null?0:technologies.size());
-        return ResponseVO;
+        if(technologies != null){
+            for(TechnologyPlan technologyPlan:technologies){
+                TechnologyPlan technologyPlan1 = technologyPlanService.getTechnology(technologyPlan);
+                technologyPlan = technologyPlan1;
+            }
+        }
+        ResponseVO responseVO = new ResponseVO();
+        responseVO.setRows(technologies);
+        responseVO.setTotal(technologies == null?0:technologies.size());
+        return responseVO;
     }
     @RequestMapping("add")
     public String add(){
@@ -103,19 +109,43 @@ public class TechnologyPlanController {
     public ResponseVO searchByTechnologyId(String searchValue,Integer page,Integer rows){
         int offset = (page - 1) * rows;
         List<TechnologyPlan> technologies = technologyPlanService.findTechnologyPlanById(searchValue,rows,offset);
-        ResponseVO<TechnologyPlan> ResponseVO = new ResponseVO<>();
-        ResponseVO.setRows(technologies);
-        ResponseVO.setTotal(technologies == null?0:technologies.size());
-        return ResponseVO;
+        if(technologies != null){
+            for(TechnologyPlan technologyPlan:technologies){
+                TechnologyPlan technologyPlan1 = technologyPlanService.getTechnology(technologyPlan);
+                technologyPlan = technologyPlan1;
+            }
+        }
+        ResponseVO<TechnologyPlan> responseVO = new ResponseVO<>();
+        responseVO.setRows(technologies);
+        responseVO.setTotal(technologies == null?0:technologies.size());
+        return responseVO;
     }
-    @RequestMapping("search_technologyPlan_by_technologyPlanName")
+    @RequestMapping("search_technologyPlan_by_technologyName")//search_technologyPlan_by_technologyName
     @ResponseBody
     public ResponseVO searchByTechnologyName(String searchValue,Integer page,Integer rows) {
         int offset = (page - 1) * rows;
         List<TechnologyPlan> technologies = technologyPlanService.findTechnologyPlanByName(searchValue, rows, offset);
-        ResponseVO<TechnologyPlan> ResponseVO = new ResponseVO<>();
-        ResponseVO.setRows(technologies);
-        ResponseVO.setTotal(technologies == null ? 0 : technologies.size());
-        return ResponseVO;
+        if(technologies != null){
+            for(TechnologyPlan technologyPlan:technologies){
+                TechnologyPlan technologyPlan1 = technologyPlanService.getTechnology(technologyPlan);
+                technologyPlan = technologyPlan1;
+            }
+        }
+        ResponseVO<TechnologyPlan> responseVO = new ResponseVO<>();
+        responseVO.setRows(technologies);
+        responseVO.setTotal(technologies == null ? 0 : technologies.size());
+        return responseVO;
+    }
+    @RequestMapping("get_data")
+    @ResponseBody
+    public List<TechnologyPlan> getData(){
+        List<TechnologyPlan> data = technologyPlanService.findPlan();
+        if(data != null){
+            for(TechnologyPlan technologyPlan : data){
+                TechnologyPlan technologyPlan1 = technologyPlanService.getTechnology(technologyPlan);
+                technologyPlan = technologyPlan1;
+            }
+        }
+        return data;
     }
 }
