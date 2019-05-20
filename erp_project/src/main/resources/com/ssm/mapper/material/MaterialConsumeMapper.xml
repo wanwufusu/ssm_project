@@ -75,6 +75,11 @@
     select count(*) from material_consume where consume_id like '%${searchValue}%'
   </select>
 
+    <!--更新备注-->
+    <update id="updateNote">
+    update material_consume set note = #{note} where consume_id = #{consumeId}
+  </update>
+
 
 
 </mapper>

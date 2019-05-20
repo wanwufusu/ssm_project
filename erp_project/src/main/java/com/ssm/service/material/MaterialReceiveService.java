@@ -19,4 +19,6 @@ public interface MaterialReceiveService {
     List<MaterialReceive> searchMaterialReceive(int offset, int rows, String searchValue);
 
     int searchMaterialReceiveCount(String searchValue);
+
+    int updateNote(String materialId, String note);
 }

@@ -104,4 +104,20 @@ public class MaterialConsumeController {
         responseVO.setTotal(count);
         return responseVO;
     }
+
+    //更新备注
+    @RequestMapping("MaterialConsume/update_note")
+    @ResponseBody
+    public ResponseMessage note(String consumeId,String note){
+        ResponseMessage responseMessage = new ResponseMessage();
+        int count = materialConsumeService.updateNote(consumeId,note);
+        if(count > 0){
+            responseMessage.setStatus(200);
+            responseMessage.setMsg("修改成功");
+        }else{
+            responseMessage.setStatus(404);
+            responseMessage.setMsg("修改失败");
+        }
+        return responseMessage;
+    }
 }

@@ -5,9 +5,19 @@ public class User {
 
     private String username;
 
+    private String rolename;
+
     private String password;
 
     private String locked;
+
+    public String getRolename() {
+        return rolename;
+    }
+
+    public void setRolename(String rolename) {
+        this.rolename = rolename;
+    }
 
     public String getId() {
         return id;

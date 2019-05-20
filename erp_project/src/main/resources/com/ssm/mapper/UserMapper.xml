@@ -79,4 +79,12 @@
       locked = #{locked,jdbcType=CHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+
+  <select id="findUserByUsername" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/> from sys_user where username =#{username}
+  </select>
+
+  <select id="findUserByPassword" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/> from sys_user where username = #{username} and password =#{password}
+  </select>
 </mapper>

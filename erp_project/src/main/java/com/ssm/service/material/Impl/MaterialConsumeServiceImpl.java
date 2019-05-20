@@ -56,4 +56,9 @@ public class MaterialConsumeServiceImpl implements MaterialConsumeService {
     public int searchMaterialConsumeCount(String searchValue) {
         return materialConsumeMapper.searchMaterialConsumeCount(searchValue);
     }
+
+    @Override
+    public int updateNote(String consumeId, String note) {
+        return materialConsumeMapper.updateNote(consumeId,note);
+    }
 }
