@@ -99,17 +99,17 @@ public class TechnologyRequirementController {
     public ResponseVO searchByTechnologyRequirementId(String searchValue,Integer page,Integer rows){
         int offset = (page - 1) * rows;
         List<TechnologyRequirement> technologyRequirements = technologyRequirementService.findTechnologyRequirementById(searchValue,rows,offset);
-        ResponseVO responseVO = new ResponseVO();
+        ResponseVO<TechnologyRequirement> responseVO = new ResponseVO<>();
         responseVO.setRows(technologyRequirements);
         responseVO.setTotal(technologyRequirements == null?0:technologyRequirements.size());
         return responseVO;
     }
     @RequestMapping("search_technologyRequirement_by_technologyName")
     @ResponseBody
-    public ResponseVO searchByTechnologyName(String searchValue,Integer pge,Integer rows){
-        int offset = (pge - 1) * rows;
+    public ResponseVO searchByTechnologyName(String searchValue,int page,int rows){
+        int offset = (page - 1) * rows;
         List<TechnologyRequirement> technologyRequirements = technologyRequirementService.findTechnologyRequirementByName(searchValue,rows,offset);
-        ResponseVO responseVO = new ResponseVO();
+        ResponseVO<TechnologyRequirement> responseVO = new ResponseVO<>();
         responseVO.setRows(technologyRequirements);
         responseVO.setTotal(technologyRequirements == null?0:technologyRequirements.size());
         return responseVO;
